@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuizMaster</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- STARTBILDSCHIRM -->
+    <div id="startbildschirm" class="quiz-container startseite">
+
+        <div class="logo-bereich">
+            <div class="logo">
+                QUIZ<span>MASTER</span>
+            </div>
+            <div class="logo-linie"></div>
+        </div>
+
+        <div class="spieler-name">
+            <span id="spielerBegruessung">Willkommen!</span>
+        </div>
+
+        <div class="spieler-status">
+
+            <div class="spieler-status-top">
+                <div class="spieler-level">
+                    LEVEL <strong id="startLevel">1</strong>
+                </div>
+
+                <div class="spieler-streak">
+                    🔥 <strong id="startStreak">0</strong> Tage
+                </div>
+            </div>
+
+            <div class="xp-info">
+                <span id="startXP">0 / 100 XP</span>
+                <span id="startNaechstesLevel">100 XP bis Level 2</span>
+            </div>
+
+            <div class="xp-balken">
+                <div id="startXPBalken"></div>
+            </div>
+
+        </div>
+
+        <h2>Teste dein Wissen.</h2>
+
+        <p class="start-text">
+            Stelle dich spannenden Fragen,
+            sammle Punkte und knacke deinen persönlichen Highscore.
+        </p>
+
+        <div class="start-statistiken">
+
+            <div>
+                <strong>600+</strong>
+                <span>Fragen</span>
+            </div>
+
+            <div>
+                <strong>4</strong>
+                <span>Kategorien</span>
+            </div>
+
+            <div>
+                <strong>3</strong>
+                <span>Schwierigkeiten</span>
+            </div>
+
+        </div>
+
+        <button id="startButton" onclick="quizStarten()">
+            QUIZ STARTEN
+        </button>
+
+        <button id="bestenlisteButton" onclick="bestenlisteAnzeigen()">
+            🏆 Meine Bestenliste
+        </button>
+
+        <button id="statistikButton" onclick="statistikAnzeigen()">
+            📊 Meine Statistik
+        </button>
+
+    </div>
+
+
+    <!-- KATEGORIEN -->
+    <div id="kategorien" class="quiz-container">
+
+        <h1>QUIZMASTER</h1>
+        <h2>Wähle eine Kategorie</h2>
+
+        <div class="kategorie-buttons">
+
+            <button onclick="kategorieWaehlen('allgemein')">
+                🧠 Allgemeinwissen
+            </button>
+
+            <button onclick="kategorieWaehlen('sport')">
+                ⚽ Sport
+            </button>
+
+            <button onclick="kategorieWaehlen('geschichte')">
+                🏛️ Geschichte
+            </button>
+
+            <button onclick="kategorieWaehlen('technik')">
+                ⚙️ Technik
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- SCHWIERIGKEIT -->
+    <div id="schwierigkeit" class="quiz-container">
+
+        <h1>QUIZMASTER</h1>
+        <h2>Wähle die Schwierigkeit</h2>
+
+        <div class="schwierigkeit-buttons">
+
+            <button onclick="schwierigkeitWaehlen('leicht')">
+                🟢 Leicht
+            </button>
+
+            <button onclick="schwierigkeitWaehlen('mittel')">
+                🟡 Mittel
+            </button>
+
+            <button onclick="schwierigkeitWaehlen('schwer')">
+                🔴 Schwer
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ANZAHL FRAGEN -->
+    <div id="anzahlFragen" class="quiz-container">
+
+        <h1>QUIZMASTER</h1>
+        <h2>Wie viele Fragen möchtest du?</h2>
+
+        <div class="anzahl-buttons">
+
+            <button onclick="anzahlWaehlen(5)">
+                5 Fragen
+            </button>
+
+            <button onclick="anzahlWaehlen(10)">
+                10 Fragen
+            </button>
+
+            <button onclick="anzahlWaehlen(20)">
+                20 Fragen
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- QUIZ -->
+    <div id="quiz" class="quiz-container">
+
+        <h1>QUIZMASTER</h1>
+
+        <p id="frageNummer">
+            Frage 1 von 5
+        </p>
+
+        <div class="fortschritt">
+            <div id="fortschrittBalken"></div>
+        </div>
+
+        <h2 id="frage">
+            Frage wird geladen...
+        </h2>
+
+        <div id="antworten"></div>
+
+        <p id="ergebnis"></p>
+
+        <p id="punkte">
+            Punkte: 0
+        </p>
+
+        <p id="highscore">
+            🏆 Bester Score: 0
+        </p>
+
+        <button id="naechsteFrage" onclick="naechsteFrage()">
+            Nächste Frage
+        </button>
+
+        <button id="neustart" onclick="quizNeustarten()">
+            Quiz neu starten
+        </button>
+
+    </div>
+
+
+    <!-- BESTENLISTE -->
+    <div id="bestenliste" class="quiz-container">
+
+        <div class="logo-bereich">
+
+            <div class="logo">
+                QUIZ<span>MASTER</span>
+            </div>
+
+            <div class="logo-linie"></div>
+
+        </div>
+
+        <h2>🏆 Bestenliste</h2>
+
+        <p class="bestenliste-untertitel">
+            Deine persönlichen Bestwerte
+        </p>
+
+        <div class="bestenliste-auswahl">
+
+            <button onclick="bestenlisteLaden(5)">
+                5 Fragen
+            </button>
+
+            <button onclick="bestenlisteLaden(10)">
+                10 Fragen
+            </button>
+
+            <button onclick="bestenlisteLaden(20)">
+                20 Fragen
+            </button>
+
+        </div>
+
+        <div id="bestenlisteInhalt">
+            <p>Wähle oben die Anzahl der Fragen.</p>
+        </div>
+
+        <button id="zurueckVonBestenliste"
+                onclick="bestenlisteSchliessen()">
+            Zurück
+        </button>
+
+    </div>
+
+
+    <!-- STATISTIK -->
+    <div id="statistik" class="quiz-container">
+
+        <div class="logo-bereich">
+
+            <div class="logo">
+                QUIZ<span>MASTER</span>
+            </div>
+
+            <div class="logo-linie"></div>
+
+        </div>
+
+        <h2>📊 Meine Statistik</h2>
+
+        <p class="bestenliste-untertitel">
+            Deine QuizMaster-Leistung
+        </p>
+
+        <div id="statistikInhalt"></div>
+
+        <button id="zurueckVonStatistik"
+                onclick="statistikSchliessen()">
+            Zurück
+        </button>
+
+    </div>
+
+
+    <script src="fragen.js"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
+
