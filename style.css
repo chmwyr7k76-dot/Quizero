@@ -2496,3 +2496,28 @@ p {
     color: #8f969f;
     text-align: center;
 }
+
+#spielerNameAendernButton {
+    margin-top: 12px;
+    padding: 9px 16px;
+    background: transparent;
+    color: #8f969f;
+    border: 1px solid #4a515a;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+#spielerNameAendernButton:hover {
+    color: #ffd21f;
+    border-color: #ffd21f;
+    background: rgba(255, 210, 31, 0.08);
+    transform: translateY(-1px);
+}
+
+#spielerNameAendernButton:active {
+    transform: translateY(0);
+}
+
