@@ -2459,3 +2459,19 @@ p {
 .spieler-name span {
     color: #ffd21f;
 }
+/* ==================================================
+   QUIZERO BRANDING
+   ================================================== */
+
+.logo-slogan {
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #8f969f;
+    text-align: center;
+}
+
+.logo-slogan::first-letter {
+    color: #ffd21f;
+}
