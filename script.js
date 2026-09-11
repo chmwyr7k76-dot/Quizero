@@ -1,3 +1,19 @@
+// =====================================================
+// SUPABASE
+// =====================================================
+
+const SUPABASE_URL =
+    "https://agvkfksnqwdtimrcdkly.supabase.co";
+
+const SUPABASE_PUBLISHABLE_KEY =
+    "HIER_DEIN_PUBLISHABLE_KEY";
+
+const supabaseClient =
+    supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+    );
+
 let fragen = [];
 
 let aktuelleFrage = 0;
