@@ -890,6 +890,36 @@ function naechsteFrage() {
 // =====================================================
 // QUIZ BEENDEN
 // =====================================================
+// =====================================================
+// GLOBALE BESTENLISTE - ERGEBNIS SPEICHERN
+// =====================================================
+
+async function bestenlisteErgebnisSpeichern(prozent) {
+
+    let spielername =
+        spielerNameLaden();
+
+    let ergebnis = {
+        spielername: spielername || "Spieler",
+        kategorie: ausgewaehlteKategorie,
+        schwierigkeit: ausgewaehlteSchwierigkeit,
+        anzahl_fragen: fragen.length,
+        punkte: punkte,
+        prozent: prozent
+    };
+
+    let { error } =
+        await supabaseClient
+            .from("bestenliste")
+            .insert(ergebnis);
+
+    if (error) {
+        console.log(
+            "Fehler beim Speichern der Bestenliste:",
+            error
+        );
+    }
+}
 
 function quizBeenden() {
 
@@ -914,7 +944,7 @@ function quizBeenden() {
             (punkte / fragen.length) *
             100
         );
-
+    bestenlisteErgebnisSpeichern(prozent);
 
     let bewertung = "";
 
@@ -1257,62 +1287,71 @@ function bestenlisteAnzeigen() {
 }
 
 
-function bestenlisteLaden(anzahl) {
+async function bestenlisteLaden(anzahl) {
 
     let container =
         document.getElementById(
             "bestenlisteInhalt"
         );
 
-
-    let kategorien = [
-
-        {
-            name: "🧠 Allgemeinwissen",
-            wert: "allgemein"
-        },
-
-        {
-            name: "⚽ Sport",
-            wert: "sport"
-        },
-
-        {
-            name: "🏛️ Geschichte",
-            wert: "geschichte"
-        },
-
-        {
-            name: "⚙️ Technik",
-            wert: "technik"
-        }
-
-    ];
+    container.innerHTML =
+        "<p>🏆 Bestenliste wird geladen...</p>";
 
 
-    let schwierigkeiten = [
+    let { data, error } =
+        await supabaseClient
+            .from("bestenliste")
+            .select("*")
+            .eq("anzahl_fragen", anzahl)
+            .order("punkte", {
+                ascending: false
+            })
+            .order("erstellt_am", {
+                ascending: true
+            })
+            .limit(10);
 
-        {
-            name: "🟢 Leicht",
-            wert: "leicht"
-        },
 
-        {
-            name: "🟡 Mittel",
-            wert: "mittel"
-        },
+    if (error) {
 
-        {
-            name: "🔴 Schwer",
-            wert: "schwer"
-        }
+        console.log(
+            "Fehler beim Laden der Bestenliste:",
+            error
+        );
 
-    ];
+        container.innerHTML =
+            "<p>Die Bestenliste konnte momentan nicht geladen werden.</p>";
+
+        return;
+    }
+
+
+    if (!data || data.length === 0) {
+
+        container.innerHTML =
+            "<p>Noch keine Ergebnisse vorhanden.</p>";
+
+        return;
+    }
+
+
+    let kategorien = {
+        allgemein: "🧠 Allgemeinwissen",
+        sport: "⚽ Sport",
+        geschichte: "🏛️ Geschichte",
+        technik: "⚙️ Technik"
+    };
+
+
+    let schwierigkeiten = {
+        leicht: "🟢 Leicht",
+        mittel: "🟡 Mittel",
+        schwer: "🔴 Schwer"
+    };
 
 
     let html =
-
-        "<h2>Bestwerte für " +
+        "<h2>Top 10 für " +
         anzahl +
         " Fragen</h2>";
 
@@ -1322,80 +1361,50 @@ function bestenlisteLaden(anzahl) {
 
 
     html +=
-
         "<div class='bestenliste-zeile bestenliste-kopf'>" +
-
-        "<div>Kategorie</div>" +
-
-        "<div>🟢</div>" +
-
-        "<div>🟡</div>" +
-
-        "<div>🔴</div>" +
-
+        "<div>#</div>" +
+        "<div>Spieler</div>" +
+        "<div>Punkte</div>" +
+        "<div>Details</div>" +
         "</div>";
 
 
-    kategorien.forEach(
-        function(kategorie) {
+    data.forEach(
+        function(ergebnis, index) {
 
             html +=
                 "<div class='bestenliste-zeile'>";
 
 
             html +=
-                "<div class='bestenliste-kategorie'>" +
-                kategorie.name +
+                "<div class='bestenliste-platz'>" +
+                (index + 1) +
                 "</div>";
 
 
-            schwierigkeiten.forEach(
-                function(schwierigkeit) {
-
-                    let key =
-
-                        "highscore_" +
-
-                        kategorie.wert +
-                        "_" +
-
-                        schwierigkeit.wert +
-                        "_" +
-
-                        anzahl;
+            html +=
+                "<div class='bestenliste-kategorie'>" +
+                ergebnis.spielername +
+                "</div>";
 
 
-                    let score =
-                        Number(
-                            localStorage.getItem(
-                                key
-                            )
-                        ) || 0;
+            html +=
+                "<div class='bestenliste-score'>" +
+                ergebnis.punkte +
+                " / " +
+                ergebnis.anzahl_fragen +
+                "</div>";
 
 
-                    if (score === 0) {
-
-                        html +=
-                            "<div class='bestenliste-score'>—</div>";
-
-                    }
-
-                    else {
-
-                        html +=
-
-                            "<div class='bestenliste-score'>" +
-
-                            score +
-                            " / " +
-                            anzahl +
-
-                            "</div>";
-
-                    }
-
-                }
-            );
+            html +=
+                "<div>" +
+                kategorien[ergebnis.kategorie] +
+                "<br>" +
+                schwierigkeiten[ergebnis.schwierigkeit] +
+                "<br>" +
+                ergebnis.prozent +
+                "%" +
+                "</div>";
 
 
             html +=
@@ -1413,8 +1422,6 @@ function bestenlisteLaden(anzahl) {
         html;
 
 }
-
-
 function bestenlisteSchliessen() {
 
     document.getElementById(
