@@ -48,6 +48,36 @@ function spielerNameSpeichern(name) {
 
 }
 
+function spielerNameAendern() {
+    let aktuellerName = spielerNameLaden();
+
+    let neuerName = prompt(
+        "Wie soll dein neuer Spielername heißen?",
+        aktuellerName
+    );
+
+    if (neuerName === null) {
+        return;
+    }
+
+    neuerName = neuerName.trim();
+
+    if (neuerName === "") {
+        return;
+    }
+
+    spielerNameSpeichern(neuerName);
+
+    let begruessung =
+        document.getElementById("spielerBegruessung");
+
+    if (begruessung) {
+        begruessung.textContent =
+            "Willkommen zurück, " +
+            neuerName +
+            "!";
+    }
+}
 
 function spielerNameEinrichten() {
 
