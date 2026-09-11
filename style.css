@@ -2475,3 +2475,16 @@ p {
 .logo-slogan::first-letter {
     color: #ffd21f;
 }
+
+/* ==================================================
+   QUIZERO LOGO
+   ================================================== */
+
+.quizero-logo {
+    display: block;
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+    margin: 0 auto 20px auto;
+}
+
