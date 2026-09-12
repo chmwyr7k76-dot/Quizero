@@ -1,1561 +1,208 @@
-/* =========================
-   GRUNDLAGEN
-   ========================= */
+/* =====================================================
+   QUIZERO 2.0
+   ===================================================== */
 
 * {
     box-sizing: border-box;
 }
 
+
 html {
     min-height: 100%;
 }
 
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #1f2329;
-    color: #ffffff;
+
     margin: 0;
-    padding: 20px;
+
     min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at top,
+            #252b33 0%,
+            #15181c 42%,
+            #0d0f12 100%
+        );
+
+    color: #ffffff;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    padding: 20px;
+
 }
 
 
-/* =========================
-   HAUPT-CONTAINER
-   ========================= */
+button {
+
+    font-family: inherit;
+
+}
+
+
+main {
+
+    width: 100%;
+
+}
+
+
+.screen {
+
+    display: none;
+
+}
+
+
+#startbildschirm {
+
+    display: block;
+
+}
+
 
 .quiz-container {
+
     width: 100%;
+
     max-width: 680px;
-    margin: 50px auto;
+
+    margin: 30px auto;
+
     padding: 40px;
-    background-color: #292e35;
-    border: 1px solid #383e46;
-    border-radius: 20px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+
+    background:
+        linear-gradient(
+            145deg,
+            #20252b,
+            #181c21
+        );
+
+    border: 1px solid #363d45;
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.45);
+
 }
 
 
-/* =========================
-   ÜBERSCHRIFTEN
-   ========================= */
-
-h1 {
-    text-align: center;
-    color: #ffd21f;
-    font-size: 42px;
-    font-weight: 800;
-    letter-spacing: 1px;
-    margin: 0 0 10px 0;
-}
-
-h2 {
-    text-align: center;
-    color: #ffffff;
-    font-size: 25px;
-    line-height: 1.4;
-    margin: 30px 0;
-}
-
-p {
-    text-align: center;
-}
-
-
-/* =========================
+/* =====================================================
    STARTSEITE
-   ========================= */
+   ===================================================== */
 
 .startseite {
+
     text-align: center;
-    max-width: 720px;
-    padding: 60px 45px;
+
+    padding-top: 45px;
+
+    padding-bottom: 45px;
+
 }
 
 
-/* =========================
-   LOGO
-   ========================= */
+.quizero-logo-icon {
 
-.logo-bereich {
-    margin-bottom: 35px;
+    display: block;
+
+    width: 125px;
+
+    height: 125px;
+
+    object-fit: contain;
+
+    margin: 0 auto 10px;
+
 }
+
 
 .logo {
-    font-size: 48px;
-    font-weight: 900;
-    letter-spacing: 2px;
-    color: #ffffff;
+
+    font-size: 52px;
+
+    font-weight: 1000;
+
+    letter-spacing: 3px;
+
 }
+
 
 .logo span {
-    color: #ffd21f;
-}
-
-.logo-linie {
-    width: 55px;
-    height: 4px;
-    background-color: #ffd21f;
-    border-radius: 10px;
-    margin: 12px auto 0 auto;
-}
-
-
-/* =========================
-   STARTSEITE ÜBERSCHRIFT
-   ========================= */
-
-.startseite .logo {
-    font-size: 52px;
-    letter-spacing: 3px;
-}
-
-.startseite h2 {
-    font-size: 30px;
-    margin: 5px 0 18px 0;
-    color: #ffffff;
-}
-
-
-/* =========================
-   STARTTEXT
-   ========================= */
-
-.start-text {
-    max-width: 500px;
-    margin: 0 auto 35px auto;
-    color: #aeb4bc;
-    font-size: 17px;
-    line-height: 1.6;
-}
-
-
-/* =========================
-   START STATISTIKEN
-   ========================= */
-
-.start-statistiken {
-    display: flex;
-    justify-content: center;
-    gap: 0;
-    max-width: 500px;
-    padding: 18px 10px;
-    margin: 0 auto 35px auto;
-
-    background-color: #23282f;
-    border: 1px solid #383e46;
-    border-radius: 14px;
-}
-
-.start-statistiken div {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    flex: 1;
-    position: relative;
-}
-
-.start-statistiken div:not(:last-child)::after {
-    content: "";
-    position: absolute;
-    right: 0;
-    top: 10px;
-    width: 1px;
-    height: 35px;
-    background-color: #414850;
-}
-
-.start-statistiken strong {
-    font-size: 24px;
-    color: #ffd21f;
-}
-
-.start-statistiken span {
-    font-size: 13px;
-    color: #8f969f;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-
-/* =========================
-   HAUPTBUTTONS
-   ========================= */
-
-#startButton,
-#bestenlisteButton,
-#naechsteFrage,
-#neustart,
-#zurueckVonBestenliste {
-
-    display: block;
-    width: 100%;
-    max-width: 340px;
-    margin: 15px auto 0 auto;
-    padding: 16px 25px;
-    font-size: 17px;
-    font-weight: bold;
-    border-radius: 12px;
-    cursor: pointer;
-
-    transition:
-        background-color 0.2s,
-        color 0.2s,
-        transform 0.1s,
-        box-shadow 0.2s;
-}
-
-
-/* =========================
-   START BUTTON
-   ========================= */
-
-#startButton {
-    background-color: #ffd21f;
-    color: #1f2329;
-    border: none;
-    box-shadow: 0 8px 20px rgba(255, 210, 31, 0.18);
-
-    min-height: 58px;
-    max-width: 400px;
-    font-size: 18px;
-    letter-spacing: 0.3px;
-}
-
-#startButton:hover {
-    background-color: #ffe05a;
-    box-shadow: 0 10px 25px rgba(255, 210, 31, 0.28);
-    transform: translateY(-3px);
-}
-
-
-/* =========================
-   BESTENLISTE BUTTON
-   ========================= */
-
-#bestenlisteButton {
-    background-color: transparent;
-    color: #ffffff;
-    border: 2px solid #4a515a;
-    max-width: 400px;
-}
-
-#bestenlisteButton:hover {
-    background-color: #343a42;
-    border-color: #ffd21f;
-    color: #ffd21f;
-    transform: translateY(-3px);
-}
-
-
-/* =========================
-   STATISTIK BUTTON
-   ========================= */
-
-#statistikButton {
-
-    display: block;
-    width: 100%;
-    max-width: 400px;
-    margin: 10px auto 0 auto;
-
-    padding: 16px 25px;
-
-    font-size: 17px;
-    font-weight: bold;
-
-    border-radius: 12px;
-
-    cursor: pointer;
-
-    background-color: #343a42;
-    color: #ffffff;
-
-    border: 2px solid #414850;
-
-    transition:
-        background-color 0.2s,
-        border-color 0.2s,
-        color 0.2s,
-        transform 0.15s,
-        box-shadow 0.2s;
-}
-
-#statistikButton:hover {
-
-    background-color: #3b424b;
-
-    border-color: #ffd21f;
 
     color: #ffd21f;
 
-    transform: translateY(-3px);
-
-    box-shadow:
-        0 6px 18px rgba(0, 0, 0, 0.2);
-}
-
-
-/* =========================
-   BUTTON AKTIV
-   ========================= */
-
-#startButton:active,
-#bestenlisteButton:active,
-#statistikButton:active,
-#naechsteFrage:active,
-#neustart:active,
-#zurueckVonBestenliste:active {
-
-    transform: scale(0.97);
-}
-
-
-/* ==================================================
-   KATEGORIEN
-   ================================================== */
-
-.kategorie-buttons {
-
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    gap: 16px;
-}
-
-.kategorie-buttons button {
-
-    position: relative;
-
-    min-height: 125px;
-
-    padding: 25px 15px;
-
-    font-size: 18px;
-
-    font-weight: bold;
-
-    border: 2px solid #414850;
-
-    border-radius: 16px;
-
-    background-color: #23282f;
-
-    color: #ffffff;
-
-    cursor: pointer;
-
-    transition:
-        background-color 0.2s,
-        border-color 0.2s,
-        color 0.2s,
-        transform 0.15s,
-        box-shadow 0.2s;
-}
-
-.kategorie-buttons button:hover {
-
-    background-color: #30363e;
-
-    border-color: #ffd21f;
-
-    color: #ffd21f;
-
-    transform: translateY(-4px);
-
-    box-shadow:
-        0 8px 20px rgba(0, 0, 0, 0.25);
-}
-
-.kategorie-buttons button:active {
-
-    transform: scale(0.97);
-}
-
-
-/* ==================================================
-   SCHWIERIGKEIT
-   ================================================== */
-
-.schwierigkeit-buttons {
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 15px;
-}
-
-.schwierigkeit-buttons button {
-
-    width: 100%;
-
-    min-height: 75px;
-
-    padding: 18px 25px;
-
-    font-size: 19px;
-
-    font-weight: bold;
-
-    border: 2px solid #414850;
-
-    border-radius: 14px;
-
-    background-color: #23282f;
-
-    color: #ffffff;
-
-    cursor: pointer;
-
-    transition:
-        background-color 0.2s,
-        border-color 0.2s,
-        color 0.2s,
-        transform 0.15s,
-        box-shadow 0.2s;
-}
-
-.schwierigkeit-buttons button:hover {
-
-    background-color: #30363e;
-
-    border-color: #ffd21f;
-
-    color: #ffd21f;
-
-    transform: translateY(-3px);
-
-    box-shadow:
-        0 7px 18px rgba(0, 0, 0, 0.25);
-}
-
-.schwierigkeit-buttons button:active {
-
-    transform: scale(0.98);
-}
-
-
-/* ==================================================
-   ANZAHL FRAGEN
-   ================================================== */
-
-.anzahl-buttons {
-
-    display: grid;
-
-    grid-template-columns:
-        1fr 1fr 1fr;
-
-    gap: 14px;
-}
-
-.anzahl-buttons button {
-
-    min-height: 90px;
-
-    padding: 15px;
-
-    font-size: 18px;
-
-    font-weight: bold;
-
-    border: 2px solid #414850;
-
-    border-radius: 14px;
-
-    background-color: #23282f;
-
-    color: #ffffff;
-
-    cursor: pointer;
-
-    transition:
-        background-color 0.2s,
-        border-color 0.2s,
-        color 0.2s,
-        transform 0.15s;
-}
-
-.anzahl-buttons button:hover {
-
-    background-color: #30363e;
-
-    border-color: #ffd21f;
-
-    color: #ffd21f;
-
-    transform: translateY(-3px);
-}
-
-.anzahl-buttons button:active {
-
-    transform: scale(0.97);
-}
-
-
-/* ==================================================
-   QUIZ
-   ================================================== */
-
-#quiz h1 {
-
-    font-size: 30px;
-
-    letter-spacing: 2px;
-
-    margin-bottom: 25px;
-}
-
-
-/* =========================
-   FRAGE-NUMMER
-   ========================= */
-
-#frageNummer {
-
-    color: #aeb4bc;
-
-    font-size: 15px;
-
-    font-weight: bold;
-
-    margin: 0 0 12px 0;
-
-    text-align: left;
-}
-
-
-/* =========================
-   FORTSCHRITT
-   ========================= */
-
-.fortschritt {
-
-    width: 100%;
-
-    height: 8px;
-
-    background-color: #3b4149;
-
-    border-radius: 20px;
-
-    overflow: hidden;
-
-    margin: 0 0 35px 0;
-}
-
-#fortschrittBalken {
-
-    width: 0%;
-
-    height: 100%;
-
-    background-color: #ffd21f;
-
-    border-radius: 20px;
-
-    transition:
-        width 0.3s ease;
-}
-
-
-/* =========================
-   FRAGE
-   ========================= */
-
-#frage {
-
-    font-size: 28px;
-
-    font-weight: 700;
-
-    line-height: 1.45;
-
-    color: #ffffff;
-
-    text-align: left;
-
-    margin: 0 0 30px 0;
-}
-
-
-/* ==================================================
-   ANTWORTEN
-   ================================================== */
-
-#antworten {
-
-    width: 100%;
-
-    margin-top: 0;
-}
-
-#antworten button {
-
-    display: flex;
-
-    align-items: center;
-
-    width: 100%;
-
-    min-height: 62px;
-
-    padding: 16px 20px;
-
-    margin: 12px 0;
-
-    font-size: 17px;
-
-    font-weight: 500;
-
-    line-height: 1.4;
-
-    text-align: left;
-
-    border: 2px solid #414850;
-
-    border-radius: 14px;
-
-    background-color: #23282f;
-
-    color: #ffffff;
-
-    cursor: pointer;
-
-    transition:
-        background-color 0.2s,
-        border-color 0.2s,
-        color 0.2s,
-        transform 0.15s,
-        box-shadow 0.2s;
-}
-
-#antworten button:hover:not(:disabled) {
-
-    background-color: #30363e;
-
-    border-color: #ffd21f;
-
-    color: #ffd21f;
-
-    transform: translateX(4px);
-
-    box-shadow:
-        0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-#antworten button:active:not(:disabled) {
-
-    transform: scale(0.98);
-}
-
-#antworten button:disabled {
-
-    cursor: default;
-}
-
-
-/* =========================
-   ANTWORT ANIMATION
-   ========================= */
-
-#antworten button {
-
-    animation:
-        antwortEinblenden 0.25s ease both;
-}
-
-@keyframes antwortEinblenden {
-
-    from {
-
-        opacity: 0;
-
-        transform: translateY(5px);
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform: translateY(0);
-    }
-}
-
-
-/* =========================
-   RICHTIG
-   ========================= */
-
-.richtig {
-
-    background-color: #285538 !important;
-
-    border-color: #63d471 !important;
-
-    color: #ffffff !important;
-
-    box-shadow:
-        0 5px 15px rgba(99, 212, 113, 0.12);
-
-    animation:
-        richtigAntwort 0.3s ease !important;
-}
-
-@keyframes richtigAntwort {
-
-    0% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.02);
-    }
-
-    100% {
-        transform: scale(1);
-    }
-}
-
-
-/* =========================
-   FALSCH
-   ========================= */
-
-.falsch {
-
-    background-color: #633434 !important;
-
-    border-color: #ff6b6b !important;
-
-    color: #ffffff !important;
-
-    box-shadow:
-        0 5px 15px rgba(255, 107, 107, 0.12);
-
-    animation:
-        falschAntwort 0.3s ease !important;
-}
-
-@keyframes falschAntwort {
-
-    0% {
-        transform: translateX(0);
-    }
-
-    25% {
-        transform: translateX(-4px);
-    }
-
-    50% {
-        transform: translateX(4px);
-    }
-
-    75% {
-        transform: translateX(-2px);
-    }
-
-    100% {
-        transform: translateX(0);
-    }
-}
-
-
-/* ==================================================
-   ERGEBNIS NACH ANTWORT
-   ================================================== */
-
-#ergebnis {
-
-    min-height: 28px;
-
-    font-size: 20px;
-
-    font-weight: bold;
-
-    color: #ffd21f;
-
-    margin: 20px 0 5px 0;
-
-    animation:
-        ergebnisEinblenden 0.3s ease;
-}
-
-@keyframes ergebnisEinblenden {
-
-    from {
-
-        opacity: 0;
-
-        transform: translateY(5px);
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform: translateY(0);
-    }
-}
-
-
-/* ==================================================
-   PUNKTE
-   ================================================== */
-
-#punkte {
-
-    font-size: 16px;
-
-    font-weight: bold;
-
-    color: #ffffff;
-
-    text-align: left;
-
-    margin: 20px 0 0 0;
-}
-
-
-/* ==================================================
-   HIGHSCORE
-   ================================================== */
-
-#highscore {
-
-    font-size: 14px;
-
-    color: #8f969f;
-
-    text-align: left;
-
-    margin: 6px 0 20px 0;
-}
-
-
-/* ==================================================
-   NÄCHSTE FRAGE
-   ================================================== */
-
-#naechsteFrage {
-
-    background-color: #ffd21f;
-
-    color: #1f2329;
-
-    border: none;
-
-    margin-top: 20px;
-
-    box-shadow:
-        0 7px 18px rgba(255, 210, 31, 0.15);
-
-    transition:
-        background-color 0.2s,
-        color 0.2s,
-        transform 0.15s,
-        box-shadow 0.2s,
-        opacity 0.15s;
-}
-
-#naechsteFrage:hover:not(:disabled) {
-
-    background-color: #ffe05a;
-
-    transform: translateY(-2px);
-}
-
-#naechsteFrage:disabled {
-
-    opacity: 0.35;
-
-    cursor: not-allowed;
-
-    transform: none;
-
-    box-shadow: none;
-}
-
-
-/* ==================================================
-   NEUSTART
-   ================================================== */
-
-#neustart {
-
-    background-color: #ffd21f;
-
-    color: #1f2329;
-
-    border: none;
-
-    box-shadow:
-        0 8px 20px rgba(255, 210, 31, 0.18);
-}
-
-#neustart:hover {
-
-    background-color: #ffe05a;
-
-    transform: translateY(-3px);
-
-    box-shadow:
-        0 10px 25px rgba(255, 210, 31, 0.28);
-}
-
-
-/* ==================================================
-   ERGEBNISSEITE
-   ================================================== */
-
-#quiz h2 {
-
-    margin-top: 10px;
-}
-
-
-/* Ergebnisbereich */
-
-#ergebnis {
-
-    min-height: 0;
-
-    margin: 25px 0 20px 0;
-
-    padding: 25px 20px;
-
-    background-color: #23282f;
-
-    border: 1px solid #414850;
-
-    border-radius: 16px;
-
-    text-align: center;
-
-    box-shadow:
-        0 8px 25px rgba(0, 0, 0, 0.18);
-}
-
-
-/* Ergebnis Punkte */
-
-.ergebnis-punkte {
-
-    font-size: 58px;
-
-    font-weight: 900;
-
-    color: #ffd21f;
-
-    margin: 0;
-
-    line-height: 1.1;
-
-    animation:
-        ergebnisPunkte 0.4s ease;
-}
-
-@keyframes ergebnisPunkte {
-
-    from {
-
-        opacity: 0;
-
-        transform: scale(0.95);
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform: scale(1);
-    }
-}
-
-
-/* Prozent */
-
-.ergebnis-prozent {
-
-    font-size: 34px;
-
-    font-weight: 800;
-
-    color: #ffffff;
-
-    margin-top: 12px;
-}
-
-
-/* Bewertung */
-
-.ergebnis-bewertung {
-
-    font-size: 21px;
-
-    font-weight: 600;
-
-    color: #aeb4bc;
-
-    margin-top: 12px;
-}
-
-
-/* Ergebnis Highscore */
-
-#quiz #highscore {
-
-    text-align: center;
-
-    margin: 20px 0;
-
-    padding: 12px;
-
-    background-color: #343a42;
-
-    border-radius: 10px;
-
-    color: #ffd21f;
-
-    font-size: 15px;
-
-    font-weight: bold;
-}
-
-
-/* ==================================================
-   NEUER REKORD
-   ================================================== */
-
-.neuer-rekord {
-
-    display: inline-block;
-
-    padding: 8px 16px;
-
-    margin-bottom: 18px;
-
-    background-color: #ffd21f;
-
-    color: #1f2329;
-
-    border-radius: 20px;
-
-    font-size: 14px;
-
-    font-weight: 900;
-
-    letter-spacing: 0.5px;
-
-    animation:
-        rekordPuls 1.2s ease-in-out infinite;
-}
-
-@keyframes rekordPuls {
-
-    0% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.05);
-    }
-
-    100% {
-        transform: scale(1);
-    }
-}
-
-
-/* ==================================================
-   XP & LEVEL
-   ================================================== */
-
-.ergebnis-xp {
-
-    display: inline-block;
-
-    margin-top: 18px;
-
-    padding: 8px 16px;
-
-    background-color: #343a42;
-
-    border: 1px solid #4a515a;
-
-    border-radius: 20px;
-
-    color: #ffd21f;
-
-    font-size: 15px;
-
-    font-weight: 800;
-}
-
-
-.level-up {
-
-    margin-bottom: 15px;
-
-    padding: 10px 18px;
-
-    background-color: #ffd21f;
-
-    color: #1f2329;
-
-    border-radius: 20px;
-
-    font-size: 15px;
-
-    font-weight: 900;
-
-    animation:
-        levelUpPuls 1s ease-in-out infinite;
-}
-
-@keyframes levelUpPuls {
-
-    0% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.06);
-    }
-
-    100% {
-        transform: scale(1);
-    }
-}
-
-
-/* ==================================================
-   BESTENLISTE
-   ================================================== */
-
-#bestenliste {
-
-    display: none;
-}
-
-
-.bestenliste-untertitel {
-
-    color: #aeb4bc;
-
-    font-size: 18px;
-
-    margin-bottom: 25px;
-}
-
-
-/* Auswahl */
-
-.bestenliste-auswahl {
-
-    display: flex;
-
-    gap: 10px;
-
-    margin-bottom: 30px;
-}
-
-.bestenliste-auswahl button {
-
-    flex: 1;
-
-    min-height: 48px;
-
-    padding: 10px;
-
-    font-size: 15px;
-
-    font-weight: bold;
-
-    border: 2px solid #414850;
-
-    border-radius: 10px;
-
-    background-color: #23282f;
-
-    color: #ffffff;
-
-    cursor: pointer;
-
-    transition:
-        background-color 0.2s,
-        border-color 0.2s,
-        color 0.2s;
-}
-
-.bestenliste-auswahl button:hover {
-
-    border-color: #ffd21f;
-
-    color: #ffd21f;
-
-    background-color: #30363e;
-}
-
-
-/* Überschrift */
-
-#bestenlisteInhalt h2 {
-
-    font-size: 22px;
-
-    color: #ffffff;
-
-    margin: 20px 0;
-}
-
-
-/* Tabelle */
-
-.bestenliste-tabelle {
-
-    width: 100%;
-
-    border: 1px solid #414850;
-
-    border-radius: 13px;
-
-    overflow: hidden;
-
-    background-color: #23282f;
-}
-
-
-/* Zeilen */
-
-.bestenliste-zeile {
-
-    display: grid;
-
-    grid-template-columns:
-        2fr 1fr 1fr 1fr;
-
-    align-items: center;
-
-    min-height: 65px;
-
-    border-top: 1px solid #383e46;
-}
-
-.bestenliste-zeile:first-child {
-
-    border-top: none;
-}
-
-
-/* Kopf */
-
-.bestenliste-kopf {
-
-    background-color: #343a42;
-
-    min-height: 52px;
-
-    font-weight: bold;
-}
-
-
-/* Zellen */
-
-.bestenliste-zeile > div {
-
-    padding: 10px;
-
-    text-align: center;
-}
-
-
-/* Kategorie */
-
-.bestenliste-kategorie {
-
-    text-align: left !important;
-
-    font-weight: bold;
-
-    font-size: 15px;
-
-    color: #ffffff;
-}
-
-
-/* Score */
-
-.bestenliste-score {
-
-    font-size: 15px;
-
-    font-weight: bold;
-
-    color: #ffd21f;
-}
-
-
-/* Zurück */
-
-#zurueckVonBestenliste {
-
-    background-color: transparent;
-
-    color: #ffffff;
-
-    border: 2px solid #414850;
-}
-
-#zurueckVonBestenliste:hover {
-
-    border-color: #ffd21f;
-
-    color: #ffd21f;
-
-    background-color: #30363e;
-
-    transform: translateY(-2px);
-}
-
-
-/* ==================================================
-   STATISTIK
-   ================================================== */
-
-#statistik {
-
-    display: none;
-}
-
-
-.statistik-grid {
-
-    display: grid;
-
-    grid-template-columns:
-        1fr 1fr;
-
-    gap: 14px;
-
-    margin-top: 25px;
-}
-
-
-.statistik-box {
-
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: center;
-
-    align-items: center;
-
-    min-height: 120px;
-
-    padding: 20px 10px;
-
-    background-color: #23282f;
-
-    border: 1px solid #414850;
-
-    border-radius: 14px;
-
-    transition:
-        transform 0.2s,
-        border-color 0.2s,
-        background-color 0.2s;
-}
-
-
-.statistik-box:hover {
-
-    transform: translateY(-3px);
-
-    border-color: #ffd21f;
-
-    background-color: #30363e;
-}
-
-
-.statistik-wert {
-
-    font-size: 32px;
-
-    font-weight: 900;
-
-    color: #ffd21f;
-
-    line-height: 1.2;
 }
 
 
-.statistik-label {
+.logo-slogan {
 
     margin-top: 8px;
 
-    font-size: 13px;
-
-    color: #aeb4bc;
-
-    text-align: center;
-}
-
-
-.statistik-bester-score {
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    gap: 15px;
-
-    margin-top: 18px;
-
-    padding: 18px 20px;
-
-    background-color: #343a42;
-
-    border: 1px solid #414850;
-
-    border-radius: 14px;
-}
-
-
-.statistik-bester-score span {
-
-    color: #ffffff;
-
-    font-size: 15px;
-
-    font-weight: bold;
-}
-
-
-.statistik-bester-score strong {
-
-    color: #ffd21f;
-
-    font-size: 18px;
-}
-
-
-/* Statistik Zurück */
-
-#zurueckVonStatistik {
-
-    display: block;
-
-    width: 100%;
-
-    max-width: 340px;
-
-    margin: 25px auto 0 auto;
-
-    padding: 16px 25px;
-
-    font-size: 17px;
-
-    font-weight: bold;
-
-    border-radius: 12px;
-
-    cursor: pointer;
-
-    background-color: transparent;
-
-    color: #ffffff;
-
-    border: 2px solid #414850;
-
-    transition:
-        background-color 0.2s,
-        border-color 0.2s,
-        color 0.2s,
-        transform 0.1s;
-}
-
-
-#zurueckVonStatistik:hover {
-
-    background-color: #30363e;
-
-    border-color: #ffd21f;
-
-    color: #ffd21f;
-
-    transform: translateY(-2px);
-}
-
-
-/* ==================================================
-   SPIELERSTATUS
-   ================================================== */
-
-.spieler-status {
-
-    max-width: 500px;
-
-    margin: 0 auto 30px auto;
-
-    padding: 18px 20px;
-
-    background-color: #23282f;
-
-    border: 1px solid #414850;
-
-    border-radius: 15px;
-}
-
-
-.spieler-status-top {
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    margin-bottom: 14px;
-}
-
-
-.spieler-level {
+    color: #8f969f;
 
     font-size: 14px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+
+}
+
+
+.spieler-begruessung {
+
+    margin-top: 35px;
+
+    margin-bottom: 20px;
+
+    font-size: 21px;
 
     font-weight: 800;
 
-    color: #ffffff;
 }
 
 
-.spieler-level strong {
+.spieler-status {
+
+    max-width: 430px;
+
+    margin: 0 auto 30px;
+
+    padding: 20px;
+
+    background: #15191e;
+
+    border: 1px solid #3a4149;
+
+    border-radius: 18px;
+
+}
+
+
+.status-zeile {
+
+    display: flex;
+
+    justify-content: space-around;
+
+    gap: 15px;
+
+    font-size: 15px;
+
+}
+
+
+.status-zeile strong {
 
     color: #ffd21f;
 
-    font-size: 20px;
-
-    margin-left: 4px;
-}
-
-
-.spieler-streak {
-
-    font-size: 14px;
-
-    color: #aeb4bc;
-}
-
-
-.spieler-streak strong {
-
-    color: #ffffff;
 }
 
 
@@ -1565,958 +212,1353 @@ p {
 
     justify-content: space-between;
 
+    margin-top: 18px;
+
     margin-bottom: 7px;
+
+    color: #aeb4bc;
 
     font-size: 12px;
 
-    color: #8f969f;
+    font-weight: 700;
+
 }
 
 
-#startXP {
-
-    color: #ffd21f;
-
-    font-weight: bold;
-}
-
-
-.xp-balken {
+.xp-balken,
+.profil-xp-balken {
 
     width: 100%;
 
-    height: 7px;
+    height: 10px;
 
-    background-color: #3b4149;
+    background: #30363d;
 
-    border-radius: 20px;
+    border-radius: 99px;
 
     overflow: hidden;
+
 }
 
 
-#startXPBalken {
+.xp-balken-innen,
+#profilXPBalken {
 
     width: 0%;
 
     height: 100%;
 
-    background-color: #ffd21f;
+    background:
+        linear-gradient(
+            90deg,
+            #ffd21f,
+            #fff09a
+        );
 
-    border-radius: 20px;
+    border-radius: inherit;
+
+    transition: width 0.5s ease;
+
+}
+
+
+.naechstes-level {
+
+    margin-top: 8px;
+
+    color: #737b85;
+
+    font-size: 11px;
+
+}
+
+
+.hauptbutton {
+
+    width: 100%;
+
+    min-height: 62px;
+
+    border: none;
+
+    border-radius: 16px;
+
+    background: #ffd21f;
+
+    color: #101214;
+
+    font-size: 20px;
+
+    font-weight: 1000;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 25px rgba(255, 210, 31, 0.16);
 
     transition:
-        width 0.5s ease;
+        transform 0.15s,
+        box-shadow 0.15s;
+
 }
 
 
-/* ==================================================
-   BILDSCHIRME
-   ================================================== */
+.hauptbutton:hover:not(:disabled) {
 
-#kategorien,
-#schwierigkeit,
-#anzahlFragen,
-#quiz,
-#bestenliste {
+    transform: translateY(-2px);
 
-    display: none;
+    box-shadow:
+        0 12px 32px rgba(255, 210, 31, 0.25);
+
 }
 
 
-/* ==================================================
-   SMARTPHONE
-   ================================================== */
+.hauptbutton:active:not(:disabled) {
+
+    transform: translateY(1px);
+
+}
+
+
+.hauptbutton:disabled {
+
+    opacity: 0.45;
+
+    cursor: not-allowed;
+
+}
+
+
+.start-navigation {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 12px;
+
+    margin-top: 15px;
+
+}
+
+
+.start-navigation button,
+.secondary-button {
+
+    min-height: 52px;
+
+    padding: 12px 18px;
+
+    border-radius: 13px;
+
+    border: 2px solid #3c444d;
+
+    background: transparent;
+
+    color: #ffffff;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.15s,
+        color 0.15s,
+        background 0.15s;
+
+}
+
+
+.start-navigation button:hover,
+.secondary-button:hover {
+
+    border-color: #ffd21f;
+
+    color: #ffd21f;
+
+    background: rgba(255, 210, 31, 0.05);
+
+}
+
+
+.secondary-button {
+
+    width: 100%;
+
+    margin-top: 15px;
+
+}
+
+
+/* =====================================================
+   TITEL
+   ===================================================== */
+
+.quiz-container h1 {
+
+    margin: 0 0 10px;
+
+    text-align: center;
+
+    font-size: 32px;
+
+}
+
+
+.screen-subtitle {
+
+    margin: 0 0 30px;
+
+    color: #8f969f;
+
+    text-align: center;
+
+}
+
+
+/* =====================================================
+   SPIELMODI
+   ===================================================== */
+
+.modus-grid {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 15px;
+
+}
+
+
+.modus-card {
+
+    min-height: 175px;
+
+    padding: 20px;
+
+    border-radius: 18px;
+
+    border: 2px solid #343b43;
+
+    background: #181c21;
+
+    color: #ffffff;
+
+    cursor: pointer;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 8px;
+
+    transition:
+        transform 0.15s,
+        border-color 0.15s,
+        background 0.15s;
+
+}
+
+
+.modus-card:hover {
+
+    transform: translateY(-3px);
+
+    border-color: #ffd21f;
+
+    background: #242a30;
+
+}
+
+
+.modus-card strong {
+
+    font-size: 18px;
+
+    color: #ffd21f;
+
+}
+
+
+.modus-card small {
+
+    color: #969da6;
+
+    line-height: 1.4;
+
+}
+
+
+.modus-icon {
+
+    font-size: 38px;
+
+}
+
+
+/* =====================================================
+   KATEGORIEN
+   ===================================================== */
+
+.kategorie-buttons {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 12px;
+
+}
+
+
+.kategorie-buttons button {
+
+    min-height: 115px;
+
+    padding: 15px 8px;
+
+    border-radius: 16px;
+
+    border: 2px solid #343b43;
+
+    background: #181c21;
+
+    color: #ffffff;
+
+    font-size: 15px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.15s,
+        border-color 0.15s,
+        background 0.15s;
+
+}
+
+
+.kategorie-buttons button:hover {
+
+    transform: translateY(-3px);
+
+    border-color: #ffd21f;
+
+    background: #242a30;
+
+}
+
+
+/* =====================================================
+   QUIZ GAME
+   ===================================================== */
+
+.quiz-game {
+
+    max-width: 760px;
+
+}
+
+
+.game-header {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr 1fr;
+
+    gap: 10px;
+
+    margin-bottom: 20px;
+
+}
+
+
+.game-stat {
+
+    padding: 12px;
+
+    background: #14181c;
+
+    border: 1px solid #343b43;
+
+    border-radius: 13px;
+
+    text-align: center;
+
+}
+
+
+.game-stat span {
+
+    margin-right: 4px;
+
+}
+
+
+.game-stat strong {
+
+    color: #ffd21f;
+
+}
+
+
+.frage-info {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    margin-bottom: 8px;
+
+    color: #9da4ad;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+}
+
+
+#schwierigkeitInfo {
+
+    color: #ffd21f;
+
+}
+
+
+.timer-container {
+
+    width: 100%;
+
+    height: 9px;
+
+    margin-bottom: 7px;
+
+    background: #30363d;
+
+    border-radius: 99px;
+
+    overflow: hidden;
+
+}
+
+
+.timer-balken {
+
+    width: 100%;
+
+    height: 100%;
+
+    background: #ffd21f;
+
+    transition:
+        width 0.1s linear;
+
+}
+
+
+.timer-text {
+
+    text-align: right;
+
+    color: #ffd21f;
+
+    font-weight: 1000;
+
+    font-size: 16px;
+
+    margin-bottom: 28px;
+
+}
+
+
+.frage-text {
+
+    min-height: 100px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin-bottom: 25px;
+
+    padding: 10px;
+
+    text-align: center;
+
+    font-size: 27px;
+
+    font-weight: 900;
+
+    line-height: 1.3;
+
+}
+
+
+.antworten {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 12px;
+
+}
+
+
+.antworten button {
+
+    min-height: 75px;
+
+    padding: 15px;
+
+    border-radius: 15px;
+
+    border: 2px solid #3a424b;
+
+    background: #191e23;
+
+    color: #ffffff;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.12s,
+        border-color 0.12s,
+        background 0.12s;
+
+}
+
+
+.antworten button:hover:not(:disabled) {
+
+    transform: translateY(-2px);
+
+    border-color: #ffd21f;
+
+    background: #252b31;
+
+}
+
+
+.antworten button.richtig {
+
+    border-color: #45d483;
+
+    background: rgba(69, 212, 131, 0.15);
+
+    color: #65e49a;
+
+}
+
+
+.antworten button.falsch {
+
+    border-color: #ff5353;
+
+    background: rgba(255, 83, 83, 0.15);
+
+    color: #ff7777;
+
+}
+
+
+.antworten button:disabled {
+
+    cursor: default;
+
+}
+
+
+.antwort-ergebnis {
+
+    min-height: 38px;
+
+    margin: 15px 0;
+
+    text-align: center;
+
+    font-size: 20px;
+
+    font-weight: 1000;
+
+}
+
+
+/* =====================================================
+   JOKER
+   ===================================================== */
+
+.joker-bereich {
+
+    margin: 20px 0;
+
+    padding: 16px;
+
+    background: #14181c;
+
+    border: 1px solid #343b43;
+
+    border-radius: 16px;
+
+}
+
+
+.joker-titel {
+
+    margin-bottom: 12px;
+
+    text-align: center;
+
+    color: #9da4ad;
+
+    font-size: 12px;
+
+    font-weight: 900;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+
+}
+
+
+.joker-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 8px;
+
+}
+
+
+.joker-grid button {
+
+    min-height: 60px;
+
+    padding: 6px;
+
+    border: 1px solid #3c444d;
+
+    border-radius: 11px;
+
+    background: #20252b;
+
+    color: #ffffff;
+
+    cursor: pointer;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+}
+
+
+.joker-grid button span {
+
+    display: block;
+
+    font-size: 19px;
+
+    margin-bottom: 3px;
+
+}
+
+
+.joker-grid button:hover:not(:disabled) {
+
+    border-color: #ffd21f;
+
+    color: #ffd21f;
+
+}
+
+
+.joker-grid button:disabled {
+
+    opacity: 0.3;
+
+    cursor: not-allowed;
+
+}
+
+
+#quizBeendenButton {
+
+    margin-top: 12px;
+
+}
+
+
+/* =====================================================
+   GAME OVER
+   ===================================================== */
+
+.gameover-container {
+
+    text-align: center;
+
+}
+
+
+.gameover-icon {
+
+    font-size: 70px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.gameover-container h1 {
+
+    color: #ff6666;
+
+}
+
+
+.gameover-score {
+
+    margin: 25px 0;
+
+    padding: 25px;
+
+    border-radius: 18px;
+
+    background: #14181c;
+
+    border: 1px solid #343b43;
+
+}
+
+
+.gameover-score span {
+
+    display: block;
+
+    color: #858d96;
+
+    font-size: 12px;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+
+}
+
+
+.gameover-score strong {
+
+    display: block;
+
+    margin-top: 5px;
+
+    color: #ffd21f;
+
+    font-size: 58px;
+
+}
+
+
+.gameover-stats {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 10px;
+
+    margin-bottom: 25px;
+
+}
+
+
+.gameover-stats div {
+
+    padding: 15px 8px;
+
+    background: #1a1f24;
+
+    border: 1px solid #343b43;
+
+    border-radius: 14px;
+
+}
+
+
+.gameover-stats strong {
+
+    display: block;
+
+    color: #ffd21f;
+
+    font-size: 24px;
+
+}
+
+
+.gameover-stats span {
+
+    display: block;
+
+    margin-top: 5px;
+
+    color: #858d96;
+
+    font-size: 11px;
+
+}
+
+
+/* =====================================================
+   PROFIL
+   ===================================================== */
+
+.profil-name {
+
+    margin: 15px 0 25px;
+
+    text-align: center;
+
+    font-size: 26px;
+
+    font-weight: 1000;
+
+}
+
+
+.profil-name span {
+
+    color: #ffd21f;
+
+}
+
+
+.profil-level {
+
+    padding: 20px;
+
+    background: #15191e;
+
+    border: 1px solid #363d45;
+
+    border-radius: 17px;
+
+}
+
+
+.profil-level-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-bottom: 10px;
+
+    font-weight: 900;
+
+}
+
+
+.profil-level-header span:first-child {
+
+    color: #ffd21f;
+
+}
+
+
+.profil-level p {
+
+    margin-bottom: 0;
+
+    color: #7e8791;
+
+    text-align: center;
+
+    font-size: 12px;
+
+}
+
+
+.profil-inhalt {
+
+    margin-top: 20px;
+
+}
+
+
+.profil-stat-grid {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 12px;
+
+}
+
+
+.profil-stat-card {
+
+    padding: 18px 10px;
+
+    background: #1a1f24;
+
+    border: 1px solid #343b43;
+
+    border-radius: 15px;
+
+    text-align: center;
+
+}
+
+
+.profil-stat-card strong {
+
+    display: block;
+
+    color: #ffd21f;
+
+    font-size: 27px;
+
+}
+
+
+.profil-stat-card span {
+
+    display: block;
+
+    margin-top: 5px;
+
+    color: #8e969f;
+
+    font-size: 11px;
+
+}
+
+
+.profil-section-title {
+
+    margin: 25px 0 12px;
+
+    color: #ffffff;
+
+    font-size: 16px;
+
+    font-weight: 900;
+
+}
+
+
+.achievement-grid {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+
+}
+
+
+.achievement {
+
+    padding: 13px;
+
+    border-radius: 13px;
+
+    border: 1px solid #3a4149;
+
+    background: #15191e;
+
+    opacity: 0.45;
+
+}
+
+
+.achievement.erreicht {
+
+    opacity: 1;
+
+    border-color: #ffd21f;
+
+}
+
+
+.achievement strong {
+
+    display: block;
+
+    color: #ffd21f;
+
+    margin-bottom: 4px;
+
+}
+
+
+.achievement span {
+
+    color: #9098a1;
+
+    font-size: 11px;
+
+}
+
+
+/* =====================================================
+   PROFIL BUTTON
+   ===================================================== */
+
+#profilNameButton {
+
+    width: 100%;
+
+    min-height: 48px;
+
+    margin-top: 25px;
+
+    border: 1px solid #3c444d;
+
+    border-radius: 12px;
+
+    background: transparent;
+
+    color: #9ba2aa;
+
+    cursor: pointer;
+
+    font-weight: 700;
+
+}
+
+
+#profilNameButton:hover {
+
+    border-color: #ffd21f;
+
+    color: #ffd21f;
+
+}
+
+
+/* =====================================================
+   BESTENLISTE
+   ===================================================== */
+
+#bestenlisteInhalt {
+
+    margin-top: 20px;
+
+}
+
+
+.bestenliste-tabelle {
+
+    border: 1px solid #383f47;
+
+    border-radius: 15px;
+
+    overflow: hidden;
+
+}
+
+
+.bestenliste-zeile {
+
+    display: grid;
+
+    grid-template-columns:
+        55px 1fr 110px 170px;
+
+    align-items: center;
+
+    min-height: 65px;
+
+    border-top: 1px solid #343b43;
+
+}
+
+
+.bestenliste-zeile:first-child {
+
+    border-top: none;
+
+}
+
+
+.bestenliste-kopf {
+
+    background: #30363d;
+
+    font-weight: 900;
+
+}
+
+
+.bestenliste-zeile > div {
+
+    padding: 8px;
+
+    text-align: center;
+
+}
+
+
+.bestenliste-platz {
+
+    color: #ffd21f;
+
+    font-weight: 1000;
+
+}
+
+
+.bestenliste-score {
+
+    color: #ffd21f;
+
+    font-weight: 900;
+
+}
+
+
+.bestenliste-kategorie {
+
+    text-align: left !important;
+
+    font-weight: 800;
+
+}
+
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
 
 @media (max-width: 600px) {
 
     body {
 
         padding: 10px;
+
     }
 
 
     .quiz-container {
 
-        margin: 15px auto;
+        margin: 12px auto;
 
-        padding: 28px 18px;
+        padding: 25px 16px;
 
-        border-radius: 16px;
+        border-radius: 18px;
+
     }
 
 
     .startseite {
 
-        padding: 45px 20px;
+        padding-top: 30px;
+
+        padding-bottom: 30px;
+
     }
 
 
-    .startseite .logo {
+    .quizero-logo-icon {
 
-        font-size: 40px;
+        width: 105px;
 
-        letter-spacing: 2px;
-    }
+        height: 105px;
 
-
-    .startseite h2 {
-
-        font-size: 25px;
-    }
-
-
-    .start-text {
-
-        font-size: 16px;
-
-        line-height: 1.5;
-    }
-
-
-    .start-statistiken {
-
-        padding: 15px 5px;
-    }
-
-
-    .start-statistiken strong {
-
-        font-size: 20px;
-    }
-
-
-    .start-statistiken span {
-
-        font-size: 10px;
-    }
-
-
-    .startseite #startButton,
-    .startseite #bestenlisteButton,
-    .startseite #statistikButton {
-
-        max-width: 100%;
-    }
-
-
-    .spieler-status {
-
-        padding: 16px;
-
-        margin-bottom: 25px;
-    }
-
-
-    .spieler-status-top {
-
-        margin-bottom: 12px;
-    }
-
-
-    .spieler-level strong {
-
-        font-size: 18px;
-    }
-
-
-    .spieler-streak {
-
-        font-size: 13px;
-    }
-
-
-    .xp-info {
-
-        font-size: 11px;
-    }
-
-
-    /* Kategorien */
-
-    .kategorie-buttons {
-
-        grid-template-columns:
-            1fr 1fr;
-
-        gap: 10px;
-    }
-
-
-    .kategorie-buttons button {
-
-        min-height: 105px;
-
-        padding: 15px 8px;
-
-        font-size: 15px;
-
-        border-radius: 13px;
-    }
-
-
-    /* Schwierigkeit */
-
-    .schwierigkeit-buttons {
-
-        gap: 12px;
-    }
-
-
-    .schwierigkeit-buttons button {
-
-        min-height: 62px;
-
-        font-size: 17px;
-    }
-
-
-    /* Anzahl */
-
-    .anzahl-buttons {
-
-        gap: 8px;
-    }
-
-
-    .anzahl-buttons button {
-
-        min-height: 70px;
-
-        font-size: 15px;
-
-        padding: 10px 5px;
-    }
-
-
-    /* Quiz */
-
-    #quiz {
-
-        padding: 25px 18px;
-    }
-
-
-    #quiz h1 {
-
-        font-size: 27px;
-
-        margin-bottom: 22px;
-    }
-
-
-    #frageNummer {
-
-        font-size: 13px;
-    }
-
-
-    .fortschritt {
-
-        height: 8px;
-
-        margin-bottom: 28px;
-    }
-
-
-    #frage {
-
-        font-size: 21px;
-
-        line-height: 1.45;
-    }
-
-
-    /* Antworten */
-
-    #antworten button {
-
-        min-height: 58px;
-
-        padding: 14px;
-
-        font-size: 16px;
-
-        margin: 10px 0;
-    }
-
-
-    #antworten button:hover:not(:disabled) {
-
-        transform: none;
-    }
-
-
-    /* Ergebnis */
-
-    .ergebnis-punkte {
-
-        font-size: 40px;
-    }
-
-
-    .ergebnis-prozent {
-
-        font-size: 27px;
-    }
-
-
-    .ergebnis-bewertung {
-
-        font-size: 20px;
-    }
-
-
-    /* Bestenliste */
-
-    .bestenliste-auswahl {
-
-        gap: 6px;
-    }
-
-
-    .bestenliste-auswahl button {
-
-        font-size: 13px;
-
-        padding: 10px 5px;
-    }
-
-
-    .bestenliste-zeile {
-
-        grid-template-columns:
-            1.8fr 1fr 1fr 1fr;
-
-        min-height: 60px;
-    }
-
-
-    .bestenliste-zeile > div {
-
-        padding: 7px 4px;
-    }
-
-
-    .bestenliste-kategorie {
-
-        font-size: 12px;
-    }
-
-
-    .bestenliste-score {
-
-        font-size: 13px;
-    }
-
-
-    /* Statistik */
-
-    .statistik-grid {
-
-        gap: 10px;
-    }
-
-
-    .statistik-box {
-
-        min-height: 105px;
-
-        padding: 15px 8px;
-    }
-
-
-    .statistik-wert {
-
-        font-size: 27px;
-    }
-
-
-    .statistik-label {
-
-        font-size: 11px;
-    }
-
-
-    .statistik-bester-score {
-
-        padding: 15px;
-    }
-
-}
-
-
-/* ==================================================
-   SEHR KLEINE HANDYS
-   ================================================== */
-
-@media (max-width: 380px) {
-
-    .quiz-container {
-
-        padding: 24px 14px;
     }
 
 
     .logo {
 
-        font-size: 33px;
+        font-size: 39px;
+
     }
 
 
-    h1 {
+    .spieler-begruessung {
 
-        font-size: 29px;
-    }
+        margin-top: 25px;
 
-
-    h2 {
-
-        font-size: 19px;
-    }
-
-
-    #frage {
-
-        font-size: 19px;
-    }
-
-
-    #antworten button {
-
-        font-size: 15px;
-    }
-
-
-    .startseite h2 {
-
-        font-size: 23px;
-    }
-
-
-    .start-statistiken {
-
-        gap: 18px;
-    }
-
-
-    .kategorie-buttons button {
-
-        min-height: 95px;
-
-        font-size: 14px;
-    }
-
-
-    .bestenliste-kategorie {
-
-        font-size: 11px;
-    }
-
-
-    .bestenliste-score {
-
-        font-size: 12px;
-    }
-
-}
-
-/* Ergebnisbereich während des Quiz ausblenden,
-   solange noch keine Antwort gegeben wurde */
-#ergebnis:empty {
-    display: none;
-}
-
-/* ==================================================
-   MOBILE FEINSCHLIFF
-   ================================================== */
-
-@media (max-width: 600px) {
-
-    /* Gesamte Seite */
-    body {
-        padding: 8px;
-    }
-
-    .quiz-container {
-        width: 100%;
-        margin: 8px auto;
-        padding: 25px 16px;
-        border-radius: 15px;
-    }
-
-
-    /* =========================
-       STARTSEITE
-       ========================= */
-
-    .startseite {
-        padding: 38px 18px;
-    }
-
-    .startseite .logo {
-        font-size: 38px;
-        letter-spacing: 2px;
-    }
-
-    .logo-bereich {
-        margin-bottom: 28px;
-    }
-
-    .startseite h2 {
-        font-size: 24px;
-        margin-bottom: 12px;
-    }
-
-    .start-text {
-        font-size: 15px;
-        line-height: 1.5;
-        margin-bottom: 25px;
-    }
-
-
-    /* =========================
-       XP / LEVEL
-       ========================= */
-
-    .spieler-status {
-        padding: 15px;
-        margin-bottom: 25px;
-        border-radius: 13px;
-    }
-
-    .spieler-status-top {
-        margin-bottom: 11px;
-    }
-
-    .spieler-level {
-        font-size: 13px;
-    }
-
-    .spieler-level strong {
         font-size: 18px;
-    }
 
-    .spieler-streak {
-        font-size: 12px;
-    }
-
-    .xp-info {
-        font-size: 11px;
-    }
-
-    .xp-balken {
-        height: 7px;
     }
 
 
-    /* =========================
-       START STATISTIKEN
-       ========================= */
+    .modus-grid {
 
-    .start-statistiken {
-        margin-bottom: 25px;
-        padding: 14px 4px;
-    }
+        grid-template-columns: 1fr;
 
-    .start-statistiken strong {
-        font-size: 19px;
-    }
-
-    .start-statistiken span {
-        font-size: 9px;
-    }
-
-    .start-statistiken div:not(:last-child)::after {
-        top: 8px;
-        height: 32px;
     }
 
 
-    /* =========================
-       START BUTTONS
-       ========================= */
+    .modus-card {
 
-    .startseite #startButton,
-    .startseite #bestenlisteButton,
-    .startseite #statistikButton {
-        width: 100%;
-        min-height: 54px;
-        padding: 14px 18px;
-        font-size: 16px;
+        min-height: 125px;
+
     }
 
-    .startseite #bestenlisteButton {
-        margin-top: 10px;
-    }
-
-    .startseite #statistikButton {
-        margin-top: 8px;
-    }
-
-
-    /* =========================
-       KATEGORIEN
-       ========================= */
 
     .kategorie-buttons {
-        gap: 10px;
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
     }
+
 
     .kategorie-buttons button {
+
         min-height: 100px;
-        padding: 12px 6px;
-        font-size: 14px;
-        border-radius: 12px;
-    }
 
-
-    /* =========================
-       SCHWIERIGKEIT
-       ========================= */
-
-    .schwierigkeit-buttons {
-        gap: 10px;
-    }
-
-    .schwierigkeit-buttons button {
-        min-height: 60px;
-        padding: 14px;
-        font-size: 16px;
-    }
-
-
-    /* =========================
-       ANZAHL FRAGEN
-       ========================= */
-
-    .anzahl-buttons {
-        gap: 8px;
-    }
-
-    .anzahl-buttons button {
-        min-height: 65px;
-        padding: 10px 4px;
-        font-size: 14px;
-    }
-
-
-    /* =========================
-       QUIZ
-       ========================= */
-
-    #quiz {
-        padding: 22px 16px;
-    }
-
-    #quiz h1 {
-        font-size: 25px;
-        margin-bottom: 20px;
-    }
-
-    #frageNummer {
-        font-size: 12px;
-        margin-bottom: 10px;
-    }
-
-    .fortschritt {
-        height: 7px;
-        margin-bottom: 25px;
-    }
-
-    #frage {
-        font-size: 20px;
-        line-height: 1.4;
-        margin-bottom: 22px;
-    }
-
-
-    /* =========================
-       ANTWORTEN
-       ========================= */
-
-    #antworten button {
-        min-height: 55px;
-        padding: 13px 14px;
-        margin: 8px 0;
-        font-size: 15px;
-        line-height: 1.35;
-        border-radius: 12px;
-    }
-
-    #antworten button:hover:not(:disabled) {
-        transform: none;
-        box-shadow: none;
-    }
-
-
-    /* =========================
-       ERGEBNIS
-       ========================= */
-
-    #ergebnis {
-        margin: 18px 0 15px 0;
-        padding: 20px 14px;
-        border-radius: 13px;
-    }
-
-    .ergebnis-punkte {
-        font-size: 42px;
-    }
-
-    .ergebnis-prozent {
-        font-size: 27px;
-    }
-
-    .ergebnis-bewertung {
-        font-size: 18px;
-    }
-
-    .ergebnis-xp {
-        font-size: 14px;
-        padding: 7px 14px;
-    }
-
-    .neuer-rekord {
-        font-size: 12px;
-        padding: 7px 13px;
-    }
-
-    .level-up {
-        font-size: 14px;
-        padding: 9px 15px;
-    }
-
-
-    /* =========================
-       PUNKTE / HIGHSCORE
-       ========================= */
-
-    #punkte {
-        font-size: 14px;
-        margin-top: 16px;
-    }
-
-    #highscore {
         font-size: 13px;
-        margin: 5px 0 15px 0;
+
     }
 
 
-    /* =========================
-       NÄCHSTE FRAGE
-       ========================= */
+    .game-header {
 
-    #naechsteFrage,
-    #neustart {
-        max-width: 100%;
-        min-height: 53px;
-        padding: 14px 18px;
-        font-size: 16px;
-    }
-
-
-    /* =========================
-       BESTENLISTE
-       ========================= */
-
-    .bestenliste-auswahl {
         gap: 6px;
-        margin-bottom: 22px;
+
     }
 
-    .bestenliste-auswahl button {
-        min-height: 44px;
+
+    .game-stat {
+
+        padding: 10px 4px;
+
         font-size: 12px;
-        padding: 8px 4px;
+
     }
 
-    #bestenlisteInhalt h2 {
-        font-size: 19px;
-        margin: 18px 0;
+
+    .frage-text {
+
+        min-height: 125px;
+
+        font-size: 21px;
+
     }
+
+
+    .antworten {
+
+        grid-template-columns: 1fr;
+
+        gap: 9px;
+
+    }
+
+
+    .antworten button {
+
+        min-height: 60px;
+
+        font-size: 15px;
+
+    }
+
+
+    .joker-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+
+    .gameover-score strong {
+
+        font-size: 48px;
+
+    }
+
+
+    .profil-stat-grid,
+    .achievement-grid {
+
+        grid-template-columns: 1fr 1fr;
+
+    }
+
 
     .bestenliste-zeile {
-        min-height: 56px;
-        grid-template-columns: 1.7fr 1fr 1fr 1fr;
-    }
 
-    .bestenliste-zeile > div {
-        padding: 6px 3px;
-    }
+        grid-template-columns:
+            40px 1fr 75px;
 
-    .bestenliste-kategorie {
-        font-size: 11px;
-    }
-
-    .bestenliste-score {
-        font-size: 12px;
     }
 
 
-    /* =========================
-       STATISTIK
-       ========================= */
+    .bestenliste-zeile > div:last-child {
 
-    .statistik-grid {
-        gap: 8px;
-    }
+        display: none;
 
-    .statistik-box {
-        min-height: 100px;
-        padding: 13px 6px;
-        border-radius: 12px;
-    }
-
-    .statistik-wert {
-        font-size: 25px;
-    }
-
-    .statistik-label {
-        font-size: 10px;
-        margin-top: 6px;
-    }
-
-    .statistik-bester-score {
-        padding: 14px;
-        border-radius: 12px;
-    }
-
-    .statistik-bester-score span {
-        font-size: 13px;
-    }
-
-    .statistik-bester-score strong {
-        font-size: 16px;
     }
 
 }
 
-
-/* ==================================================
-   SEHR KLEINE HANDYS
-   ================================================== */
 
 @media (max-width: 380px) {
 
-    .quiz-container {
-        padding: 22px 13px;
+    .kategorie-buttons {
+
+        gap: 7px;
+
     }
 
-    .startseite {
-        padding: 32px 14px;
+
+    .kategorie-buttons button {
+
+        min-height: 85px;
+
+        font-size: 12px;
+
     }
 
-    .startseite .logo {
-        font-size: 34px;
+
+    .status-zeile {
+
+        font-size: 12px;
+
     }
 
-    .startseite h2 {
-        font-size: 22px;
+
+    .frage-text {
+
+        font-size: 19px;
+
     }
 
-    .spieler-status {
-        padding: 13px;
+
+    .game-stat {
+
+        font-size: 10px;
+
     }
 
-    .start-statistiken strong {
-        font-size: 17px;
-    }
-
-    .start-statistiken span {
-        font-size: 8px;
-    }
-
-    #frage {
-        font-size: 18px;
-    }
-
-    #antworten button {
-        min-height: 52px;
-        font-size: 14px;
-        padding: 12px;
-    }
-
-    .ergebnis-punkte {
-        font-size: 38px;
-    }
-
-}
-
-/* ==================================================
-   SPIELERNAME
-   ================================================== */
-
-.spieler-name {
-    margin-top: 15px;
-    margin-bottom: 20px;
-    font-size: 18px;
-    font-weight: bold;
-    color: #ffffff;
-    text-align: center;
-}
-
-.spieler-name span {
-    color: #ffd21f;
-}
-/* ==================================================
-   QUIZERO BRANDING
-   ================================================== */
-
-.logo-slogan {
-    margin-top: 10px;
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    color: #8f969f;
-    text-align: center;
-}
-
-.logo-slogan::first-letter {
-    color: #ffd21f;
-}
-
-/* ==================================================
-   QUIZERO LOGO
-   ================================================== */
-
-.quizero-logo-icon {
-    display: block;
-    width: 120px;
-    height: 120px;
-    object-fit: contain;
-    margin: 0 auto 8px auto;
-}
-
-.logo-slogan {
-    margin-top: 10px;
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    color: #8f969f;
-    text-align: center;
-}
-
-#spielerNameAendernButton {
-    margin-top: 12px;
-    padding: 9px 16px;
-    background: transparent;
-    color: #8f969f;
-    border: 1px solid #4a515a;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 13px;
-    font-weight: 600;
-    transition: all 0.2s ease;
-}
-
-#spielerNameAendernButton:hover {
-    color: #ffd21f;
-    border-color: #ffd21f;
-    background: rgba(255, 210, 31, 0.08);
-    transform: translateY(-1px);
-}
-
-#spielerNameAendernButton:active {
-    transform: translateY(0);
 }
