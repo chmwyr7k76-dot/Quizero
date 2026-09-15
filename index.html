@@ -62,12 +62,23 @@
             </div>
 
 
-            <div
-                id="spielerBegruessung"
-                class="spieler-begruessung"
-            >
-                Willkommen zurück!
-            </div>
+            <div class="spieler-identitaet">
+
+    <div
+        id="spielerAvatar"
+        class="spieler-avatar"
+    >
+        🦊
+    </div>
+
+    <div
+        id="spielerBegruessung"
+        class="spieler-begruessung"
+    >
+        Willkommen zurück!
+    </div>
+
+</div>
 
 
             <!-- PLAYER STATUS -->
@@ -733,13 +744,32 @@
             </h1>
 
 
-            <div class="profil-name">
+            <div class="profil-identitaet">
 
-                <span id="profilName">
-                    Spieler
-                </span>
+    <div
+        id="profilAvatar"
+        class="profil-avatar"
+    >
+        🦊
+    </div>
 
-            </div>
+    <div
+        id="profilName"
+        class="profil-name-text"
+    >
+        Spieler
+    </div>
+
+</div>
+
+
+<button
+    class="avatar-aendern-button"
+    onclick="avatarAendern()"
+>
+    🎭 Avatar ändern
+</button>
+
 
 
             <div class="profil-level">
