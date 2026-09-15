@@ -1,30 +1,28 @@
 /* =====================================================
-   QUIZERO 2.1
-   MOBILE FIRST
+   QUIZERO 2.0
+   GLOBAL
    ===================================================== */
 
 * {
     box-sizing: border-box;
 }
 
-
 html {
     min-height: 100%;
+    scroll-behavior: smooth;
 }
 
-
 body {
-
     margin: 0;
-
     min-height: 100vh;
+    padding: 20px;
 
     background:
         radial-gradient(
             circle at top,
-            #252b33 0%,
-            #15181c 42%,
-            #0d0f12 100%
+            #252b31 0%,
+            #111417 45%,
+            #080a0c 100%
         );
 
     color: #ffffff;
@@ -34,97 +32,89 @@ body {
         Helvetica,
         sans-serif;
 
-    padding: 12px;
-
+    overflow-x: hidden;
 }
 
 
 button {
     font-family: inherit;
-    -webkit-tap-highlight-color: transparent;
 }
 
 
-main {
-    width: 100%;
+button:focus-visible {
+    outline: 2px solid #ffd21f;
+    outline-offset: 2px;
 }
 
+
+/* =====================================================
+   SCREENS
+   ===================================================== */
 
 .screen {
     display: none;
+    width: 100%;
 }
-
 
 #startbildschirm {
     display: block;
 }
 
 
+/* =====================================================
+   CONTAINER
+   ===================================================== */
+
 .quiz-container {
-
     width: 100%;
-
-    max-width: 680px;
+    max-width: 760px;
 
     margin: 20px auto;
+    padding: 34px;
 
-    padding: 32px;
+    background: rgba(20, 24, 28, 0.97);
 
-    background:
-        linear-gradient(
-            145deg,
-            #20252b,
-            #181c21
-        );
+    border:
+        1px solid
+        #30373f;
 
-    border: 1px solid #363d45;
-
-    border-radius: 24px;
+    border-radius: 22px;
 
     box-shadow:
-        0 20px 60px rgba(0, 0, 0, 0.45);
-
+        0 20px 60px
+        rgba(0, 0, 0, 0.38);
 }
 
 
 /* =====================================================
-   STARTSEITE
+   START
    ===================================================== */
 
 .startseite {
-
+    max-width: 560px;
     text-align: center;
-
-    padding-top: 40px;
-
-    padding-bottom: 40px;
-
+    padding: 42px 34px;
 }
 
 
 .quizero-logo-icon {
-
     display: block;
 
-    width: 120px;
+    width: 115px;
+    height: 115px;
 
-    height: 120px;
+    margin: 0 auto 12px;
 
     object-fit: contain;
-
-    margin: 0 auto 10px;
-
 }
 
 
 .logo {
-
-    font-size: 52px;
+    font-size: 48px;
+    line-height: 1;
 
     font-weight: 1000;
-
-    letter-spacing: 3px;
-
+    letter-spacing: -2px;
 }
 
 
@@ -134,60 +124,54 @@ main {
 
 
 .logo-slogan {
+    margin-top: 10px;
 
-    margin-top: 8px;
+    color: #89919a;
 
-    color: #8f969f;
-
-    font-size: 14px;
-
+    font-size: 13px;
     font-weight: 700;
-
-    letter-spacing: 1.5px;
-
 }
 
 
 .spieler-begruessung {
-
     margin-top: 30px;
 
-    margin-bottom: 18px;
-
-    font-size: 21px;
-
-    font-weight: 800;
-
+    font-size: 20px;
+    font-weight: 900;
 }
 
 
 .spieler-status {
+    margin: 22px auto 25px;
 
-    max-width: 430px;
+    max-width: 450px;
 
-    margin: 0 auto 25px;
+    padding: 16px;
 
-    padding: 18px;
+    background: #151a1f;
 
-    background: #15191e;
+    border:
+        1px solid
+        #343b43;
 
-    border: 1px solid #3a4149;
-
-    border-radius: 18px;
-
+    border-radius: 16px;
 }
 
 
 .status-zeile {
-
     display: flex;
 
+    align-items: center;
     justify-content: space-around;
 
-    gap: 15px;
+    gap: 12px;
 
-    font-size: 15px;
+    font-size: 14px;
+}
 
+
+.status-zeile span {
+    white-space: nowrap;
 }
 
 
@@ -196,211 +180,230 @@ main {
 }
 
 
-.xp-info {
+.xp-mini {
+    margin-top: 14px;
+}
 
+
+.xp-mini-header {
     display: flex;
 
     justify-content: space-between;
 
-    margin-top: 18px;
+    margin-bottom: 6px;
 
-    margin-bottom: 7px;
+    color: #89919a;
 
-    color: #aeb4bc;
-
-    font-size: 12px;
-
-    font-weight: 700;
-
+    font-size: 11px;
+    font-weight: 800;
 }
 
 
-.xp-balken,
-.profil-xp-balken {
-
+.xp-mini-track {
     width: 100%;
-
-    height: 10px;
-
-    background: #30363d;
-
-    border-radius: 99px;
+    height: 7px;
 
     overflow: hidden;
 
+    background: #292f35;
+
+    border-radius: 99px;
 }
 
 
-.xp-balken-innen,
-#profilXPBalken {
-
+.xp-mini-fill {
     width: 0%;
-
     height: 100%;
 
-    background:
-        linear-gradient(
-            90deg,
-            #ffd21f,
-            #fff09a
-        );
+    background: #ffd21f;
 
     border-radius: inherit;
 
-    transition: width 0.5s ease;
-
+    transition:
+        width 0.25s ease;
 }
 
 
 .naechstes-level {
-
     margin-top: 8px;
 
-    color: #737b85;
+    color: #747d86;
 
     font-size: 11px;
-
 }
 
 
-.hauptbutton {
-
-    width: 100%;
-
-    min-height: 58px;
-
-    border: none;
-
-    border-radius: 16px;
-
-    background: #ffd21f;
-
-    color: #101214;
-
-    font-size: 19px;
-
-    font-weight: 1000;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 8px 25px rgba(255, 210, 31, 0.16);
-
-    transition:
-        transform 0.15s,
-        box-shadow 0.15s;
-
-}
-
-
-.hauptbutton:hover:not(:disabled) {
-
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 12px 32px rgba(255, 210, 31, 0.25);
-
-}
-
-
-.hauptbutton:active:not(:disabled) {
-    transform: translateY(1px);
-}
-
-
-.hauptbutton:disabled {
-
-    opacity: 0.45;
-
-    cursor: not-allowed;
-
+.start-play-button {
+    max-width: 420px;
+    margin: 0 auto;
 }
 
 
 .start-navigation {
-
     display: grid;
 
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns:
+        repeat(3, 1fr);
 
-    gap: 10px;
+    gap: 9px;
 
-    margin-top: 12px;
-
+    margin-top: 16px;
 }
 
 
-.start-navigation button,
-.secondary-button {
-
+.start-navigation button {
     min-height: 50px;
 
-    padding: 12px 16px;
+    padding: 10px 8px;
 
-    border-radius: 13px;
+    border:
+        1px solid
+        #343b43;
 
-    border: 2px solid #3c444d;
+    border-radius: 12px;
 
-    background: transparent;
+    background: #1a1f24;
 
-    color: #ffffff;
+    color: #dce0e4;
 
+    font-size: 12px;
     font-weight: 800;
 
     cursor: pointer;
 
     transition:
-        border-color 0.15s,
-        color 0.15s,
-        background 0.15s;
-
+        transform 0.12s ease,
+        border-color 0.12s ease,
+        background 0.12s ease;
 }
 
 
-.start-navigation button:hover,
-.secondary-button:hover {
+.start-navigation button:hover {
+    transform: translateY(-2px);
 
     border-color: #ffd21f;
 
-    color: #ffd21f;
-
-    background: rgba(255, 210, 31, 0.05);
-
-}
-
-
-.secondary-button {
-
-    width: 100%;
-
-    margin-top: 12px;
-
+    background: #22282e;
 }
 
 
 /* =====================================================
-   TITEL
+   TYPOGRAPHY
    ===================================================== */
 
-.quiz-container h1 {
-
-    margin: 0 0 10px;
+h1 {
+    margin: 10px 0 8px;
 
     text-align: center;
 
-    font-size: 32px;
-
+    font-size: 31px;
+    font-weight: 1000;
 }
 
 
 .screen-subtitle {
-
     margin: 0 0 25px;
-
-    color: #8f969f;
 
     text-align: center;
 
+    color: #858d96;
+
+    font-size: 14px;
+}
+
+
+.screen-top {
+    display: flex;
+    justify-content: flex-start;
+
+    margin-bottom: 5px;
+}
+
+
+.back-button {
+    padding: 8px 12px;
+
+    border:
+        1px solid
+        #343b43;
+
+    border-radius: 10px;
+
+    background: #181d22;
+
+    color: #aeb5bc;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    cursor: pointer;
+}
+
+
+.back-button:hover {
+    border-color: #ffd21f;
+    color: #ffd21f;
+}
+
+
+/* =====================================================
+   BUTTONS
+   ===================================================== */
+
+.hauptbutton,
+.secondary-button {
+    width: 100%;
+
+    min-height: 54px;
+
+    border: 0;
+
+    border-radius: 14px;
+
+    font-size: 16px;
+    font-weight: 1000;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.12s ease,
+        filter 0.12s ease,
+        opacity 0.12s ease;
+}
+
+
+.hauptbutton {
+    background: #ffd21f;
+    color: #101214;
+}
+
+
+.hauptbutton:hover:not(:disabled) {
+    transform: translateY(-2px);
+    filter: brightness(1.05);
+}
+
+
+.secondary-button {
+    margin-top: 10px;
+
+    background: #1b2025;
+
+    border:
+        1px solid
+        #3a424b;
+
+    color: #ffffff;
+}
+
+
+.secondary-button:hover {
+    border-color: #ffd21f;
+}
+
+
+button:disabled {
+    cursor: not-allowed;
 }
 
 
@@ -409,27 +412,27 @@ main {
    ===================================================== */
 
 .modus-grid {
-
     display: grid;
 
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns:
+        repeat(2, 1fr);
 
     gap: 12px;
-
 }
 
 
 .modus-card {
-
     min-height: 165px;
 
-    padding: 18px;
+    padding: 20px 14px;
 
-    border-radius: 18px;
+    border:
+        1px solid
+        #343b43;
 
-    border: 2px solid #343b43;
+    border-radius: 17px;
 
-    background: #181c21;
+    background: #191e23;
 
     color: #ffffff;
 
@@ -439,43 +442,24 @@ main {
 
     flex-direction: column;
 
-    justify-content: center;
-
     align-items: center;
+    justify-content: center;
 
     gap: 8px;
 
+    transition:
+        transform 0.15s ease,
+        border-color 0.15s ease,
+        background 0.15s ease;
 }
 
 
 .modus-card:hover {
-
     transform: translateY(-3px);
 
     border-color: #ffd21f;
 
-    background: #242a30;
-
-}
-
-
-.modus-card strong {
-
-    font-size: 18px;
-
-    color: #ffd21f;
-
-}
-
-
-.modus-card small {
-
-    color: #969da6;
-
-    line-height: 1.4;
-
-    text-align: center;
-
+    background: #22282e;
 }
 
 
@@ -484,53 +468,78 @@ main {
 }
 
 
+.modus-card strong {
+    color: #ffd21f;
+
+    font-size: 17px;
+    font-weight: 1000;
+
+    letter-spacing: 0.5px;
+}
+
+
+.modus-card small {
+    color: #858d96;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    text-align: center;
+}
+
+
+.hardcore-card strong {
+    color: #ff6969;
+}
+
+
 /* =====================================================
    KATEGORIEN
    ===================================================== */
 
 .kategorie-buttons {
-
     display: grid;
 
     grid-template-columns:
         repeat(3, 1fr);
 
     gap: 10px;
-
 }
 
 
 .kategorie-buttons button {
+    min-height: 78px;
 
-    min-height: 105px;
+    padding: 10px 7px;
 
-    padding: 12px 8px;
+    border:
+        1px solid
+        #343b43;
 
-    border-radius: 16px;
+    border-radius: 13px;
 
-    border: 2px solid #343b43;
-
-    background: #181c21;
+    background: #191e23;
 
     color: #ffffff;
 
-    font-size: 14px;
-
+    font-size: 13px;
     font-weight: 800;
 
     cursor: pointer;
 
+    transition:
+        transform 0.12s ease,
+        border-color 0.12s ease,
+        background 0.12s ease;
 }
 
 
 .kategorie-buttons button:hover {
-
-    transform: translateY(-3px);
+    transform: translateY(-2px);
 
     border-color: #ffd21f;
 
-    background: #242a30;
-
+    background: #22282e;
 }
 
 
@@ -539,330 +548,231 @@ main {
    ===================================================== */
 
 .quiz-game {
-
     max-width: 760px;
 
-    padding: 22px;
-
+    padding: 24px;
 }
 
 
-.game-header {
+/* GAME HEADER */
 
+.game-header {
     display: grid;
 
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns:
+        repeat(4, 1fr);
 
     gap: 8px;
 
-    margin-bottom: 14px;
-
+    margin-bottom: 15px;
 }
 
 
 .game-stat {
+    min-width: 0;
 
-    padding: 9px 5px;
+    padding: 11px 7px;
 
-    background: #14181c;
+    background: #151a1f;
 
-    border: 1px solid #343b43;
+    border:
+        1px solid
+        #343b43;
 
-    border-radius: 12px;
+    border-radius: 11px;
 
     text-align: center;
 
-    font-size: 13px;
+    font-size: 12px;
 
+    overflow: hidden;
 }
 
 
 .game-stat span {
-    margin-right: 3px;
+    margin-right: 2px;
 }
 
 
 .game-stat strong {
+    color: #ffffff;
+
+    font-size: 14px;
+
+    white-space: nowrap;
+}
+
+
+.score-stat strong {
     color: #ffd21f;
 }
 
 
-.frage-info {
+/* QUESTION INFO */
 
+.frage-info {
     display: flex;
 
+    align-items: center;
     justify-content: space-between;
 
     gap: 10px;
 
     margin-bottom: 7px;
 
-    color: #9da4ad;
+    color: #858d96;
 
     font-size: 12px;
-
     font-weight: 800;
-
 }
 
 
-#schwierigkeitInfo {
-    color: #ffd21f;
+.frage-info span:last-child {
+    text-align: right;
 }
 
 
-/* =====================================================
-   TIMER
-   ===================================================== */
+/* TIMER */
 
 .timer-container {
-
     width: 100%;
-
     height: 7px;
-
-    margin-bottom: 5px;
-
-    background: #30363d;
-
-    border-radius: 99px;
 
     overflow: hidden;
 
+    background: #292f35;
+
+    border-radius: 99px;
 }
 
 
 .timer-balken {
-
     width: 100%;
-
     height: 100%;
 
     background: #ffd21f;
 
-    transition:
-        width 0.1s linear;
+    border-radius: inherit;
 
+    transition:
+        width 0.2s linear;
 }
 
 
 .timer-text {
+    margin: 5px 0 13px;
 
-    text-align: right;
+    text-align: center;
 
     color: #ffd21f;
-
-    font-weight: 1000;
 
     font-size: 14px;
-
-    margin-bottom: 10px;
-
+    font-weight: 1000;
 }
 
 
-/* =====================================================
-   JOKER
-   ===================================================== */
-
-.joker-bereich {
-
-    margin: 8px 0 12px;
-
-    padding: 8px;
-
-    background: #14181c;
-
-    border: 1px solid #343b43;
-
-    border-radius: 14px;
-
-}
-
-
-.joker-titel {
-
-    display: none;
-
-}
-
-
-.joker-grid {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(4, 1fr);
-
-    gap: 7px;
-
-}
-
-
-.joker-grid button {
-
-    min-height: 48px;
-
-    padding: 4px;
-
-    border: 1px solid #3c444d;
-
-    border-radius: 10px;
-
-    background: #20252b;
-
-    color: #ffffff;
-
-    cursor: pointer;
-
-    font-size: 10px;
-
-    font-weight: 800;
-
-}
-
-
-.joker-grid button span {
-
-    display: inline;
-
-    font-size: 17px;
-
-    margin-right: 3px;
-
-}
-
-
-.joker-grid button small {
-
-    font-size: 10px;
-
-    font-weight: 800;
-
-}
-
-
-.joker-grid button:hover:not(:disabled) {
-
-    border-color: #ffd21f;
-
-    color: #ffd21f;
-
-}
-
-
-.joker-grid button:disabled {
-
-    opacity: 0.28;
-
-    cursor: not-allowed;
-
-}
-
-
-/* =====================================================
-   FRAGE
-   ===================================================== */
+/* QUESTION */
 
 .frage-text {
-
     min-height: 105px;
 
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
-    margin: 0 0 15px;
+    padding: 12px 10px;
 
-    padding: 15px;
+    margin-bottom: 15px;
 
     text-align: center;
 
-    background: #15191e;
+    color: #ffffff;
 
-    border: 1px solid #343b43;
-
-    border-radius: 16px;
-
-    font-size: 24px;
+    font-size: 25px;
+    line-height: 1.28;
 
     font-weight: 900;
-
-    line-height: 1.3;
-
 }
 
 
-/* =====================================================
-   ANTWORTEN
-   ===================================================== */
+/* ANSWERS */
 
 .antworten {
-
     display: grid;
 
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns:
+        repeat(2, 1fr);
 
     gap: 9px;
-
 }
 
 
 .antworten button {
+    min-height: 62px;
 
-    min-height: 64px;
+    padding: 12px 14px;
 
-    padding: 12px;
+    border:
+        2px solid
+        #3a424b;
 
     border-radius: 14px;
-
-    border: 2px solid #3a424b;
 
     background: #191e23;
 
     color: #ffffff;
 
     font-size: 15px;
+    line-height: 1.25;
 
-    font-weight: 700;
+    font-weight: 800;
 
     cursor: pointer;
 
+    transition:
+        transform 0.12s ease,
+        border-color 0.12s ease,
+        background 0.12s ease;
 }
 
 
 .antworten button:hover:not(:disabled) {
-
     transform: translateY(-2px);
 
     border-color: #ffd21f;
 
     background: #252b31;
-
 }
 
 
 .antworten button.richtig {
-
     border-color: #45d483;
 
-    background: rgba(69, 212, 131, 0.15);
+    background:
+        rgba(
+            69,
+            212,
+            131,
+            0.15
+        );
 
     color: #65e49a;
-
 }
 
 
 .antworten button.falsch {
-
     border-color: #ff5353;
 
-    background: rgba(255, 83, 83, 0.15);
+    background:
+        rgba(
+            255,
+            83,
+            83,
+            0.15
+        );
 
     color: #ff7777;
-
 }
 
 
@@ -871,44 +781,136 @@ main {
 }
 
 
-/* =====================================================
-   ERGEBNIS
-   ===================================================== */
+/* RESULT */
 
 .antwort-ergebnis {
+    min-height: 36px;
 
-    min-height: 34px;
+    margin: 10px 0;
 
-    margin: 8px 0;
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
 
     text-align: center;
 
-    font-size: 18px;
+    font-size: 15px;
+    line-height: 1.3;
 
     font-weight: 1000;
-
 }
 
 
 /* =====================================================
-   NEXT
+   JOKERS
    ===================================================== */
 
-#naechsteFrage {
+.joker-bereich {
+    margin: 13px 0;
 
-    margin-top: 2px;
+    padding: 12px;
 
+    background: #14181c;
+
+    border:
+        1px solid
+        #343b43;
+
+    border-radius: 14px;
+}
+
+
+.joker-titel {
+    margin-bottom: 9px;
+
+    text-align: center;
+
+    color: #858d96;
+
+    font-size: 11px;
+    font-weight: 900;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+}
+
+
+.joker-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 7px;
+}
+
+
+.joker-grid button {
+    min-width: 0;
+    min-height: 68px;
+
+    padding: 6px 3px;
+
+    border:
+        1px solid
+        #3c444d;
+
+    border-radius: 11px;
+
+    background: #20252b;
+
+    color: #ffffff;
+
+    cursor: pointer;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 2px;
+}
+
+
+.joker-grid button span {
+    display: block;
+
+    font-size: 19px;
+}
+
+
+.joker-grid button strong {
+    font-size: 10px;
+    font-weight: 900;
+}
+
+
+.joker-grid button small {
+    color: #858d96;
+
+    font-size: 9px;
+    font-weight: 800;
+}
+
+
+.joker-grid button:hover:not(:disabled) {
+    border-color: #ffd21f;
+
+    color: #ffd21f;
+}
+
+
+.joker-grid button:disabled {
+    opacity: 0.32;
 }
 
 
 #quizBeendenButton {
-
-    margin-top: 8px;
-
-    min-height: 44px;
-
-    font-size: 13px;
-
+    margin-top: 9px;
 }
 
 
@@ -922,11 +924,9 @@ main {
 
 
 .gameover-icon {
+    margin-bottom: 8px;
 
-    font-size: 70px;
-
-    margin-bottom: 10px;
-
+    font-size: 65px;
 }
 
 
@@ -936,96 +936,107 @@ main {
 
 
 .gameover-score {
+    margin: 20px 0;
 
-    margin: 25px 0;
+    padding: 20px;
 
-    padding: 25px;
-
-    border-radius: 18px;
+    border-radius: 17px;
 
     background: #14181c;
 
-    border: 1px solid #343b43;
-
+    border:
+        1px solid
+        #343b43;
 }
 
 
 .gameover-score span {
-
     display: block;
 
     color: #858d96;
 
-    font-size: 12px;
-
+    font-size: 11px;
     font-weight: 900;
 
     letter-spacing: 2px;
-
 }
 
 
 .gameover-score strong {
-
     display: block;
 
-    margin-top: 5px;
+    margin-top: 4px;
 
     color: #ffd21f;
 
-    font-size: 58px;
-
+    font-size: 56px;
 }
 
 
 .gameover-stats {
-
     display: grid;
 
     grid-template-columns:
         repeat(3, 1fr);
 
-    gap: 10px;
+    gap: 9px;
 
-    margin-bottom: 25px;
-
+    margin-bottom: 20px;
 }
 
 
 .gameover-stats div {
-
-    padding: 15px 8px;
+    padding: 13px 7px;
 
     background: #1a1f24;
 
-    border: 1px solid #343b43;
+    border:
+        1px solid
+        #343b43;
 
-    border-radius: 14px;
-
+    border-radius: 13px;
 }
 
 
 .gameover-stats strong {
-
     display: block;
 
     color: #ffd21f;
 
-    font-size: 24px;
-
+    font-size: 22px;
 }
 
 
 .gameover-stats span {
-
     display: block;
 
-    margin-top: 5px;
+    margin-top: 4px;
 
     color: #858d96;
 
-    font-size: 11px;
+    font-size: 10px;
+}
 
+
+.gameover-belohnung {
+    margin: 15px 0;
+
+    padding: 14px;
+
+    border:
+        1px solid
+        #343b43;
+
+    border-radius: 13px;
+
+    background: #151a1f;
+
+    color: #dce0e4;
+
+    font-size: 14px;
+    line-height: 1.5;
+
+    font-weight: 800;
 }
 
 
@@ -1034,15 +1045,12 @@ main {
    ===================================================== */
 
 .profil-name {
-
-    margin: 15px 0 25px;
+    margin: 12px 0 20px;
 
     text-align: center;
 
-    font-size: 26px;
-
+    font-size: 27px;
     font-weight: 1000;
-
 }
 
 
@@ -1052,28 +1060,29 @@ main {
 
 
 .profil-level {
-
-    padding: 20px;
+    padding: 18px;
 
     background: #15191e;
 
-    border: 1px solid #363d45;
+    border:
+        1px solid
+        #363d45;
 
-    border-radius: 17px;
-
+    border-radius: 16px;
 }
 
 
 .profil-level-header {
-
     display: flex;
 
     justify-content: space-between;
 
-    margin-bottom: 10px;
+    gap: 10px;
 
+    margin-bottom: 9px;
+
+    font-size: 13px;
     font-weight: 900;
-
 }
 
 
@@ -1082,175 +1091,345 @@ main {
 }
 
 
-.profil-level p {
+.profil-xp-track {
+    width: 100%;
+    height: 10px;
 
-    margin-bottom: 0;
+    overflow: hidden;
 
-    color: #7e8791;
+    background: #292f35;
 
-    text-align: center;
+    border-radius: 99px;
+}
 
-    font-size: 12px;
 
+.profil-xp-fill {
+    width: 0%;
+    height: 100%;
+
+    background: #ffd21f;
+
+    border-radius: inherit;
+}
+
+
+.profil-next-level {
+    margin-top: 8px;
+
+    color: #858d96;
+
+    font-size: 11px;
 }
 
 
 .profil-inhalt {
-    margin-top: 20px;
+    margin-top: 18px;
 }
 
 
 .profil-stat-grid {
-
     display: grid;
 
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns:
+        repeat(4, 1fr);
 
-    gap: 12px;
+    gap: 8px;
 
+    margin-bottom: 20px;
 }
 
 
 .profil-stat-card {
-
-    padding: 18px 10px;
+    padding: 13px 7px;
 
     background: #1a1f24;
 
-    border: 1px solid #343b43;
+    border:
+        1px solid
+        #343b43;
 
-    border-radius: 15px;
+    border-radius: 12px;
 
     text-align: center;
-
 }
 
 
 .profil-stat-card strong {
-
     display: block;
 
     color: #ffd21f;
 
-    font-size: 27px;
-
+    font-size: 21px;
 }
 
 
 .profil-stat-card span {
-
     display: block;
 
     margin-top: 5px;
 
-    color: #8e969f;
+    color: #858d96;
 
-    font-size: 11px;
+    font-size: 9px;
+    line-height: 1.2;
 
+    font-weight: 800;
 }
 
 
 .profil-section-title {
+    margin: 20px 0 10px;
 
-    margin: 25px 0 12px;
+    color: #ffd21f;
 
-    color: #ffffff;
-
-    font-size: 16px;
-
-    font-weight: 900;
-
+    font-size: 14px;
+    font-weight: 1000;
 }
 
 
 .achievement-grid {
-
     display: grid;
 
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns:
+        repeat(2, 1fr);
 
-    gap: 10px;
+    gap: 8px;
 
+    margin-bottom: 20px;
 }
 
 
 .achievement {
+    padding: 12px;
 
-    padding: 13px;
+    background: #171c21;
 
-    border-radius: 13px;
+    border:
+        1px solid
+        #30373f;
 
-    border: 1px solid #3a4149;
+    border-radius: 12px;
 
-    background: #15191e;
-
-    opacity: 0.45;
-
+    opacity: 0.42;
 }
 
 
 .achievement.erreicht {
-
     opacity: 1;
 
     border-color: #ffd21f;
-
 }
 
 
 .achievement strong {
-
     display: block;
 
+    color: #ffffff;
+
+    font-size: 12px;
+}
+
+
+.achievement.erreicht strong {
     color: #ffd21f;
-
-    margin-bottom: 4px;
-
 }
 
 
 .achievement span {
+    display: block;
 
-    color: #9098a1;
+    margin-top: 5px;
 
-    font-size: 11px;
+    color: #858d96;
 
+    font-size: 10px;
+    line-height: 1.3;
 }
 
 
 /* =====================================================
-   PROFIL BUTTON
+   SHOP
    ===================================================== */
 
-#profilNameButton {
+.shop-header {
+    display: flex;
 
-    width: 100%;
+    align-items: center;
+    justify-content: space-between;
 
-    min-height: 48px;
+    gap: 15px;
 
-    margin-top: 25px;
-
-    border: 1px solid #3c444d;
-
-    border-radius: 12px;
-
-    background: transparent;
-
-    color: #9ba2aa;
-
-    cursor: pointer;
-
-    font-weight: 700;
-
+    margin-bottom: 20px;
 }
 
 
-#profilNameButton:hover {
+.shop-header h1 {
+    margin: 5px 0;
+    text-align: left;
+}
 
-    border-color: #ffd21f;
+
+.shop-header .screen-subtitle {
+    margin: 0;
+    text-align: left;
+}
+
+
+.shop-coins {
+    flex-shrink: 0;
+
+    padding: 12px 16px;
+
+    border:
+        1px solid
+        #3d454d;
+
+    border-radius: 13px;
+
+    background: #151a1f;
 
     color: #ffd21f;
 
+    font-size: 17px;
+    font-weight: 1000;
+}
+
+
+.shop-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 10px;
+}
+
+
+.shop-item {
+    padding: 16px;
+
+    background: #191e23;
+
+    border:
+        1px solid
+        #343b43;
+
+    border-radius: 15px;
+}
+
+
+.shop-item-icon {
+    font-size: 30px;
+
+    margin-bottom: 8px;
+}
+
+
+.shop-item h3 {
+    margin: 0;
+
+    font-size: 15px;
+}
+
+
+.shop-item p {
+    min-height: 35px;
+
+    margin: 6px 0 12px;
+
+    color: #858d96;
+
+    font-size: 10px;
+    line-height: 1.35;
+}
+
+
+.shop-item-footer {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 8px;
+}
+
+
+.shop-price {
+    color: #ffd21f;
+
+    font-size: 12px;
+    font-weight: 900;
+}
+
+
+.shop-stock {
+    color: #858d96;
+
+    font-size: 10px;
+}
+
+
+.shop-buy {
+    min-height: 38px;
+
+    padding: 7px 10px;
+
+    border:
+        1px solid
+        #ffd21f;
+
+    border-radius: 9px;
+
+    background: transparent;
+
+    color: #ffd21f;
+
+    font-size: 11px;
+    font-weight: 900;
+
+    cursor: pointer;
+}
+
+
+.shop-buy:hover:not(:disabled) {
+    background: #ffd21f;
+    color: #111417;
+}
+
+
+.shop-info {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+    margin-top: 15px;
+
+    padding: 13px;
+
+    background: #151a1f;
+
+    border:
+        1px solid
+        #30373f;
+
+    border-radius: 12px;
+}
+
+
+.shop-info strong {
+    color: #ffd21f;
+
+    font-size: 11px;
+}
+
+
+.shop-info span {
+    color: #858d96;
+
+    font-size: 10px;
+    line-height: 1.35;
 }
 
 
@@ -1258,85 +1437,70 @@ main {
    BESTENLISTE
    ===================================================== */
 
-#bestenlisteInhalt {
-    margin-top: 20px;
+.bestenliste-container {
+    overflow-x: auto;
 }
 
 
 .bestenliste-tabelle {
+    width: 100%;
 
-    border: 1px solid #383f47;
-
-    border-radius: 15px;
-
-    overflow: hidden;
-
+    min-width: 500px;
 }
 
 
 .bestenliste-zeile {
-
     display: grid;
 
     grid-template-columns:
-        55px 1fr 110px 170px;
+        45px
+        1.4fr
+        90px
+        1fr;
 
     align-items: center;
 
-    min-height: 65px;
+    gap: 8px;
 
-    border-top: 1px solid #343b43;
+    padding: 11px 8px;
 
-}
+    border-bottom:
+        1px solid
+        #292f35;
 
-
-.bestenliste-zeile:first-child {
-    border-top: none;
+    font-size: 11px;
 }
 
 
 .bestenliste-kopf {
+    color: #858d96;
 
-    background: #30363d;
-
+    font-size: 10px;
     font-weight: 900;
 
-}
-
-
-.bestenliste-zeile > div {
-
-    padding: 8px;
-
-    text-align: center;
-
+    text-transform: uppercase;
 }
 
 
 .bestenliste-platz {
-
     color: #ffd21f;
 
     font-weight: 1000;
-
-}
-
-
-.bestenliste-score {
-
-    color: #ffd21f;
-
-    font-weight: 900;
-
 }
 
 
 .bestenliste-kategorie {
-
-    text-align: left !important;
+    text-align: left;
 
     font-weight: 800;
+}
 
+
+.bestenliste-score {
+    color: #ffd21f;
+
+    font-size: 14px;
+    font-weight: 1000;
 }
 
 
@@ -1347,48 +1511,36 @@ main {
 @media (max-width: 600px) {
 
     body {
-        padding: 6px;
+        padding: 8px;
     }
 
 
     .quiz-container {
+        margin: 8px auto;
 
-        margin: 7px auto;
+        padding: 22px 14px;
 
-        padding: 18px 12px;
-
-        border-radius: 17px;
-
+        border-radius: 18px;
     }
 
 
-    .quiz-game {
-
-        padding: 12px 9px 14px;
-
-    }
-
+    /* START */
 
     .startseite {
-
-        padding-top: 25px;
-
-        padding-bottom: 25px;
-
+        padding: 28px 14px;
     }
 
 
     .quizero-logo-icon {
+        width: 88px;
+        height: 88px;
 
-        width: 95px;
-
-        height: 95px;
-
+        margin-bottom: 10px;
     }
 
 
     .logo {
-        font-size: 37px;
+        font-size: 38px;
     }
 
 
@@ -1398,325 +1550,433 @@ main {
 
 
     .spieler-begruessung {
-
         margin-top: 22px;
 
         font-size: 17px;
-
     }
 
 
     .spieler-status {
-        padding: 15px;
+        padding: 13px 9px;
     }
 
 
     .status-zeile {
+        gap: 6px;
+
         font-size: 12px;
     }
 
 
+    .start-navigation {
+        grid-template-columns:
+            1fr 1fr;
+
+        gap: 7px;
+    }
+
+
+    .start-navigation button:last-child {
+        grid-column:
+            1 / -1;
+    }
+
+
+    .start-navigation button {
+        min-height: 46px;
+
+        font-size: 11px;
+    }
+
+
+    /* HEADINGS */
+
+    h1 {
+        font-size: 26px;
+    }
+
+
+    .screen-subtitle {
+        margin-bottom: 18px;
+
+        font-size: 12px;
+    }
+
+
+    /* MODES */
+
     .modus-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr 1fr;
+
+        gap: 8px;
     }
 
 
     .modus-card {
-        min-height: 115px;
+        min-height: 130px;
+
+        padding: 13px 7px;
     }
 
 
-    .kategorie-buttons {
+    .modus-icon {
+        font-size: 29px;
+    }
 
+
+    .modus-card strong {
+        font-size: 13px;
+    }
+
+
+    .modus-card small {
+        font-size: 9px;
+    }
+
+
+    /* CATEGORIES */
+
+    .kategorie-buttons {
         grid-template-columns:
             repeat(2, 1fr);
 
+        gap: 7px;
     }
 
 
     .kategorie-buttons button {
+        min-height: 70px;
 
-        min-height: 92px;
+        padding: 7px 4px;
 
-        font-size: 12px;
-
+        font-size: 11px;
     }
 
 
+    /* QUIZ */
+
+    .quiz-game {
+        padding: 14px 10px;
+    }
+
+
+    /*
+       WICHTIG:
+       4 Werte bleiben in EINER Reihe,
+       aber bekommen genug Platz.
+    */
+
     .game-header {
+        grid-template-columns:
+            repeat(4, minmax(0, 1fr));
 
         gap: 5px;
 
-        margin-bottom: 10px;
-
+        margin-bottom: 11px;
     }
 
 
     .game-stat {
+        padding: 8px 2px;
 
-        padding: 8px 3px;
+        border-radius: 9px;
+
+        font-size: 10px;
+    }
+
+
+    .game-stat span {
+        display: block;
+
+        margin: 0 0 2px;
+
+        font-size: 14px;
+    }
+
+
+    .game-stat strong {
+        display: block;
 
         font-size: 11px;
-
     }
 
 
     .frage-info {
-
-        font-size: 11px;
-
         margin-bottom: 5px;
 
+        font-size: 10px;
+    }
+
+
+    .timer-container {
+        height: 6px;
     }
 
 
     .timer-text {
-
-        margin-bottom: 7px;
+        margin: 4px 0 9px;
 
         font-size: 12px;
-
-    }
-
-
-    /* Kleine Joker direkt über der Frage */
-
-    .joker-bereich {
-
-        margin: 6px 0 9px;
-
-        padding: 6px;
-
-        border-radius: 12px;
-
-    }
-
-
-    .joker-grid {
-
-        gap: 5px;
-
-    }
-
-
-    .joker-grid button {
-
-        min-height: 42px;
-
-        padding: 3px;
-
-        border-radius: 8px;
-
-        font-size: 9px;
-
-    }
-
-
-    .joker-grid button span {
-
-        font-size: 15px;
-
-        margin-right: 2px;
-
-    }
-
-
-    .joker-grid button small {
-
-        font-size: 9px;
-
     }
 
 
     .frage-text {
+        min-height: 92px;
 
-        min-height: 100px;
+        padding: 5px 3px;
 
-        margin-bottom: 9px;
-
-        padding: 12px;
+        margin-bottom: 10px;
 
         font-size: 19px;
 
-        border-radius: 14px;
-
+        line-height: 1.23;
     }
 
 
     .antworten {
-
-        grid-template-columns: 1fr;
-
-        gap: 7px;
-
-    }
-
-
-    .antworten button {
-
-        min-height: 55px;
-
-        padding: 10px;
-
-        font-size: 14px;
-
-        border-radius: 12px;
-
-    }
-
-
-    .antwort-ergebnis {
-
-        min-height: 29px;
-
-        margin: 5px 0;
-
-        font-size: 16px;
-
-    }
-
-
-    #naechsteFrage {
-
-        min-height: 53px;
-
-        font-size: 17px;
-
-        border-radius: 13px;
-
-    }
-
-
-    #quizBeendenButton {
-
-        min-height: 40px;
-
-        margin-top: 6px;
-
-    }
-
-
-    .gameover-score strong {
-        font-size: 48px;
-    }
-
-
-    .profil-stat-grid,
-    .achievement-grid {
-
-        grid-template-columns: 1fr 1fr;
-
-    }
-
-
-    .bestenliste-zeile {
-
         grid-template-columns:
-            40px 1fr 75px;
+            1fr;
 
-    }
-
-
-    .bestenliste-zeile > div:last-child {
-        display: none;
-    }
-
-}
-
-
-@media (max-width: 380px) {
-
-    .quiz-container {
-        padding: 15px 9px;
-    }
-
-
-    .quiz-game {
-        padding: 9px 6px 12px;
-    }
-
-
-    .kategorie-buttons {
         gap: 6px;
     }
 
 
-    .kategorie-buttons button {
+    .antworten button {
+        min-height: 51px;
 
-        min-height: 82px;
+        padding: 9px 10px;
 
-        font-size: 11px;
+        border-radius: 11px;
 
+        font-size: 14px;
     }
 
 
-    .status-zeile {
-        font-size: 11px;
+    .antwort-ergebnis {
+        min-height: 27px;
+
+        margin: 6px 0;
+
+        font-size: 13px;
     }
 
 
-    .frage-text {
+    /* JOKERS */
 
-        min-height: 92px;
+    .joker-bereich {
+        margin: 8px 0;
 
-        font-size: 18px;
+        padding: 8px;
 
+        border-radius: 11px;
+    }
+
+
+    .joker-titel {
+        margin-bottom: 6px;
+
+        font-size: 9px;
+    }
+
+
+    .joker-grid {
+        grid-template-columns:
+            repeat(4, 1fr);
+
+        gap: 4px;
     }
 
 
     .joker-grid button {
+        min-height: 54px;
 
-        min-height: 39px;
+        padding: 4px 1px;
 
+        border-radius: 8px;
     }
 
 
-    .antworten button {
+    .joker-grid button span {
+        font-size: 16px;
+    }
 
-        min-height: 52px;
+
+    .joker-grid button strong {
+        font-size: 8px;
+    }
+
+
+    .joker-grid button small {
+        font-size: 8px;
+    }
+
+
+    #naechsteFrage {
+        min-height: 48px;
+
+        font-size: 14px;
+    }
+
+
+    #quizBeendenButton {
+        min-height: 40px;
+
+        font-size: 12px;
+    }
+
+
+    /* GAME OVER */
+
+    .gameover-icon {
+        font-size: 52px;
+    }
+
+
+    .gameover-score {
+        margin: 15px 0;
+
+        padding: 16px;
+    }
+
+
+    .gameover-score strong {
+        font-size: 45px;
+    }
+
+
+    .gameover-stats {
+        gap: 6px;
+    }
+
+
+    .gameover-stats div {
+        padding: 11px 4px;
+    }
+
+
+    .gameover-stats strong {
+        font-size: 19px;
+    }
+
+
+    .gameover-stats span {
+        font-size: 9px;
+    }
+
+
+    /* PROFIL */
+
+    .profil-name {
+        font-size: 23px;
+    }
+
+
+    .profil-stat-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 7px;
+    }
+
+
+    .achievement-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+
+    /* SHOP */
+
+    .shop-header {
+        align-items: flex-start;
+
+        gap: 8px;
+    }
+
+
+    .shop-header h1 {
+        font-size: 24px;
+    }
+
+
+    .shop-coins {
+        padding: 9px 10px;
 
         font-size: 13px;
-
     }
 
-    /* =====================================================
-   QUIZ HEADER – MOBILE
-   ===================================================== */
 
-@media (max-width: 600px) {
-
-    .quiz-game .game-header {
-
+    .shop-grid {
         grid-template-columns:
-            1.15fr
-            0.8fr
-            0.9fr
-            0.9fr;
+            1fr 1fr;
+
+        gap: 7px;
+    }
+
+
+    .shop-item {
+        padding: 11px 9px;
+    }
+
+
+    .shop-item-icon {
+        font-size: 25px;
+    }
+
+
+    .shop-item h3 {
+        font-size: 12px;
+    }
+
+
+    .shop-item p {
+        min-height: 48px;
+
+        margin: 5px 0 8px;
+
+        font-size: 9px;
+    }
+
+
+    .shop-price {
+        font-size: 10px;
+    }
+
+
+    .shop-stock {
+        font-size: 8px;
+    }
+
+
+    .shop-buy {
+        min-height: 34px;
+
+        padding: 5px 7px;
+
+        font-size: 9px;
+    }
+
+
+    /* LEADERBOARD */
+
+    .bestenliste-zeile {
+        grid-template-columns:
+            35px
+            1fr
+            70px
+            80px;
 
         gap: 5px;
 
+        padding: 9px 5px;
+
+        font-size: 10px;
     }
 
 
-    .quiz-game .game-stat {
-
+    .bestenliste-tabelle {
         min-width: 0;
-
-        padding: 8px 2px;
-
-        font-size: 11px;
-
-        white-space: nowrap;
-
-        overflow: hidden;
-
-    }
-
-
-    .quiz-game .game-stat strong {
-
-        font-size: 12px;
-
     }
 
 }
@@ -1724,18 +1984,64 @@ main {
 
 @media (max-width: 380px) {
 
-    .quiz-game .game-stat {
+    body {
+        padding: 5px;
+    }
 
+
+    .quiz-container {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+
+    .logo {
+        font-size: 35px;
+    }
+
+
+    .game-stat {
+        padding: 7px 1px;
+    }
+
+
+    .game-stat span {
+        font-size: 13px;
+    }
+
+
+    .game-stat strong {
         font-size: 10px;
-
     }
 
 
-    .quiz-game .game-stat strong {
+    .frage-text {
+        min-height: 88px;
 
-        font-size: 11px;
+        font-size: 18px;
+    }
 
+
+    .antworten button {
+        min-height: 48px;
+
+        font-size: 13px;
+    }
+
+
+    .joker-grid button {
+        min-height: 51px;
+    }
+
+
+    .joker-grid button strong {
+        font-size: 7px;
+    }
+
+
+    .joker-grid button span {
+        font-size: 15px;
     }
 
 }
-}
+

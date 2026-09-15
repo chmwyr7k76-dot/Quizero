@@ -33,74 +33,80 @@
 
 <body>
 
-    <main>
+<main>
 
 
-        <!-- =========================================
-             START
-        ========================================== -->
+    <!-- =================================================
+         START
+    ================================================== -->
 
-        <section
-            id="startbildschirm"
-            class="screen"
-        >
+    <section
+        id="startbildschirm"
+        class="screen"
+    >
 
-            <div class="startseite quiz-container">
+        <div class="quiz-container startseite">
 
-                <img
-                    src="quizero-favicon.png"
-                    alt="QUIZERO Logo"
-                    class="quizero-logo-icon"
-                >
+            <img
+                src="quizero-favicon.png"
+                alt="QUIZERO Logo"
+                class="quizero-logo-icon"
+            >
 
-                <div class="logo">
-                    QUIZ<span>ERO</span>
+            <div class="logo">
+                QUIZ<span>ERO</span>
+            </div>
+
+            <div class="logo-slogan">
+                From Zero to Quiz Hero.
+            </div>
+
+
+            <div
+                id="spielerBegruessung"
+                class="spieler-begruessung"
+            >
+                Willkommen zurück!
+            </div>
+
+
+            <!-- PLAYER STATUS -->
+
+            <div class="spieler-status">
+
+                <div class="status-zeile">
+
+                    <span>
+                        🏆
+                        <strong id="startLevel">
+                            Level 1
+                        </strong>
+                    </span>
+
+                    <span>
+                        🔥
+                        <strong id="startStreak">
+                            0
+                        </strong>
+                    </span>
+
+                    <span>
+                        🪙
+                        <strong id="startCoins">
+                            0
+                        </strong>
+                    </span>
+
                 </div>
 
-                <div class="logo-slogan">
-                    From Zero to Quiz Hero.
-                </div>
 
+                <div class="xp-mini">
 
-                <div
-                    id="spielerBegruessung"
-                    class="spieler-begruessung"
-                >
-                    Willkommen zurück!
-                </div>
-
-
-                <div class="spieler-status">
-
-                    <div class="status-zeile">
+                    <div class="xp-mini-header">
 
                         <span>
-                            🏆
-                            <strong id="startLevel">
-                                Level 1
-                            </strong>
+                            XP
                         </span>
-
-                        <span>
-                            🔥
-                            <strong id="startStreak">
-                                0
-                            </strong>
-                        </span>
-
-                        <span>
-                            🪙
-                            <strong id="startCoins">
-                                0
-                            </strong>
-                        </span>
-
-                    </div>
-
-
-                    <div class="xp-info">
-
-                        <span>XP</span>
 
                         <span id="startXP">
                             0 / 100 XP
@@ -108,640 +114,829 @@
 
                     </div>
 
-
-                    <div class="xp-balken">
+                    <div class="xp-mini-track">
 
                         <div
                             id="startXPBalken"
-                            class="xp-balken-innen"
+                            class="xp-mini-fill"
                         ></div>
 
                     </div>
 
-
-                    <div
-                        id="startNaechstesLevel"
-                        class="naechstes-level"
-                    >
-                        100 XP bis Level 2
-                    </div>
-
                 </div>
-
-
-                <button
-                    class="hauptbutton"
-                    onclick="quizStarten()"
-                >
-                    ▶ SPIELEN
-                </button>
-
-
-                <div class="start-navigation">
-
-                    <button
-                        onclick="bestenlisteAnzeigen()"
-                    >
-                        🏆 Bestenliste
-                    </button>
-
-                    <button
-                        onclick="profilAnzeigen()"
-                    >
-                        👤 Mein Profil
-                    </button>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =========================================
-             SPIELMODUS
-        ========================================== -->
-
-        <section
-            id="spielmodi"
-            class="screen"
-        >
-
-            <div class="quiz-container">
-
-                <h1>🎮 Spielmodus</h1>
-
-                <p class="screen-subtitle">
-                    Wie möchtest du spielen?
-                </p>
-
-
-                <div class="modus-grid">
-
-
-                    <button
-                        class="modus-card modus-aktiv"
-                        onclick="spielmodusWaehlen('classic')"
-                    >
-
-                        <span class="modus-icon">
-                            🎮
-                        </span>
-
-                        <strong>
-                            CLASSIC
-                        </strong>
-
-                        <small>
-                            3 Leben · steigende Schwierigkeit
-                        </small>
-
-                    </button>
-
-
-                    <button
-                        class="modus-card"
-                        onclick="spielmodusWaehlen('zeitdruck')"
-                    >
-
-                        <span class="modus-icon">
-                            ⚡
-                        </span>
-
-                        <strong>
-                            ZEITDRUCK
-                        </strong>
-
-                        <small>
-                            Schnell antworten · mehr Punkte
-                        </small>
-
-                    </button>
-
-
-                    <button
-                        class="modus-card"
-                        onclick="spielmodusWaehlen('endlos')"
-                    >
-
-                        <span class="modus-icon">
-                            ♾️
-                        </span>
-
-                        <strong>
-                            ENDLOS
-                        </strong>
-
-                        <small>
-                            Maximale Herausforderung
-                        </small>
-
-                    </button>
-
-
-                    <button
-                        class="modus-card"
-                        onclick="spielmodusWaehlen('hardcore')"
-                    >
-
-                        <span class="modus-icon">
-                            💀
-                        </span>
-
-                        <strong>
-                            HARDCORE
-                        </strong>
-
-                        <small>
-                            1 Leben · kein Fehler erlaubt
-                        </small>
-
-                    </button>
-
-                </div>
-
-
-                <button
-                    class="secondary-button"
-                    onclick="zurueckZumStart()"
-                >
-                    ← Zurück
-                </button>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =========================================
-             KATEGORIEN
-        ========================================== -->
-
-        <section
-            id="kategorien"
-            class="screen"
-        >
-
-            <div class="quiz-container">
-
-                <h1>🌍 Kategorie</h1>
-
-                <p class="screen-subtitle">
-                    Wähle dein Wissensgebiet
-                </p>
 
 
                 <div
-                    id="kategorieButtons"
-                    class="kategorie-buttons"
-                ></div>
+                    id="startNaechstesLevel"
+                    class="naechstes-level"
+                >
+                    100 XP bis Level 2
+                </div>
 
+            </div>
+
+
+            <!-- PLAY -->
+
+            <button
+                class="hauptbutton start-play-button"
+                onclick="quizStarten()"
+            >
+                ▶ SPIELEN
+            </button>
+
+
+            <!-- NAVIGATION -->
+
+            <div class="start-navigation">
 
                 <button
-                    class="secondary-button"
-                    onclick="zurueckZuModi()"
+                    onclick="bestenlisteAnzeigen()"
                 >
-                    ← Zurück
+                    🏆 Bestenliste
                 </button>
 
-            </div>
+                <button
+                    onclick="profilAnzeigen()"
+                >
+                    👤 Mein Profil
+                </button>
 
-        </section>
-
-
-
-        <!-- =========================================
-             QUIZ
-        ========================================== -->
-
-        <section
-            id="quiz"
-            class="screen"
-        >
-
-            <div class="quiz-container quiz-game">
-
-
-                <!-- GAME HEADER -->
-
-                <div class="game-header">
-
-                    <div class="game-header">
-
-    <div class="game-stat">
-
-        <strong id="leben">
-            ❤️ ❤️ ❤️
-        </strong>
-
-    </div>
-
-
-    <div class="game-stat">
-
-                <span>🔥</span>
-
-                <strong id="combo">
-                    x0
-                </strong>
-
-            </div>
-
-
-            <div class="game-stat">
-
-                <span>⭐</span>
-
-                <strong id="quizPunkte">
-                    0
-                </strong>
-
-            </div>
-
-
-            <div class="game-stat">
-
-                <span>🪙</span>
-
-                <strong id="coins">
-                    0
-                </strong>
+                <button
+                    onclick="shopAnzeigen()"
+                >
+                    🛒 Shop
+                </button>
 
             </div>
 
         </div>
 
-
-                <!-- QUESTION INFO -->
-
-                <div class="frage-info">
-
-                    <span id="rundeInfo">
-                        Runde 1
-                    </span>
-
-                    <span id="schwierigkeitInfo">
-                        🟢 Leicht
-                    </span>
-
-                </div>
+    </section>
 
 
-                <!-- TIMER -->
 
-                <div class="timer-container">
+    <!-- =================================================
+         SPIELMODI
+    ================================================== -->
 
-                    <div
-                        id="timerBalken"
-                        class="timer-balken"
-                    ></div>
+    <section
+        id="spielmodi"
+        class="screen"
+    >
 
-                </div>
+        <div class="quiz-container">
 
-
-                <div
-                    id="timerText"
-                    class="timer-text"
-                >
-                    20
-                </div>
-
-
-                <!-- JOKERS
-                     Jetzt bewusst VOR der Frage -->
-
-                <div class="joker-bereich">
-
-                    <div class="joker-titel">
-                        🃏 Joker
-                    </div>
-
-
-                    <div class="joker-grid">
-
-                        <button
-                            id="joker5050"
-                            onclick="joker50Nutzen()"
-                        >
-                            <span>½</span>
-                            <small>50/50</small>
-                        </button>
-
-
-                        <button
-                            id="jokerZweiteChance"
-                            onclick="jokerZweiteChanceNutzen()"
-                        >
-                            <span>🛡️</span>
-                            <small>Schutz</small>
-                        </button>
-
-
-                        <button
-                            id="jokerZeit"
-                            onclick="jokerZeitNutzen()"
-                        >
-                            <span>⏱️</span>
-                            <small>Zeit</small>
-                        </button>
-
-
-                        <button
-                            id="jokerHinweis"
-                            onclick="jokerHinweisNutzen()"
-                        >
-                            <span>💡</span>
-                            <small>Hinweis</small>
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-                <!-- QUESTION -->
-
-                <div
-                    id="frage"
-                    class="frage-text"
-                >
-                    Frage wird geladen...
-                </div>
-
-
-                <!-- ANSWERS -->
-
-                <div
-                    id="antworten"
-                    class="antworten"
-                ></div>
-
-
-                <!-- RESULT -->
-
-                <div
-                    id="ergebnis"
-                    class="antwort-ergebnis"
-                ></div>
-
-
-                <!-- NEXT -->
+            <div class="screen-top">
 
                 <button
-                    id="naechsteFrage"
-                    class="hauptbutton"
-                    onclick="naechsteFrage()"
-                    disabled
+                    class="back-button"
+                    onclick="startAnzeigen()"
                 >
-                    Nächste Frage →
-                </button>
-
-
-                <button
-                    id="quizBeendenButton"
-                    class="secondary-button"
-                    onclick="quizManuellBeenden()"
-                >
-                    Runde beenden
+                    ← Zurück
                 </button>
 
             </div>
 
-        </section>
+
+            <h1>
+                🎮 Spielmodus
+            </h1>
+
+            <p class="screen-subtitle">
+                Wie möchtest du spielen?
+            </p>
 
 
+            <div class="modus-grid">
 
-        <!-- =========================================
-             GAME OVER
-        ========================================== -->
 
-        <section
-            id="gameover"
-            class="screen"
-        >
-
-            <div class="quiz-container gameover-container">
-
-                <div class="gameover-icon">
-                    💥
-                </div>
-
-                <h1>
-                    GAME OVER
-                </h1>
-
-                <p
-                    id="gameoverText"
-                    class="screen-subtitle"
+                <button
+                    class="modus-card"
+                    onclick="spielmodusWaehlen('classic')"
                 >
-                    Deine Runde ist vorbei.
-                </p>
 
-
-                <div class="gameover-score">
-
-                    <span>
-                        SCORE
+                    <span class="modus-icon">
+                        🎮
                     </span>
 
-                    <strong id="gameoverPunkte">
+                    <strong>
+                        CLASSIC
+                    </strong>
+
+                    <small>
+                        3 Leben · 20 Sekunden
+                    </small>
+
+                </button>
+
+
+                <button
+                    class="modus-card"
+                    onclick="spielmodusWaehlen('zeitdruck')"
+                >
+
+                    <span class="modus-icon">
+                        ⚡
+                    </span>
+
+                    <strong>
+                        ZEITDRUCK
+                    </strong>
+
+                    <small>
+                        Schneller Timer · mehr XP
+                    </small>
+
+                </button>
+
+
+                <button
+                    class="modus-card"
+                    onclick="spielmodusWaehlen('endlos')"
+                >
+
+                    <span class="modus-icon">
+                        ♾️
+                    </span>
+
+                    <strong>
+                        ENDLOS
+                    </strong>
+
+                    <small>
+                        Spiele so lange du kannst
+                    </small>
+
+                </button>
+
+
+                <button
+                    class="modus-card hardcore-card"
+                    onclick="spielmodusWaehlen('hardcore')"
+                >
+
+                    <span class="modus-icon">
+                        💀
+                    </span>
+
+                    <strong>
+                        HARDCORE
+                    </strong>
+
+                    <small>
+                        1 Leben · maximaler XP-Bonus
+                    </small>
+
+                </button>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         KATEGORIEN
+    ================================================== -->
+
+    <section
+        id="kategorien"
+        class="screen"
+    >
+
+        <div class="quiz-container">
+
+            <div class="screen-top">
+
+                <button
+                    class="back-button"
+                    onclick="zurueckZuModi()"
+                >
+                    ← Modi
+                </button>
+
+            </div>
+
+
+            <h1>
+                📚 Kategorie
+            </h1>
+
+            <p
+                id="modusAnzeige"
+                class="screen-subtitle"
+            >
+                Wähle dein Thema
+            </p>
+
+
+            <div
+                id="kategorieButtons"
+                class="kategorie-buttons"
+            ></div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         QUIZ
+    ================================================== -->
+
+    <section
+        id="quiz"
+        class="screen"
+    >
+
+        <div class="quiz-container quiz-game">
+
+
+            <!-- GAME HEADER -->
+
+            <div class="game-header">
+
+
+                <div class="game-stat">
+
+                    <span>
+                        ❤️
+                    </span>
+
+                    <strong id="leben">
+                        ❤️ ❤️ ❤️
+                    </strong>
+
+                </div>
+
+
+                <div class="game-stat">
+
+                    <span>
+                        🔥
+                    </span>
+
+                    <strong id="combo">
+                        x0
+                    </strong>
+
+                </div>
+
+
+                <div class="game-stat score-stat">
+
+                    <span>
+                        ⭐
+                    </span>
+
+                    <strong id="quizPunkte">
                         0
                     </strong>
 
                 </div>
 
 
-                <div class="gameover-stats">
+                <div class="game-stat">
 
-                    <div>
-                        <strong id="gameoverFragen">
-                            0
-                        </strong>
-                        <span>Fragen</span>
-                    </div>
+                    <span>
+                        🪙
+                    </span>
 
-                    <div>
-                        <strong id="gameoverRichtig">
-                            0
-                        </strong>
-                        <span>Richtig</span>
-                    </div>
+                    <strong id="coins">
+                        0
+                    </strong>
 
-                    <div>
-                        <strong id="gameoverCombo">
-                            x0
+                </div>
+
+            </div>
+
+
+            <!-- INFO -->
+
+            <div class="frage-info">
+
+                <span id="rundeInfo">
+                    Runde 1
+                </span>
+
+                <span id="schwierigkeitInfo">
+                    🟢 Leicht
+                </span>
+
+            </div>
+
+
+            <!-- TIMER -->
+
+            <div class="timer-container">
+
+                <div
+                    id="timerBalken"
+                    class="timer-balken"
+                ></div>
+
+            </div>
+
+            <div
+                id="timerText"
+                class="timer-text"
+            >
+                20
+            </div>
+
+
+            <!-- QUESTION -->
+
+            <div
+                id="frage"
+                class="frage-text"
+            >
+                Frage wird geladen...
+            </div>
+
+
+            <!-- ANSWERS -->
+
+            <div
+                id="antworten"
+                class="antworten"
+            ></div>
+
+
+            <!-- RESULT -->
+
+            <div
+                id="ergebnis"
+                class="antwort-ergebnis"
+            ></div>
+
+
+            <!-- JOKERS -->
+
+            <div class="joker-bereich">
+
+                <div class="joker-titel">
+                    🃏 Joker
+                </div>
+
+
+                <div class="joker-grid">
+
+
+                    <button
+                        id="joker5050"
+                        onclick="joker50Nutzen()"
+                    >
+
+                        <span>
+                            ½
+                        </span>
+
+                        <strong>
+                            50/50
                         </strong>
-                        <span>Beste Combo</span>
-                    </div>
+
+                        <small>
+                            1
+                        </small>
+
+                    </button>
+
+
+                    <button
+                        id="jokerZweiteChance"
+                        onclick="jokerZweiteChanceNutzen()"
+                    >
+
+                        <span>
+                            🛡️
+                        </span>
+
+                        <strong>
+                            Schutz
+                        </strong>
+
+                        <small>
+                            1
+                        </small>
+
+                    </button>
+
+
+                    <button
+                        id="jokerZeit"
+                        onclick="jokerZeitNutzen()"
+                    >
+
+                        <span>
+                            ⏱️
+                        </span>
+
+                        <strong>
+                            +10 Sek.
+                        </strong>
+
+                        <small>
+                            1
+                        </small>
+
+                    </button>
+
+
+                    <button
+                        id="jokerHinweis"
+                        onclick="jokerHinweisNutzen()"
+                    >
+
+                        <span>
+                            💡
+                        </span>
+
+                        <strong>
+                            Hinweis
+                        </strong>
+
+                        <small>
+                            1
+                        </small>
+
+                    </button>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- NEXT -->
+
+            <button
+                id="naechsteFrage"
+                class="hauptbutton"
+                onclick="naechsteFrage()"
+                disabled
+            >
+                Nächste Frage →
+            </button>
+
+
+            <button
+                id="quizBeendenButton"
+                class="secondary-button"
+                onclick="quizManuellBeenden()"
+            >
+                Runde beenden
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         GAME OVER
+    ================================================== -->
+
+    <section
+        id="gameover"
+        class="screen"
+    >
+
+        <div class="quiz-container gameover-container">
+
+            <div class="gameover-icon">
+                💥
+            </div>
+
+            <h1>
+                GAME OVER
+            </h1>
+
+            <p class="screen-subtitle">
+                Deine Runde ist vorbei.
+            </p>
+
+
+            <div class="gameover-score">
+
+                <span>
+                    SCORE
+                </span>
+
+                <strong id="gameoverPunkte">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="gameover-stats">
+
+
+                <div>
+
+                    <strong id="gameoverFragen">
+                        0
+                    </strong>
+
+                    <span>
+                        Fragen
+                    </span>
 
                 </div>
 
 
-                <div id="gameoverBelohnungen"></div>
+                <div>
 
+                    <strong id="gameoverRichtig">
+                        0
+                    </strong>
+
+                    <span>
+                        Richtig
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <strong id="gameoverCombo">
+                        x0
+                    </strong>
+
+                    <span>
+                        Beste Combo
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+            <div id="gameoverBelohnungen"></div>
+
+
+            <button
+                class="hauptbutton"
+                onclick="nochmalSpielen()"
+            >
+                🔥 NOCHMAL SPIELEN
+            </button>
+
+
+            <button
+                class="secondary-button"
+                onclick="zurueckZumStart()"
+            >
+                ← Zum Start
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         PROFIL
+    ================================================== -->
+
+    <section
+        id="profil"
+        class="screen"
+    >
+
+        <div class="quiz-container">
+
+            <div class="screen-top">
 
                 <button
-                    class="hauptbutton"
-                    onclick="nochmalSpielen()"
+                    class="back-button"
+                    onclick="startAnzeigen()"
                 >
-                    🔥 NOCHMAL SPIELEN
-                </button>
-
-
-                <button
-                    class="secondary-button"
-                    onclick="zurueckZumStart()"
-                >
-                    ← Zum Start
+                    ← Zurück
                 </button>
 
             </div>
 
-        </section>
+
+            <h1>
+                👤 Mein Profil
+            </h1>
 
 
+            <div class="profil-name">
 
-        <!-- =========================================
-             PROFIL
-        ========================================== -->
+                <span id="profilName">
+                    Spieler
+                </span>
 
-        <section
-            id="profil"
-            class="screen"
-        >
-
-            <div class="quiz-container">
-
-                <h1>
-                    👤 Mein Profil
-                </h1>
+            </div>
 
 
-                <div class="profil-name">
-                    <span id="profilName">
-                        Spieler
+            <div class="profil-level">
+
+                <div class="profil-level-header">
+
+                    <span id="profilLevel">
+                        Level 1
                     </span>
+
+                    <span id="profilXP">
+                        0 / 100 XP
+                    </span>
+
                 </div>
 
 
-                <div class="profil-level">
+                <div class="profil-xp-track">
 
-                    <div class="profil-level-header">
+                    <div
+                        id="profilXPBalken"
+                        class="profil-xp-fill"
+                    ></div>
 
-                        <span id="profilLevel">
-                            Level 1
-                        </span>
-
-                        <span id="profilXP">
-                            0 / 100 XP
-                        </span>
-
-                    </div>
+                </div>
 
 
-                    <div class="profil-xp-balken">
+                <div
+                    id="profilNaechstesLevel"
+                    class="profil-next-level"
+                >
+                    100 XP bis Level 2
+                </div>
 
-                        <div
-                            id="profilXPBalken"
-                        ></div>
-
-                    </div>
+            </div>
 
 
-                    <p id="profilNaechstesLevel">
-                        100 XP bis Level 2
+            <div
+                id="profilInhalt"
+                class="profil-inhalt"
+            ></div>
+
+
+            <button
+                class="secondary-button"
+                onclick="spielerNameAendern()"
+            >
+                ✏️ Spielernamen ändern
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         SHOP
+    ================================================== -->
+
+    <section
+        id="shop"
+        class="screen"
+    >
+
+        <div class="quiz-container">
+
+            <div class="screen-top">
+
+                <button
+                    class="back-button"
+                    onclick="startAnzeigen()"
+                >
+                    ← Zurück
+                </button>
+
+            </div>
+
+
+            <div class="shop-header">
+
+                <div>
+
+                    <h1>
+                        🛒 Shop
+                    </h1>
+
+                    <p class="screen-subtitle">
+                        Kaufe Joker für deine nächsten Runden.
                     </p>
 
                 </div>
 
 
-                <div
-                    id="profilInhalt"
-                    class="profil-inhalt"
-                ></div>
+                <div class="shop-coins">
 
+                    🪙
+                    <strong id="shopCoins">
+                        0
+                    </strong>
 
-                <button
-                    id="profilNameButton"
-                    onclick="spielerNameAendern()"
-                >
-                    ✏️ Spielernamen ändern
-                </button>
-
-
-                <button
-                    class="secondary-button"
-                    onclick="profilSchliessen()"
-                >
-                    ← Zurück
-                </button>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =========================================
-             BESTENLISTE
-        ========================================== -->
-
-        <section
-            id="bestenliste"
-            class="screen"
-        >
-
-            <div class="quiz-container">
-
-                <h1>
-                    🏆 Bestenliste
-                </h1>
-
-                <p class="screen-subtitle">
-                    Die besten QUIZERO-Spieler
-                </p>
-
-
-                <div
-                    id="bestenlisteInhalt"
-                >
-                    Lade Bestenliste...
                 </div>
 
+            </div>
+
+
+            <div
+                id="shopInhalt"
+                class="shop-grid"
+            ></div>
+
+
+            <div class="shop-info">
+
+                <strong>
+                    So funktioniert der Shop
+                </strong>
+
+                <span>
+                    Joker werden dauerhaft in deinem Inventar gespeichert.
+                    Du kannst sie in späteren Runden einsetzen.
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         BESTENLISTE
+    ================================================== -->
+
+    <section
+        id="bestenliste"
+        class="screen"
+    >
+
+        <div class="quiz-container">
+
+            <div class="screen-top">
 
                 <button
-                    class="secondary-button"
-                    onclick="bestenlisteSchliessen()"
+                    class="back-button"
+                    onclick="startAnzeigen()"
                 >
                     ← Zurück
                 </button>
 
             </div>
 
-        </section>
+
+            <h1>
+                🏆 Bestenliste
+            </h1>
+
+            <p class="screen-subtitle">
+                Die besten QUIZERO-Spieler
+            </p>
 
 
-    </main>
+            <div
+                id="bestenlisteInhalt"
+                class="bestenliste-container"
+            >
+                Lade Bestenliste...
+            </div>
+
+        </div>
+
+    </section>
 
 
-    <!-- SUPABASE -->
-
-    <script
-        src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
-    ></script>
+</main>
 
 
-    <!-- FRAGEN -->
 
-    <script src="fragen.js"></script>
+<!-- SUPABASE -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+></script>
 
 
-    <!-- SPIELLOGIK -->
+<!-- FRAGEN -->
 
-    <script src="script.js"></script>
+<script src="fragen.js"></script>
+
+
+<!-- SPIELLOGIK -->
+
+<script src="script.js"></script>
+
 
 </body>
 
 </html>
+
