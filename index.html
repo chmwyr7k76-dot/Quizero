@@ -296,11 +296,7 @@
                 <div
                     id="kategorieButtons"
                     class="kategorie-buttons"
-                >
-
-                    <!-- Wird von JavaScript erzeugt -->
-
-                </div>
+                ></div>
 
 
                 <button
@@ -332,41 +328,50 @@
 
                 <div class="game-header">
 
-                    <div class="game-stat">
-                    
-                        <strong id="leben">
-                            ❤️ ❤️ ❤️
-                        </strong>
+                    <div class="game-header">
 
-                    </div>
+    <div class="game-stat">
 
+        <strong id="leben">
+            ❤️ ❤️ ❤️
+        </strong>
 
-                    <div class="game-stat">
-
-                        <span>
-                            🔥
-                        </span>
-
-                        <strong id="combo">
-                            x0
-                        </strong>
-
-                    </div>
+    </div>
 
 
-                    <div class="game-stat">
+    <div class="game-stat">
 
-                        <span>
-                            🪙
-                        </span>
+                <span>🔥</span>
 
-                        <strong id="coins">
-                            0
-                        </strong>
+                <strong id="combo">
+                    x0
+                </strong>
 
-                    </div>
+            </div>
 
-                </div>
+
+            <div class="game-stat">
+
+                <span>⭐</span>
+
+                <strong id="quizPunkte">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="game-stat">
+
+                <span>🪙</span>
+
+                <strong id="coins">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
 
 
                 <!-- QUESTION INFO -->
@@ -404,6 +409,58 @@
                 </div>
 
 
+                <!-- JOKERS
+                     Jetzt bewusst VOR der Frage -->
+
+                <div class="joker-bereich">
+
+                    <div class="joker-titel">
+                        🃏 Joker
+                    </div>
+
+
+                    <div class="joker-grid">
+
+                        <button
+                            id="joker5050"
+                            onclick="joker50Nutzen()"
+                        >
+                            <span>½</span>
+                            <small>50/50</small>
+                        </button>
+
+
+                        <button
+                            id="jokerZweiteChance"
+                            onclick="jokerZweiteChanceNutzen()"
+                        >
+                            <span>🛡️</span>
+                            <small>Schutz</small>
+                        </button>
+
+
+                        <button
+                            id="jokerZeit"
+                            onclick="jokerZeitNutzen()"
+                        >
+                            <span>⏱️</span>
+                            <small>Zeit</small>
+                        </button>
+
+
+                        <button
+                            id="jokerHinweis"
+                            onclick="jokerHinweisNutzen()"
+                        >
+                            <span>💡</span>
+                            <small>Hinweis</small>
+                        </button>
+
+                    </div>
+
+                </div>
+
+
                 <!-- QUESTION -->
 
                 <div
@@ -428,57 +485,6 @@
                     id="ergebnis"
                     class="antwort-ergebnis"
                 ></div>
-
-
-                <!-- JOKERS -->
-
-                <div class="joker-bereich">
-
-                    <div class="joker-titel">
-                        🃏 Joker
-                    </div>
-
-
-                    <div class="joker-grid">
-
-                        <button
-                            id="joker5050"
-                            onclick="joker50Nutzen()"
-                        >
-                            <span>½</span>
-                            50/50
-                        </button>
-
-
-                        <button
-                            id="jokerZweiteChance"
-                            onclick="jokerZweiteChanceNutzen()"
-                        >
-                            <span>🛡️</span>
-                            Schutz
-                        </button>
-
-
-                        <button
-                            id="jokerZeit"
-                            onclick="jokerZeitNutzen()"
-                        >
-                            <span>⏱️</span>
-                            Zeit
-                        </button>
-
-
-                        <button
-                            id="jokerHinweis"
-                            onclick="jokerHinweisNutzen()"
-                        >
-                            <span>💡</span>
-                            Hinweis
-                        </button>
-
-                    </div>
-
-                </div>
 
 
                 <!-- NEXT -->
@@ -624,15 +630,11 @@
 
                     <div class="profil-level-header">
 
-                        <span
-                            id="profilLevel"
-                        >
+                        <span id="profilLevel">
                             Level 1
                         </span>
 
-                        <span
-                            id="profilXP"
-                        >
+                        <span id="profilXP">
                             0 / 100 XP
                         </span>
 

@@ -1,5 +1,6 @@
 /* =====================================================
-   QUIZERO 2.0
+   QUIZERO 2.1
+   MOBILE FIRST
    ===================================================== */
 
 * {
@@ -33,36 +34,29 @@ body {
         Helvetica,
         sans-serif;
 
-    padding: 20px;
+    padding: 12px;
 
 }
 
 
 button {
-
     font-family: inherit;
-
+    -webkit-tap-highlight-color: transparent;
 }
 
 
 main {
-
     width: 100%;
-
 }
 
 
 .screen {
-
     display: none;
-
 }
 
 
 #startbildschirm {
-
     display: block;
-
 }
 
 
@@ -72,9 +66,9 @@ main {
 
     max-width: 680px;
 
-    margin: 30px auto;
+    margin: 20px auto;
 
-    padding: 40px;
+    padding: 32px;
 
     background:
         linear-gradient(
@@ -101,9 +95,9 @@ main {
 
     text-align: center;
 
-    padding-top: 45px;
+    padding-top: 40px;
 
-    padding-bottom: 45px;
+    padding-bottom: 40px;
 
 }
 
@@ -112,9 +106,9 @@ main {
 
     display: block;
 
-    width: 125px;
+    width: 120px;
 
-    height: 125px;
+    height: 120px;
 
     object-fit: contain;
 
@@ -135,9 +129,7 @@ main {
 
 
 .logo span {
-
     color: #ffd21f;
-
 }
 
 
@@ -158,9 +150,9 @@ main {
 
 .spieler-begruessung {
 
-    margin-top: 35px;
+    margin-top: 30px;
 
-    margin-bottom: 20px;
+    margin-bottom: 18px;
 
     font-size: 21px;
 
@@ -173,9 +165,9 @@ main {
 
     max-width: 430px;
 
-    margin: 0 auto 30px;
+    margin: 0 auto 25px;
 
-    padding: 20px;
+    padding: 18px;
 
     background: #15191e;
 
@@ -200,9 +192,7 @@ main {
 
 
 .status-zeile strong {
-
     color: #ffd21f;
-
 }
 
 
@@ -277,7 +267,7 @@ main {
 
     width: 100%;
 
-    min-height: 62px;
+    min-height: 58px;
 
     border: none;
 
@@ -287,7 +277,7 @@ main {
 
     color: #101214;
 
-    font-size: 20px;
+    font-size: 19px;
 
     font-weight: 1000;
 
@@ -314,9 +304,7 @@ main {
 
 
 .hauptbutton:active:not(:disabled) {
-
     transform: translateY(1px);
-
 }
 
 
@@ -335,9 +323,9 @@ main {
 
     grid-template-columns: 1fr 1fr;
 
-    gap: 12px;
+    gap: 10px;
 
-    margin-top: 15px;
+    margin-top: 12px;
 
 }
 
@@ -345,9 +333,9 @@ main {
 .start-navigation button,
 .secondary-button {
 
-    min-height: 52px;
+    min-height: 50px;
 
-    padding: 12px 18px;
+    padding: 12px 16px;
 
     border-radius: 13px;
 
@@ -385,7 +373,7 @@ main {
 
     width: 100%;
 
-    margin-top: 15px;
+    margin-top: 12px;
 
 }
 
@@ -407,7 +395,7 @@ main {
 
 .screen-subtitle {
 
-    margin: 0 0 30px;
+    margin: 0 0 25px;
 
     color: #8f969f;
 
@@ -426,16 +414,16 @@ main {
 
     grid-template-columns: 1fr 1fr;
 
-    gap: 15px;
+    gap: 12px;
 
 }
 
 
 .modus-card {
 
-    min-height: 175px;
+    min-height: 165px;
 
-    padding: 20px;
+    padding: 18px;
 
     border-radius: 18px;
 
@@ -456,11 +444,6 @@ main {
     align-items: center;
 
     gap: 8px;
-
-    transition:
-        transform 0.15s,
-        border-color 0.15s,
-        background 0.15s;
 
 }
 
@@ -491,13 +474,13 @@ main {
 
     line-height: 1.4;
 
+    text-align: center;
+
 }
 
 
 .modus-icon {
-
     font-size: 38px;
-
 }
 
 
@@ -512,16 +495,16 @@ main {
     grid-template-columns:
         repeat(3, 1fr);
 
-    gap: 12px;
+    gap: 10px;
 
 }
 
 
 .kategorie-buttons button {
 
-    min-height: 115px;
+    min-height: 105px;
 
-    padding: 15px 8px;
+    padding: 12px 8px;
 
     border-radius: 16px;
 
@@ -531,16 +514,11 @@ main {
 
     color: #ffffff;
 
-    font-size: 15px;
+    font-size: 14px;
 
     font-weight: 800;
 
     cursor: pointer;
-
-    transition:
-        transform 0.15s,
-        border-color 0.15s,
-        background 0.15s;
 
 }
 
@@ -557,12 +535,14 @@ main {
 
 
 /* =====================================================
-   QUIZ GAME
+   QUIZ
    ===================================================== */
 
 .quiz-game {
 
     max-width: 760px;
+
+    padding: 22px;
 
 }
 
@@ -573,39 +553,37 @@ main {
 
     grid-template-columns: 1fr 1fr 1fr;
 
-    gap: 10px;
+    gap: 8px;
 
-    margin-bottom: 20px;
+    margin-bottom: 14px;
 
 }
 
 
 .game-stat {
 
-    padding: 12px;
+    padding: 9px 5px;
 
     background: #14181c;
 
     border: 1px solid #343b43;
 
-    border-radius: 13px;
+    border-radius: 12px;
 
     text-align: center;
+
+    font-size: 13px;
 
 }
 
 
 .game-stat span {
-
-    margin-right: 4px;
-
+    margin-right: 3px;
 }
 
 
 .game-stat strong {
-
     color: #ffd21f;
-
 }
 
 
@@ -617,11 +595,11 @@ main {
 
     gap: 10px;
 
-    margin-bottom: 8px;
+    margin-bottom: 7px;
 
     color: #9da4ad;
 
-    font-size: 13px;
+    font-size: 12px;
 
     font-weight: 800;
 
@@ -629,19 +607,21 @@ main {
 
 
 #schwierigkeitInfo {
-
     color: #ffd21f;
-
 }
 
+
+/* =====================================================
+   TIMER
+   ===================================================== */
 
 .timer-container {
 
     width: 100%;
 
-    height: 9px;
+    height: 7px;
 
-    margin-bottom: 7px;
+    margin-bottom: 5px;
 
     background: #30363d;
 
@@ -674,16 +654,119 @@ main {
 
     font-weight: 1000;
 
-    font-size: 16px;
+    font-size: 14px;
 
-    margin-bottom: 28px;
+    margin-bottom: 10px;
 
 }
 
 
+/* =====================================================
+   JOKER
+   ===================================================== */
+
+.joker-bereich {
+
+    margin: 8px 0 12px;
+
+    padding: 8px;
+
+    background: #14181c;
+
+    border: 1px solid #343b43;
+
+    border-radius: 14px;
+
+}
+
+
+.joker-titel {
+
+    display: none;
+
+}
+
+
+.joker-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 7px;
+
+}
+
+
+.joker-grid button {
+
+    min-height: 48px;
+
+    padding: 4px;
+
+    border: 1px solid #3c444d;
+
+    border-radius: 10px;
+
+    background: #20252b;
+
+    color: #ffffff;
+
+    cursor: pointer;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+}
+
+
+.joker-grid button span {
+
+    display: inline;
+
+    font-size: 17px;
+
+    margin-right: 3px;
+
+}
+
+
+.joker-grid button small {
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+}
+
+
+.joker-grid button:hover:not(:disabled) {
+
+    border-color: #ffd21f;
+
+    color: #ffd21f;
+
+}
+
+
+.joker-grid button:disabled {
+
+    opacity: 0.28;
+
+    cursor: not-allowed;
+
+}
+
+
+/* =====================================================
+   FRAGE
+   ===================================================== */
+
 .frage-text {
 
-    min-height: 100px;
+    min-height: 105px;
 
     display: flex;
 
@@ -691,13 +774,19 @@ main {
 
     justify-content: center;
 
-    margin-bottom: 25px;
+    margin: 0 0 15px;
 
-    padding: 10px;
+    padding: 15px;
 
     text-align: center;
 
-    font-size: 27px;
+    background: #15191e;
+
+    border: 1px solid #343b43;
+
+    border-radius: 16px;
+
+    font-size: 24px;
 
     font-weight: 900;
 
@@ -706,24 +795,28 @@ main {
 }
 
 
+/* =====================================================
+   ANTWORTEN
+   ===================================================== */
+
 .antworten {
 
     display: grid;
 
     grid-template-columns: 1fr 1fr;
 
-    gap: 12px;
+    gap: 9px;
 
 }
 
 
 .antworten button {
 
-    min-height: 75px;
+    min-height: 64px;
 
-    padding: 15px;
+    padding: 12px;
 
-    border-radius: 15px;
+    border-radius: 14px;
 
     border: 2px solid #3a424b;
 
@@ -731,16 +824,11 @@ main {
 
     color: #ffffff;
 
-    font-size: 16px;
+    font-size: 15px;
 
     font-weight: 700;
 
     cursor: pointer;
-
-    transition:
-        transform 0.12s,
-        border-color 0.12s,
-        background 0.12s;
 
 }
 
@@ -779,21 +867,23 @@ main {
 
 
 .antworten button:disabled {
-
     cursor: default;
-
 }
 
 
+/* =====================================================
+   ERGEBNIS
+   ===================================================== */
+
 .antwort-ergebnis {
 
-    min-height: 38px;
+    min-height: 34px;
 
-    margin: 15px 0;
+    margin: 8px 0;
 
     text-align: center;
 
-    font-size: 20px;
+    font-size: 18px;
 
     font-weight: 1000;
 
@@ -801,110 +891,23 @@ main {
 
 
 /* =====================================================
-   JOKER
+   NEXT
    ===================================================== */
 
-.joker-bereich {
+#naechsteFrage {
 
-    margin: 20px 0;
-
-    padding: 16px;
-
-    background: #14181c;
-
-    border: 1px solid #343b43;
-
-    border-radius: 16px;
-
-}
-
-
-.joker-titel {
-
-    margin-bottom: 12px;
-
-    text-align: center;
-
-    color: #9da4ad;
-
-    font-size: 12px;
-
-    font-weight: 900;
-
-    text-transform: uppercase;
-
-    letter-spacing: 1px;
-
-}
-
-
-.joker-grid {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(4, 1fr);
-
-    gap: 8px;
-
-}
-
-
-.joker-grid button {
-
-    min-height: 60px;
-
-    padding: 6px;
-
-    border: 1px solid #3c444d;
-
-    border-radius: 11px;
-
-    background: #20252b;
-
-    color: #ffffff;
-
-    cursor: pointer;
-
-    font-size: 11px;
-
-    font-weight: 800;
-
-}
-
-
-.joker-grid button span {
-
-    display: block;
-
-    font-size: 19px;
-
-    margin-bottom: 3px;
-
-}
-
-
-.joker-grid button:hover:not(:disabled) {
-
-    border-color: #ffd21f;
-
-    color: #ffd21f;
-
-}
-
-
-.joker-grid button:disabled {
-
-    opacity: 0.3;
-
-    cursor: not-allowed;
+    margin-top: 2px;
 
 }
 
 
 #quizBeendenButton {
 
-    margin-top: 12px;
+    margin-top: 8px;
+
+    min-height: 44px;
+
+    font-size: 13px;
 
 }
 
@@ -914,9 +917,7 @@ main {
    ===================================================== */
 
 .gameover-container {
-
     text-align: center;
-
 }
 
 
@@ -930,9 +931,7 @@ main {
 
 
 .gameover-container h1 {
-
     color: #ff6666;
-
 }
 
 
@@ -1048,9 +1047,7 @@ main {
 
 
 .profil-name span {
-
     color: #ffd21f;
-
 }
 
 
@@ -1081,9 +1078,7 @@ main {
 
 
 .profil-level-header span:first-child {
-
     color: #ffd21f;
-
 }
 
 
@@ -1101,9 +1096,7 @@ main {
 
 
 .profil-inhalt {
-
     margin-top: 20px;
-
 }
 
 
@@ -1266,9 +1259,7 @@ main {
    ===================================================== */
 
 #bestenlisteInhalt {
-
     margin-top: 20px;
-
 }
 
 
@@ -1300,9 +1291,7 @@ main {
 
 
 .bestenliste-zeile:first-child {
-
     border-top: none;
-
 }
 
 
@@ -1358,68 +1347,82 @@ main {
 @media (max-width: 600px) {
 
     body {
-
-        padding: 10px;
-
+        padding: 6px;
     }
 
 
     .quiz-container {
 
-        margin: 12px auto;
+        margin: 7px auto;
 
-        padding: 25px 16px;
+        padding: 18px 12px;
 
-        border-radius: 18px;
+        border-radius: 17px;
+
+    }
+
+
+    .quiz-game {
+
+        padding: 12px 9px 14px;
 
     }
 
 
     .startseite {
 
-        padding-top: 30px;
+        padding-top: 25px;
 
-        padding-bottom: 30px;
+        padding-bottom: 25px;
 
     }
 
 
     .quizero-logo-icon {
 
-        width: 105px;
+        width: 95px;
 
-        height: 105px;
+        height: 95px;
 
     }
 
 
     .logo {
+        font-size: 37px;
+    }
 
-        font-size: 39px;
 
+    .logo-slogan {
+        font-size: 11px;
     }
 
 
     .spieler-begruessung {
 
-        margin-top: 25px;
+        margin-top: 22px;
 
-        font-size: 18px;
+        font-size: 17px;
 
+    }
+
+
+    .spieler-status {
+        padding: 15px;
+    }
+
+
+    .status-zeile {
+        font-size: 12px;
     }
 
 
     .modus-grid {
-
         grid-template-columns: 1fr;
-
     }
 
 
     .modus-card {
-
-        min-height: 125px;
-
+        min-height: 115px;
     }
 
 
@@ -1433,34 +1436,109 @@ main {
 
     .kategorie-buttons button {
 
-        min-height: 100px;
-
-        font-size: 13px;
-
-    }
-
-
-    .game-header {
-
-        gap: 6px;
-
-    }
-
-
-    .game-stat {
-
-        padding: 10px 4px;
+        min-height: 92px;
 
         font-size: 12px;
 
     }
 
 
+    .game-header {
+
+        gap: 5px;
+
+        margin-bottom: 10px;
+
+    }
+
+
+    .game-stat {
+
+        padding: 8px 3px;
+
+        font-size: 11px;
+
+    }
+
+
+    .frage-info {
+
+        font-size: 11px;
+
+        margin-bottom: 5px;
+
+    }
+
+
+    .timer-text {
+
+        margin-bottom: 7px;
+
+        font-size: 12px;
+
+    }
+
+
+    /* Kleine Joker direkt über der Frage */
+
+    .joker-bereich {
+
+        margin: 6px 0 9px;
+
+        padding: 6px;
+
+        border-radius: 12px;
+
+    }
+
+
+    .joker-grid {
+
+        gap: 5px;
+
+    }
+
+
+    .joker-grid button {
+
+        min-height: 42px;
+
+        padding: 3px;
+
+        border-radius: 8px;
+
+        font-size: 9px;
+
+    }
+
+
+    .joker-grid button span {
+
+        font-size: 15px;
+
+        margin-right: 2px;
+
+    }
+
+
+    .joker-grid button small {
+
+        font-size: 9px;
+
+    }
+
+
     .frage-text {
 
-        min-height: 125px;
+        min-height: 100px;
 
-        font-size: 21px;
+        margin-bottom: 9px;
+
+        padding: 12px;
+
+        font-size: 19px;
+
+        border-radius: 14px;
 
     }
 
@@ -1469,32 +1547,57 @@ main {
 
         grid-template-columns: 1fr;
 
-        gap: 9px;
+        gap: 7px;
 
     }
 
 
     .antworten button {
 
-        min-height: 60px;
+        min-height: 55px;
 
-        font-size: 15px;
+        padding: 10px;
+
+        font-size: 14px;
+
+        border-radius: 12px;
 
     }
 
 
-    .joker-grid {
+    .antwort-ergebnis {
 
-        grid-template-columns:
-            repeat(2, 1fr);
+        min-height: 29px;
+
+        margin: 5px 0;
+
+        font-size: 16px;
+
+    }
+
+
+    #naechsteFrage {
+
+        min-height: 53px;
+
+        font-size: 17px;
+
+        border-radius: 13px;
+
+    }
+
+
+    #quizBeendenButton {
+
+        min-height: 40px;
+
+        margin-top: 6px;
 
     }
 
 
     .gameover-score strong {
-
         font-size: 48px;
-
     }
 
 
@@ -1515,8 +1618,104 @@ main {
 
 
     .bestenliste-zeile > div:last-child {
-
         display: none;
+    }
+
+}
+
+
+@media (max-width: 380px) {
+
+    .quiz-container {
+        padding: 15px 9px;
+    }
+
+
+    .quiz-game {
+        padding: 9px 6px 12px;
+    }
+
+
+    .kategorie-buttons {
+        gap: 6px;
+    }
+
+
+    .kategorie-buttons button {
+
+        min-height: 82px;
+
+        font-size: 11px;
+
+    }
+
+
+    .status-zeile {
+        font-size: 11px;
+    }
+
+
+    .frage-text {
+
+        min-height: 92px;
+
+        font-size: 18px;
+
+    }
+
+
+    .joker-grid button {
+
+        min-height: 39px;
+
+    }
+
+
+    .antworten button {
+
+        min-height: 52px;
+
+        font-size: 13px;
+
+    }
+
+    /* =====================================================
+   QUIZ HEADER – MOBILE
+   ===================================================== */
+
+@media (max-width: 600px) {
+
+    .quiz-game .game-header {
+
+        grid-template-columns:
+            1.15fr
+            0.8fr
+            0.9fr
+            0.9fr;
+
+        gap: 5px;
+
+    }
+
+
+    .quiz-game .game-stat {
+
+        min-width: 0;
+
+        padding: 8px 2px;
+
+        font-size: 11px;
+
+        white-space: nowrap;
+
+        overflow: hidden;
+
+    }
+
+
+    .quiz-game .game-stat strong {
+
+        font-size: 12px;
 
     }
 
@@ -1525,40 +1724,18 @@ main {
 
 @media (max-width: 380px) {
 
-    .kategorie-buttons {
-
-        gap: 7px;
-
-    }
-
-
-    .kategorie-buttons button {
-
-        min-height: 85px;
-
-        font-size: 12px;
-
-    }
-
-
-    .status-zeile {
-
-        font-size: 12px;
-
-    }
-
-
-    .frage-text {
-
-        font-size: 19px;
-
-    }
-
-
-    .game-stat {
+    .quiz-game .game-stat {
 
         font-size: 10px;
 
     }
 
+
+    .quiz-game .game-stat strong {
+
+        font-size: 11px;
+
+    }
+
+}
 }
