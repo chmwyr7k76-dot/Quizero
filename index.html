@@ -7,7 +7,12 @@
 
     <meta
         name="viewport"
-        content="width=device-width, initial-scale=1.0"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
+
+    <meta
+        name="theme-color"
+        content="#0b0d10"
     >
 
     <meta
@@ -49,7 +54,7 @@
 
             <img
                 src="quizero-favicon.png"
-                alt="QUIZERO Logo"
+                alt="QUIZERO"
                 class="quizero-logo-icon"
             >
 
@@ -62,35 +67,54 @@
             </div>
 
 
-            <div class="spieler-identitaet">
-
-    <div
-        id="spielerAvatar"
-        class="spieler-avatar"
-    >
-        🦊
-    </div>
-
-    <div
-        id="spielerBegruessung"
-        class="spieler-begruessung"
-    >
-        Willkommen zurück!
-    </div>
-
-</div>
+            <div
+                id="spielerBegruessung"
+                class="spieler-begruessung"
+            >
+                Willkommen zurück!
+            </div>
 
 
-            <!-- PLAYER STATUS -->
+            <!-- SPIELER STATUS -->
 
             <div class="spieler-status">
+
+                <div class="start-avatar-row">
+
+                    <div
+                        id="startAvatar"
+                        class="start-avatar"
+                    >
+                        🦊
+                    </div>
+
+                    <div>
+
+                        <div
+                            id="startAvatarName"
+                            class="avatar-rang-name"
+                        >
+                            QUIZ ROOKIE
+                        </div>
+
+                        <div
+                            id="startAvatarXP"
+                            class="avatar-rang-xp"
+                        >
+                            0 XP
+                        </div>
+
+                    </div>
+
+                </div>
+
 
                 <div class="status-zeile">
 
                     <span>
                         🏆
                         <strong id="startLevel">
-                            Level 1
+                            1
                         </strong>
                     </span>
 
@@ -111,28 +135,25 @@
                 </div>
 
 
-                <div class="xp-mini">
+                <div class="xp-info">
 
-                    <div class="xp-mini-header">
+                    <span>
+                        XP
+                    </span>
 
-                        <span>
-                            XP
-                        </span>
+                    <span id="startXP">
+                        0 / 1000 XP
+                    </span>
 
-                        <span id="startXP">
-                            0 / 100 XP
-                        </span>
+                </div>
 
-                    </div>
 
-                    <div class="xp-mini-track">
+                <div class="xp-balken">
 
-                        <div
-                            id="startXPBalken"
-                            class="xp-mini-fill"
-                        ></div>
-
-                    </div>
+                    <div
+                        id="startXPBalken"
+                        class="xp-balken-innen"
+                    ></div>
 
                 </div>
 
@@ -141,13 +162,13 @@
                     id="startNaechstesLevel"
                     class="naechstes-level"
                 >
-                    100 XP bis Level 2
+                    1000 XP bis Level 2
                 </div>
 
             </div>
 
 
-            <!-- PLAY -->
+            <!-- START BUTTON -->
 
             <button
                 class="hauptbutton start-play-button"
@@ -157,26 +178,34 @@
             </button>
 
 
-            <!-- NAVIGATION -->
+            <!-- START NAVIGATION -->
 
             <div class="start-navigation">
 
                 <button
+                    class="nav-card"
                     onclick="bestenlisteAnzeigen()"
                 >
-                    🏆 Bestenliste
+                    <span>🏆</span>
+                    <strong>Bestenliste</strong>
                 </button>
 
+
                 <button
+                    class="nav-card"
                     onclick="profilAnzeigen()"
                 >
-                    👤 Mein Profil
+                    <span>👤</span>
+                    <strong>Mein Profil</strong>
                 </button>
 
+
                 <button
+                    class="nav-card"
                     onclick="shopAnzeigen()"
                 >
-                    🛒 Shop
+                    <span>🛒</span>
+                    <strong>Shop</strong>
                 </button>
 
             </div>
@@ -202,10 +231,12 @@
 
                 <button
                     class="back-button"
-                    onclick="startAnzeigen()"
+                    onclick="zurueckZumStart()"
                 >
-                    ← Zurück
+                    ←
                 </button>
+
+                <div></div>
 
             </div>
 
@@ -221,14 +252,13 @@
 
             <div class="modus-grid">
 
-
                 <button
                     class="modus-card"
                     onclick="spielmodusWaehlen('classic')"
                 >
 
                     <span class="modus-icon">
-                        🎮
+                        🧠
                     </span>
 
                     <strong>
@@ -236,7 +266,7 @@
                     </strong>
 
                     <small>
-                        3 Leben · 20 Sekunden
+                        3 Leben · steigende Schwierigkeit
                     </small>
 
                 </button>
@@ -256,7 +286,7 @@
                     </strong>
 
                     <small>
-                        Schneller Timer · mehr XP
+                        Weniger Zeit · mehr Punkte
                     </small>
 
                 </button>
@@ -276,14 +306,14 @@
                     </strong>
 
                     <small>
-                        Spiele so lange du kannst
+                        So weit du kommst
                     </small>
 
                 </button>
 
 
                 <button
-                    class="modus-card hardcore-card"
+                    class="modus-card"
                     onclick="spielmodusWaehlen('hardcore')"
                 >
 
@@ -296,11 +326,10 @@
                     </strong>
 
                     <small>
-                        1 Leben · maximaler XP-Bonus
+                        1 Leben · keine Fehler erlaubt
                     </small>
 
                 </button>
-
 
             </div>
 
@@ -327,21 +356,20 @@
                     class="back-button"
                     onclick="zurueckZuModi()"
                 >
-                    ← Modi
+                    ←
                 </button>
+
+                <div></div>
 
             </div>
 
 
             <h1>
-                📚 Kategorie
+                🌍 Kategorie
             </h1>
 
-            <p
-                id="modusAnzeige"
-                class="screen-subtitle"
-            >
-                Wähle dein Thema
+            <p class="screen-subtitle">
+                Wähle dein Wissensgebiet
             </p>
 
 
@@ -349,6 +377,14 @@
                 id="kategorieButtons"
                 class="kategorie-buttons"
             ></div>
+
+
+            <button
+                class="secondary-button"
+                onclick="zurueckZuModi()"
+            >
+                ← Zurück
+            </button>
 
         </div>
 
@@ -371,7 +407,6 @@
             <!-- GAME HEADER -->
 
             <div class="game-header">
-
 
                 <div class="game-stat">
 
@@ -399,19 +434,6 @@
                 </div>
 
 
-                <div class="game-stat score-stat">
-
-                    <span>
-                        ⭐
-                    </span>
-
-                    <strong id="quizPunkte">
-                        0
-                    </strong>
-
-                </div>
-
-
                 <div class="game-stat">
 
                     <span>
@@ -424,10 +446,23 @@
 
                 </div>
 
+
+                <div class="game-stat score-stat">
+
+                    <span>
+                        ⭐
+                    </span>
+
+                    <strong id="punkte">
+                        0
+                    </strong>
+
+                </div>
+
             </div>
 
 
-            <!-- INFO -->
+            <!-- QUESTION INFO -->
 
             <div class="frage-info">
 
@@ -452,6 +487,7 @@
                 ></div>
 
             </div>
+
 
             <div
                 id="timerText"
@@ -487,17 +523,16 @@
             ></div>
 
 
-            <!-- JOKERS -->
+            <!-- JOKER -->
 
             <div class="joker-bereich">
 
                 <div class="joker-titel">
-                    🃏 Joker
+                    🃏 JOKER
                 </div>
 
 
                 <div class="joker-grid">
-
 
                     <button
                         id="joker5050"
@@ -512,7 +547,7 @@
                             50/50
                         </strong>
 
-                        <small>
+                        <small id="joker50Count">
                             1
                         </small>
 
@@ -532,7 +567,7 @@
                             Schutz
                         </strong>
 
-                        <small>
+                        <small id="jokerSchutzCount">
                             1
                         </small>
 
@@ -552,7 +587,7 @@
                             +10 Sek.
                         </strong>
 
-                        <small>
+                        <small id="jokerZeitCount">
                             1
                         </small>
 
@@ -572,12 +607,11 @@
                             Hinweis
                         </strong>
 
-                        <small>
+                        <small id="jokerHinweisCount">
                             1
                         </small>
 
                     </button>
-
 
                 </div>
 
@@ -630,7 +664,7 @@
             </h1>
 
             <p class="screen-subtitle">
-                Deine Runde ist vorbei.
+                Deine Runde ist beendet.
             </p>
 
 
@@ -647,11 +681,9 @@
             </div>
 
 
-            <div class="gameover-stats">
-
+            <div class="gameover-grid">
 
                 <div>
-
                     <strong id="gameoverFragen">
                         0
                     </strong>
@@ -659,12 +691,10 @@
                     <span>
                         Fragen
                     </span>
-
                 </div>
 
 
                 <div>
-
                     <strong id="gameoverRichtig">
                         0
                     </strong>
@@ -672,12 +702,10 @@
                     <span>
                         Richtig
                     </span>
-
                 </div>
 
 
                 <div>
-
                     <strong id="gameoverCombo">
                         x0
                     </strong>
@@ -685,27 +713,28 @@
                     <span>
                         Beste Combo
                     </span>
-
                 </div>
-
 
             </div>
 
 
-            <div id="gameoverBelohnungen"></div>
+            <div
+                id="gameoverBelohnungen"
+                class="gameover-belohnungen"
+            ></div>
 
 
             <button
                 class="hauptbutton"
                 onclick="nochmalSpielen()"
             >
-                🔥 NOCHMAL SPIELEN
+                ▶ NOCHMAL SPIELEN
             </button>
 
 
             <button
                 class="secondary-button"
-                onclick="zurueckZumStart()"
+                onclick="startAnzeigen()"
             >
                 ← Zum Start
             </button>
@@ -731,79 +760,86 @@
 
                 <button
                     class="back-button"
-                    onclick="startAnzeigen()"
+                    onclick="profilSchliessen()"
                 >
-                    ← Zurück
+                    ←
                 </button>
+
+                <div></div>
 
             </div>
 
 
-            <h1>
-                👤 Mein Profil
+            <div class="profil-avatar-wrap">
+
+                <div
+                    id="profilAvatar"
+                    class="profil-avatar"
+                >
+                    🦊
+                </div>
+
+                <div
+                    id="profilAvatarName"
+                    class="profil-avatar-name"
+                >
+                    QUIZ ROOKIE
+                </div>
+
+                <div
+                    id="profilAvatarXP"
+                    class="profil-avatar-xp"
+                >
+                    0 XP
+                </div>
+
+            </div>
+
+
+            <h1
+                id="profilName"
+                class="profil-name"
+            >
+                Spieler
             </h1>
 
 
-            <div class="profil-identitaet">
-
-    <div
-        id="profilAvatar"
-        class="profil-avatar"
-    >
-        🦊
-    </div>
-
-    <div
-        id="profilName"
-        class="profil-name-text"
-    >
-        Spieler
-    </div>
-
-</div>
+            <div
+                id="profilLevel"
+                class="profil-level"
+            >
+                Level 1
+            </div>
 
 
-<button
-    class="avatar-aendern-button"
-    onclick="avatarAendern()"
->
-    🎭 Avatar ändern
-</button>
+            <div class="profil-xp-text">
+
+                <span>
+                    XP
+                </span>
+
+                <span id="profilXP">
+                    0 / 1000 XP
+                </span>
+
+            </div>
 
 
-
-            <div class="profil-level">
-
-                <div class="profil-level-header">
-
-                    <span id="profilLevel">
-                        Level 1
-                    </span>
-
-                    <span id="profilXP">
-                        0 / 100 XP
-                    </span>
-
-                </div>
-
-
-                <div class="profil-xp-track">
-
-                    <div
-                        id="profilXPBalken"
-                        class="profil-xp-fill"
-                    ></div>
-
-                </div>
-
+            <div class="xp-balken">
 
                 <div
-                    id="profilNaechstesLevel"
-                    class="profil-next-level"
-                >
-                    100 XP bis Level 2
-                </div>
+                    id="profilXPBalken"
+                    class="xp-balken-innen"
+                ></div>
 
+            </div>
+
+
+            <div
+                id="profilNaechstesLevel"
+                class="naechstes-level"
+            >
+                1000 XP bis Level 2
             </div>
 
 
@@ -814,10 +850,27 @@
 
 
             <button
+                id="profilNameButton"
                 class="secondary-button"
                 onclick="spielerNameAendern()"
             >
                 ✏️ Spielernamen ändern
+            </button>
+
+
+            <button
+                class="secondary-button"
+                onclick="shopAnzeigen()"
+            >
+                🛒 Shop öffnen
+            </button>
+
+
+            <button
+                class="secondary-button"
+                onclick="profilSchliessen()"
+            >
+                ← Zurück
             </button>
 
         </div>
@@ -841,39 +894,28 @@
 
                 <button
                     class="back-button"
-                    onclick="startAnzeigen()"
+                    onclick="shopSchliessen()"
                 >
-                    ← Zurück
+                    ←
                 </button>
 
-            </div>
-
-
-            <div class="shop-header">
-
-                <div>
-
-                    <h1>
-                        🛒 Shop
-                    </h1>
-
-                    <p class="screen-subtitle">
-                        Kaufe Joker für deine nächsten Runden.
-                    </p>
-
-                </div>
-
-
-                <div class="shop-coins">
-
-                    🪙
-                    <strong id="shopCoins">
-                        0
-                    </strong>
-
+                <div
+                    id="shopCoins"
+                    class="shop-coins"
+                >
+                    🪙 0
                 </div>
 
             </div>
+
+
+            <h1>
+                🛒 Shop
+            </h1>
+
+            <p class="screen-subtitle">
+                Kaufe zusätzliche Joker für deine nächsten Runden.
+            </p>
 
 
             <div
@@ -882,18 +924,12 @@
             ></div>
 
 
-            <div class="shop-info">
-
-                <strong>
-                    So funktioniert der Shop
-                </strong>
-
-                <span>
-                    Joker werden dauerhaft in deinem Inventar gespeichert.
-                    Du kannst sie in späteren Runden einsetzen.
-                </span>
-
-            </div>
+            <button
+                class="secondary-button"
+                onclick="shopSchliessen()"
+            >
+                ← Zurück
+            </button>
 
         </div>
 
@@ -916,10 +952,12 @@
 
                 <button
                     class="back-button"
-                    onclick="startAnzeigen()"
+                    onclick="bestenlisteSchliessen()"
                 >
-                    ← Zurück
+                    ←
                 </button>
+
+                <div></div>
 
             </div>
 
@@ -935,10 +973,18 @@
 
             <div
                 id="bestenlisteInhalt"
-                class="bestenliste-container"
+                class="bestenliste-inhalt"
             >
                 Lade Bestenliste...
             </div>
+
+
+            <button
+                class="secondary-button"
+                onclick="bestenlisteSchliessen()"
+            >
+                ← Zurück
+            </button>
 
         </div>
 
@@ -948,20 +994,25 @@
 </main>
 
 
-
-<!-- SUPABASE -->
+<!-- =====================================================
+     SUPABASE
+====================================================== -->
 
 <script
     src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
 ></script>
 
 
-<!-- FRAGEN -->
+<!-- =====================================================
+     FRAGEN
+====================================================== -->
 
 <script src="fragen.js"></script>
 
 
-<!-- SPIELLOGIK -->
+<!-- =====================================================
+     SPIELLOGIK
+====================================================== -->
 
 <script src="script.js"></script>
 
