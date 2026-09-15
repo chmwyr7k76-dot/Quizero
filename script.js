@@ -28,18 +28,14 @@ const supabaseClient =
 function spielerNameLaden() {
 
     return (
-        localStorage.getItem(
-            "spieler_name"
-        ) ||
+        localStorage.getItem("spieler_name") ||
         ""
     );
 
 }
 
 
-function spielerNameSpeichern(
-    name
-) {
+function spielerNameSpeichern(name) {
 
     localStorage.setItem(
         "spieler_name",
@@ -49,190 +45,10 @@ function spielerNameSpeichern(
 }
 
 
-/* =====================================================
-   AVATARE
-   ===================================================== */
-
-const AVATARE = [
-
-    {
-        emoji: "🦊",
-        name: "Fuchs"
-    },
-
-    {
-        emoji: "🐺",
-        name: "Wolf"
-    },
-
-    {
-        emoji: "🦁",
-        name: "Löwe"
-    },
-
-    {
-        emoji: "🐯",
-        name: "Tiger"
-    },
-
-    {
-        emoji: "🐸",
-        name: "Frosch"
-    },
-
-    {
-        emoji: "🐼",
-        name: "Panda"
-    },
-
-    {
-        emoji: "🦈",
-        name: "Hai"
-    },
-
-    {
-        emoji: "🦅",
-        name: "Adler"
-    },
-
-    {
-        emoji: "🐉",
-        name: "Drache"
-    },
-
-    {
-        emoji: "🤖",
-        name: "Roboter"
-    },
-
-    {
-        emoji: "👽",
-        name: "Alien"
-    },
-
-    {
-        emoji: "🥷",
-        name: "Ninja"
-    }
-
-];
-
-
-function avatarLaden() {
-
-    return (
-        localStorage.getItem(
-            "quizero_avatar"
-        ) ||
-        "🦊"
-    );
-
-}
-
-
-function avatarSpeichern(
-    avatar
-) {
-
-    localStorage.setItem(
-        "quizero_avatar",
-        avatar
-    );
-
-}
-
-
-function avatarEinrichten() {
-
-    let auswahl =
-        prompt(
-
-            "Wähle deinen Avatar:\n\n" +
-
-            "1 🦊 Fuchs\n" +
-            "2 🐺 Wolf\n" +
-            "3 🦁 Löwe\n" +
-            "4 🐯 Tiger\n" +
-            "5 🐸 Frosch\n" +
-            "6 🐼 Panda\n" +
-            "7 🦈 Hai\n" +
-            "8 🦅 Adler\n" +
-            "9 🐉 Drache\n" +
-            "10 🤖 Roboter\n" +
-            "11 👽 Alien\n" +
-            "12 🥷 Ninja\n\n" +
-
-            "Nummer eingeben:"
-
-        );
-
-
-    if (
-        auswahl ===
-        null
-    ) {
-
-        return false;
-
-    }
-
-
-    let nummer =
-        Number(
-            auswahl
-        );
-
-
-    if (
-        !Number.isInteger(
-            nummer
-        ) ||
-        nummer < 1 ||
-        nummer > AVATARE.length
-    ) {
-
-        alert(
-            "Ungültige Auswahl."
-        );
-
-        return false;
-
-    }
-
-
-    avatarSpeichern(
-        AVATARE[
-            nummer - 1
-        ].emoji
-    );
-
-
-    spielerUIAktualisieren();
-
-    return true;
-
-}
-
-
-function avatarAendern() {
-
-    avatarEinrichten();
-
-}
-
-
-/* =====================================================
-   SPIELER EINRICHTEN
-   ===================================================== */
-
 function spielerNameEinrichten() {
 
     let name =
         spielerNameLaden();
-
-
-    let ersterStart =
-        !name;
 
 
     if (!name) {
@@ -259,18 +75,11 @@ function spielerNameEinrichten() {
         }
 
 
-        if (
-            name.length >
-            20
-        ) {
-
-            name =
-                name.substring(
-                    0,
-                    20
-                );
-
-        }
+        name =
+            name.substring(
+                0,
+                20
+            );
 
 
         spielerNameSpeichern(
@@ -280,44 +89,7 @@ function spielerNameEinrichten() {
     }
 
 
-    /*
-       Bei einem neuen Spieler
-       Avatar auswählen.
-    */
-
-    if (
-        ersterStart &&
-        !localStorage.getItem(
-            "quizero_avatar"
-        )
-    ) {
-
-        avatarEinrichten();
-
-    }
-
-
-    /*
-       Falls ein bestehender Spieler
-       noch keinen Avatar besitzt.
-    */
-
-    if (
-        !localStorage.getItem(
-            "quizero_avatar"
-        )
-    ) {
-
-        avatarSpeichern(
-            "🦊"
-        );
-
-    }
-
-
     spielerBegruessungAktualisieren();
-
-    spielerUIAktualisieren();
 
 }
 
@@ -335,10 +107,7 @@ function spielerNameAendern() {
         );
 
 
-    if (
-        neuerName ===
-        null
-    ) {
+    if (neuerName === null) {
 
         return;
 
@@ -377,63 +146,30 @@ function spielerNameAendern() {
 
 function spielerBegruessungAktualisieren() {
 
-    let name =
-        spielerNameLaden();
-
-
     let element =
         document.getElementById(
             "spielerBegruessung"
         );
 
 
-    if (element) {
+    if (!element) {
 
-        element.textContent =
-            "Willkommen zurück, " +
-            name +
-            "!";
+        return;
 
     }
 
 
-    spielerUIAktualisieren();
-
-}
-
-
-function spielerUIAktualisieren() {
-
-    let avatar =
-        avatarLaden();
+    let name =
+        spielerNameLaden();
 
 
-    let startAvatar =
-        document.getElementById(
-            "spielerAvatar"
-        );
-
-
-    let profilAvatar =
-        document.getElementById(
-            "profilAvatar"
-        );
-
-
-    if (startAvatar) {
-
-        startAvatar.textContent =
-            avatar;
-
-    }
-
-
-    if (profilAvatar) {
-
-        profilAvatar.textContent =
-            avatar;
-
-    }
+    element.textContent =
+        "Willkommen zurück, " +
+        (
+            name ||
+            "Spieler"
+        ) +
+        "!";
 
 }
 
@@ -492,8 +228,9 @@ function spielerDatenLaden() {
 
         catch (fehler) {
 
-            console.log(
-                "Spielerdaten konnten nicht gelesen werden."
+            console.error(
+                "Spielerdaten konnten nicht gelesen werden:",
+                fehler
             );
 
         }
@@ -553,31 +290,29 @@ function spielerDatenSpeichern(
     );
 
 
-    /*
-       Zusätzlich alte einzelne Werte
-       aktualisieren, damit vorhandene
-       QUIZERO-Daten kompatibel bleiben.
-    */
-
     localStorage.setItem(
         "spieler_xp",
         spieler.xp
     );
+
 
     localStorage.setItem(
         "spieler_level",
         spieler.level
     );
 
+
     localStorage.setItem(
         "spieler_streak",
         spieler.streak
     );
 
+
     localStorage.setItem(
         "spieler_letzterTag",
         spieler.letzterTag
     );
+
 
     localStorage.setItem(
         "spieler_coins",
@@ -588,165 +323,34 @@ function spielerDatenSpeichern(
 
 
 /* =====================================================
-   LEVELSYSTEM
-   STEIGENDER XP-BEDARF
-   ===================================================== */
-
-/*
-   Gesamt-XP:
-
-   Level 1 = 0 XP
-   Level 2 = 100 XP
-   Level 3 = 300 XP
-   Level 4 = 600 XP
-   Level 5 = 1.000 XP
-   Level 6 = 1.500 XP
-   ...
-
-   Der benötigte XP-Betrag
-   für jedes neue Level steigt.
-*/
-
-function xpFuerLevel(
-    level
-) {
-
-    if (
-        level <= 1
-    ) {
-
-        return 0;
-
-    }
-
-
-    return (
-        50 *
-        (
-            level - 1
-        ) *
-        level
-    );
-
-}
-
-
-function levelBerechnen(
-    xp
-) {
-
-    xp =
-        Math.max(
-            0,
-            Number(xp) || 0
-        );
-
-
-    let level =
-        1;
-
-
-    while (
-        xp >=
-        xpFuerLevel(
-            level + 1
-        )
-    ) {
-
-        level++;
-
-    }
-
-
-    return level;
-
-}
-
-
-function xpBisNaechstesLevel(
-    xp
-) {
-
-    xp =
-        Math.max(
-            0,
-            Number(xp) || 0
-        );
-
-
-    let level =
-        levelBerechnen(
-            xp
-        );
-
-
-    let aktuelleLevelXP =
-        xpFuerLevel(
-            level
-        );
-
-
-    let naechsteLevelXP =
-        xpFuerLevel(
-            level + 1
-        );
-
-
-    let xpImLevel =
-        xp -
-        aktuelleLevelXP;
-
-
-    let benoetigt =
-        naechsteLevelXP -
-        aktuelleLevelXP;
-
-
-    return {
-
-        aktuell:
-            xpImLevel,
-
-        benoetigt:
-            benoetigt,
-
-        gesamt:
-            xp,
-
-        naechstesLevel:
-            naechsteLevelXP,
-
-        level:
-            level
-
-    };
-
-}
-
-
-/* =====================================================
    STATISTIK
    ===================================================== */
 
 function statistikLaden() {
 
-    let gespeichert =
+    let daten =
         localStorage.getItem(
             "quizero_statistik"
         );
 
 
-    if (gespeichert) {
+    if (daten) {
 
         try {
 
             return JSON.parse(
-                gespeichert
+                daten
             );
 
         }
 
-        catch (fehler) {}
+        catch (fehler) {
+
+            console.error(
+                fehler
+            );
+
+        }
 
     }
 
@@ -786,356 +390,6 @@ function statistikSpeichern(
             statistik
         )
     );
-
-}
-
-
-/* =====================================================
-   SHOP
-   ===================================================== */
-
-const SHOP_ITEMS = {
-
-    joker50: {
-
-        name:
-            "50/50",
-
-        icon:
-            "½",
-
-        beschreibung:
-            "Entfernt zwei falsche Antworten.",
-
-        preis:
-            25
-
-    },
-
-    jokerZweiteChance: {
-
-        name:
-            "Schutz",
-
-        icon:
-            "🛡️",
-
-        beschreibung:
-            "Schützt dich einmal vor einem verlorenen Leben.",
-
-        preis:
-            40
-
-    },
-
-    jokerZeit: {
-
-        name:
-            "+10 Sekunden",
-
-        icon:
-            "⏱️",
-
-        beschreibung:
-            "Gibt dir 10 Sekunden zusätzliche Zeit.",
-
-        preis:
-            30
-
-    },
-
-    jokerHinweis: {
-
-        name:
-            "Hinweis",
-
-        icon:
-            "💡",
-
-        beschreibung:
-            "Hilft dir bei einer schwierigen Frage.",
-
-        preis:
-            50
-
-    }
-
-};
-
-
-function jokerInventarLaden() {
-
-    let gespeichert =
-        localStorage.getItem(
-            "quizero_joker_inventar"
-        );
-
-
-    if (gespeichert) {
-
-        try {
-
-            let inventar =
-                JSON.parse(
-                    gespeichert
-                );
-
-
-            return {
-
-                joker50:
-                    Number(
-                        inventar.joker50
-                    ) || 0,
-
-                jokerZweiteChance:
-                    Number(
-                        inventar.jokerZweiteChance
-                    ) || 0,
-
-                jokerZeit:
-                    Number(
-                        inventar.jokerZeit
-                    ) || 0,
-
-                jokerHinweis:
-                    Number(
-                        inventar.jokerHinweis
-                    ) || 0
-
-            };
-
-        }
-
-        catch (fehler) {}
-
-    }
-
-
-    return {
-
-        joker50: 0,
-
-        jokerZweiteChance: 0,
-
-        jokerZeit: 0,
-
-        jokerHinweis: 0
-
-    };
-
-}
-
-
-function jokerInventarSpeichern(
-    inventar
-) {
-
-    localStorage.setItem(
-        "quizero_joker_inventar",
-        JSON.stringify(
-            inventar
-        )
-    );
-
-}
-
-
-function shopAnzeigen() {
-
-    timerStoppen();
-
-
-    screensAusblenden();
-
-
-    document.getElementById(
-        "shop"
-    ).style.display =
-        "block";
-
-
-    shopAktualisieren();
-
-}
-
-
-function shopAktualisieren() {
-
-    let spieler =
-        spielerDatenLaden();
-
-
-    let inventar =
-        jokerInventarLaden();
-
-
-    let coins =
-        document.getElementById(
-            "shopCoins"
-        );
-
-
-    if (coins) {
-
-        coins.textContent =
-            spieler.coins;
-
-    }
-
-
-    let container =
-        document.getElementById(
-            "shopInhalt"
-        );
-
-
-    if (!container) {
-
-        return;
-
-    }
-
-
-    let html =
-        "";
-
-
-    Object.keys(
-        SHOP_ITEMS
-    ).forEach(
-        function(
-            key
-        ) {
-
-            let item =
-                SHOP_ITEMS[
-                    key
-                ];
-
-
-            html +=
-
-                "<div class='shop-item'>" +
-
-                    "<div class='shop-item-icon'>" +
-                        item.icon +
-                    "</div>" +
-
-                    "<h3>" +
-                        item.name +
-                    "</h3>" +
-
-                    "<p>" +
-                        item.beschreibung +
-                    "</p>" +
-
-                    "<div class='shop-item-footer'>" +
-
-                        "<div>" +
-
-                            "<div class='shop-price'>" +
-                                "🪙 " +
-                                item.preis +
-                            "</div>" +
-
-                            "<div class='shop-stock'>" +
-                                "Besitz: " +
-                                inventar[key] +
-                            "</div>" +
-
-                        "</div>" +
-
-                        "<button " +
-                            "class='shop-buy' " +
-                            "onclick=\"shopKaufen('" +
-                                key +
-                            "')\"" +
-                            (
-                                spieler.coins <
-                                item.preis
-                                    ? " disabled"
-                                    : ""
-                            ) +
-                        ">" +
-                            "Kaufen" +
-                        "</button>" +
-
-                    "</div>" +
-
-                "</div>";
-
-        }
-    );
-
-
-    container.innerHTML =
-        html;
-
-}
-
-
-function shopKaufen(
-    jokerTyp
-) {
-
-    let item =
-        SHOP_ITEMS[
-            jokerTyp
-        ];
-
-
-    if (!item) {
-
-        return;
-
-    }
-
-
-    let spieler =
-        spielerDatenLaden();
-
-
-    if (
-        spieler.coins <
-        item.preis
-    ) {
-
-        alert(
-            "Du hast nicht genug Coins."
-        );
-
-        return;
-
-    }
-
-
-    spieler.coins -=
-        item.preis;
-
-
-    spielerDatenSpeichern(
-        spieler
-    );
-
-
-    let inventar =
-        jokerInventarLaden();
-
-
-    inventar[
-        jokerTyp
-    ]++;
-
-
-    jokerInventarSpeichern(
-        inventar
-    );
-
-
-    shopAktualisieren();
-
-    startseiteAktualisieren();
 
 }
 
@@ -1252,47 +506,237 @@ let ausgewaehlteKategorie =
 
 
 /* =====================================================
-   SPIELSTATUS
+   AKTUELLER SPIELZUSTAND
    ===================================================== */
 
-let fragen = [];
+let fragen =
+    [];
 
-let verwendeteFragen = [];
+let verwendeteFragen =
+    [];
 
-let aktuelleFrage = 0;
+let aktuelleFrage =
+    0;
 
-let punkte = 0;
+let punkte =
+    0;
 
-let leben = 3;
+let leben =
+    3;
 
-let maximaleLeben = 3;
+let combo =
+    0;
 
-let combo = 0;
+let besteCombo =
+    0;
 
-let besteCombo = 0;
+let richtigBeantwortet =
+    0;
 
-let richtigBeantwortet = 0;
+let falschBeantwortet =
+    0;
 
-let falschBeantwortet = 0;
+let aktuelleZeit =
+    20;
 
-let aktuelleZeit = 20;
+let maximaleZeit =
+    20;
 
-let maximaleZeit = 20;
+let timer =
+    null;
 
-let timer = null;
+let antwortGegeben =
+    false;
 
-let antwortGegeben = false;
 
-let rundeAktiv = false;
+/* =====================================================
+   JOKER
+   WICHTIG: DIESE VARIABLEN MÜSSEN EXISTIEREN
+   ===================================================== */
 
-let bonusSchutz = false;
+let joker50 =
+    true;
 
-let aktuelleFrageDaten = null;
+let jokerZweiteChance =
+    true;
+
+let jokerZeit =
+    true;
+
+let jokerHinweis =
+    true;
+
+let bonusSchutz =
+    false;
+
+
+/* =====================================================
+   RUNDE
+   ===================================================== */
+
+let rundeAktiv =
+    false;
+
+
+/* =====================================================
+   LEVELSYSTEM
+   ===================================================== */
+
+/*
+   Level 1 -> 100 XP
+   Level 2 -> 125 XP
+   Level 3 -> 150 XP
+   Level 4 -> 175 XP
+   Level 5 -> 200 XP
+   usw.
+
+   Die benötigte XP steigt also mit jedem Level.
+*/
+
+function xpFuerLevel(
+    level
+) {
+
+    if (
+        level <= 1
+    ) {
+
+        return 100;
+
+    }
+
+
+    return (
+        100 +
+        (
+            (level - 1) *
+            25
+        )
+    );
+
+}
+
+
+function levelBerechnen(
+    xp
+) {
+
+    let level =
+        1;
+
+    let verbleibendeXP =
+        Math.max(
+            0,
+            Number(xp) || 0
+        );
+
+
+    let benoetigteXP =
+        xpFuerLevel(
+            level
+        );
+
+
+    while (
+        verbleibendeXP >=
+        benoetigteXP
+    ) {
+
+        verbleibendeXP -=
+            benoetigteXP;
+
+        level++;
+
+        benoetigteXP =
+            xpFuerLevel(
+                level
+            );
+
+    }
+
+
+    return level;
+
+}
+
+
+function xpBisNaechstesLevel(
+    xp
+) {
+
+    let level =
+        levelBerechnen(
+            xp
+        );
+
+
+    let gesamtXPVorLevel =
+        0;
+
+
+    for (
+        let i = 1;
+        i < level;
+        i++
+    ) {
+
+        gesamtXPVorLevel +=
+            xpFuerLevel(
+                i
+            );
+
+    }
+
+
+    let aktuell =
+        Math.max(
+            0,
+            xp -
+            gesamtXPVorLevel
+        );
+
+
+    let benoetigt =
+        xpFuerLevel(
+            level
+        );
+
+
+    return {
+
+        level:
+            level,
+
+        aktuell:
+            aktuell,
+
+        benoetigt:
+            benoetigt
+
+    };
+
+}
 
 
 /* =====================================================
    STARTSEITE
    ===================================================== */
+
+function startAnzeigen() {
+
+    screensAusblenden();
+
+
+    document.getElementById(
+        "startbildschirm"
+    ).style.display =
+        "block";
+
+
+    startseiteAktualisieren();
+
+}
+
 
 function startseiteAktualisieren() {
 
@@ -1300,14 +744,23 @@ function startseiteAktualisieren() {
         spielerDatenLaden();
 
 
-    let xp =
-        xpBisNaechstesLevel(
+    let level =
+        levelBerechnen(
             spieler.xp
         );
 
 
-    let level =
-        levelBerechnen(
+    spieler.level =
+        level;
+
+
+    spielerDatenSpeichern(
+        spieler
+    );
+
+
+    let xp =
+        xpBisNaechstesLevel(
             spieler.xp
         );
 
@@ -1318,43 +771,18 @@ function startseiteAktualisieren() {
         );
 
 
+    if (levelElement) {
+
+        levelElement.textContent =
+            level;
+
+    }
+
+
     let streakElement =
         document.getElementById(
             "startStreak"
         );
-
-
-    let coinsElement =
-        document.getElementById(
-            "startCoins"
-        );
-
-
-    let xpElement =
-        document.getElementById(
-            "startXP"
-        );
-
-
-    let xpBalken =
-        document.getElementById(
-            "startXPBalken"
-        );
-
-
-    let naechstesLevel =
-        document.getElementById(
-            "startNaechstesLevel"
-        );
-
-
-    if (levelElement) {
-
-        levelElement.textContent =
-            "Level " +
-            level;
-
-    }
 
 
     if (streakElement) {
@@ -1365,12 +793,24 @@ function startseiteAktualisieren() {
     }
 
 
+    let coinsElement =
+        document.getElementById(
+            "startCoins"
+        );
+
+
     if (coinsElement) {
 
         coinsElement.textContent =
             spieler.coins;
 
     }
+
+
+    let xpElement =
+        document.getElementById(
+            "startXP"
+        );
 
 
     if (xpElement) {
@@ -1384,17 +824,36 @@ function startseiteAktualisieren() {
     }
 
 
+    let xpBalken =
+        document.getElementById(
+            "startXPBalken"
+        );
+
+
     if (xpBalken) {
 
-        xpBalken.style.width =
+        let prozent =
             (
                 xp.aktuell /
-                xp.benoetigt *
-                100
+                xp.benoetigt
+            ) *
+            100;
+
+
+        xpBalken.style.width =
+            Math.min(
+                100,
+                prozent
             ) +
             "%";
 
     }
+
+
+    let naechstesLevel =
+        document.getElementById(
+            "startNaechstesLevel"
+        );
 
 
     if (naechstesLevel) {
@@ -1406,14 +865,13 @@ function startseiteAktualisieren() {
             ) +
             " XP bis Level " +
             (
-                level +
-                1
+                level + 1
             );
 
     }
 
 
-    spielerUIAktualisieren();
+    spielerBegruessungAktualisieren();
 
 }
 
@@ -1424,54 +882,27 @@ function startseiteAktualisieren() {
 
 function screensAusblenden() {
 
-    document
-        .querySelectorAll(
+    let screens =
+        document.querySelectorAll(
             ".screen"
-        )
-        .forEach(
-            function(
-                screen
-            ) {
-
-                screen.style.display =
-                    "none";
-
-            }
         );
 
-}
 
+    screens.forEach(
+        function(screen) {
 
-function startAnzeigen() {
+            screen.style.display =
+                "none";
 
-    timerStoppen();
-
-    rundeAktiv =
-        false;
-
-
-    screensAusblenden();
-
-
-    document.getElementById(
-        "startbildschirm"
-    ).style.display =
-        "block";
-
-
-    startseiteAktualisieren();
-
-    spielerBegruessungAktualisieren();
+        }
+    );
 
 }
 
 
-function zurueckZumStart() {
-
-    startAnzeigen();
-
-}
-
+/* =====================================================
+   SPIEL STARTEN
+   ===================================================== */
 
 function quizStarten() {
 
@@ -1486,18 +917,9 @@ function quizStarten() {
 }
 
 
-function zurueckZuModi() {
-
-    screensAusblenden();
-
-
-    document.getElementById(
-        "spielmodi"
-    ).style.display =
-        "block";
-
-}
-
+/* =====================================================
+   SPIELMODUS WÄHLEN
+   ===================================================== */
 
 function spielmodusWaehlen(
     modus
@@ -1506,48 +928,6 @@ function spielmodusWaehlen(
     spielmodus =
         modus;
 
-
-    let modusTexte = {
-
-        classic:
-            "🎮 Classic · 3 Leben · 20 Sekunden",
-
-        zeitdruck:
-            "⚡ Zeitdruck · schneller Timer",
-
-        endlos:
-            "♾️ Endlos · spiele so lange du kannst",
-
-        hardcore:
-            "💀 Hardcore · 1 Leben · maximaler Bonus"
-
-    };
-
-
-    document.getElementById(
-        "modusAnzeige"
-    ).textContent =
-        modusTexte[
-            modus
-        ] ||
-        "Wähle dein Thema";
-
-
-    screensAusblenden();
-
-
-    document.getElementById(
-        "kategorien"
-    ).style.display =
-        "block";
-
-
-    kategorienAnzeigen();
-
-}
-
-
-function nochmalSpielen() {
 
     screensAusblenden();
 
@@ -1564,7 +944,7 @@ function nochmalSpielen() {
 
 
 /* =====================================================
-   KATEGORIEN
+   KATEGORIEN ANZEIGEN
    ===================================================== */
 
 function kategorienAnzeigen() {
@@ -1587,9 +967,7 @@ function kategorienAnzeigen() {
 
 
     KATEGORIEN.forEach(
-        function(
-            kategorie
-        ) {
+        function(kategorie) {
 
             let button =
                 document.createElement(
@@ -1621,6 +999,10 @@ function kategorienAnzeigen() {
 }
 
 
+/* =====================================================
+   KATEGORIE WÄHLEN
+   ===================================================== */
+
 function kategorieWaehlen(
     kategorie
 ) {
@@ -1635,18 +1017,41 @@ function kategorieWaehlen(
 
 
 /* =====================================================
-   FRAGENPOOL
+   FRAGEN-POOL
    ===================================================== */
 
 function fragePoolErstellen() {
 
+    if (
+        typeof alleFragen ===
+        "undefined"
+    ) {
+
+        console.error(
+            "FEHLER: alleFragen ist nicht definiert."
+        );
+
+
+        alert(
+            "Die Fragen konnten nicht geladen werden. Bitte überprüfe fragen.js."
+        );
+
+
+        fragen =
+            [];
+
+
+        return;
+
+    }
+
+
     let passendeFragen =
         alleFragen.filter(
-            function(
-                frage
-            ) {
+            function(frage) {
 
                 return (
+                    frage &&
                     frage.kategorie ===
                     ausgewaehlteKategorie
                 );
@@ -1655,71 +1060,65 @@ function fragePoolErstellen() {
         );
 
 
+    passendeFragen =
+        passendeFragen.filter(
+            function(frage) {
+
+                return (
+                    !verwendeteFragen.includes(
+                        frage.frage
+                    )
+                );
+
+            }
+        );
+
+
+    /*
+       Falls alle Fragen dieser Kategorie
+       bereits verwendet wurden:
+       wieder von vorne beginnen.
+    */
+
+    if (
+        passendeFragen.length ===
+        0
+    ) {
+
+        verwendeteFragen =
+            [];
+
+
+        passendeFragen =
+            alleFragen.filter(
+                function(frage) {
+
+                    return (
+                        frage &&
+                        frage.kategorie ===
+                        ausgewaehlteKategorie
+                    );
+
+                }
+            );
+
+    }
+
+
+    passendeFragen.sort(
+        function() {
+
+            return (
+                Math.random() -
+                0.5
+            );
+
+        }
+    );
+
+
     fragen =
         passendeFragen;
-
-}
-
-
-function schwierigkeitFuerRunde() {
-
-    let nummer =
-        aktuelleFrage +
-        1;
-
-
-    if (
-        nummer <=
-        5
-    ) {
-
-        return "leicht";
-
-    }
-
-
-    if (
-        nummer <=
-        10
-    ) {
-
-        return "mittel";
-
-    }
-
-
-    return "schwer";
-
-}
-
-
-function schwierigkeitText() {
-
-    let schwierig =
-        schwierigkeitFuerRunde();
-
-
-    if (
-        schwierig ===
-        "leicht"
-    ) {
-
-        return "🟢 Leicht";
-
-    }
-
-
-    if (
-        schwierig ===
-        "mittel"
-    ) {
-
-        return "🟡 Mittel";
-
-    }
-
-
-    return "🔴 Schwer";
 
 }
 
@@ -1729,9 +1128,6 @@ function schwierigkeitText() {
    ===================================================== */
 
 function rundeStarten() {
-
-    timerStoppen();
-
 
     screensAusblenden();
 
@@ -1748,14 +1144,11 @@ function rundeStarten() {
     punkte =
         0;
 
-    maximaleLeben =
+    leben =
         spielmodus ===
         "hardcore"
             ? 1
             : 3;
-
-    leben =
-        maximaleLeben;
 
     combo =
         0;
@@ -1772,8 +1165,26 @@ function rundeStarten() {
     verwendeteFragen =
         [];
 
+
+    /*
+       Joker für jede Runde zurücksetzen.
+    */
+
+    joker50 =
+        true;
+
+    jokerZweiteChance =
+        true;
+
+    jokerZeit =
+        true;
+
+    jokerHinweis =
+        true;
+
     bonusSchutz =
         false;
+
 
     rundeAktiv =
         true;
@@ -1783,19 +1194,29 @@ function rundeStarten() {
 
 
     if (
-        !fragen.length
+        !fragen ||
+        fragen.length ===
+        0
     ) {
 
-        alert(
-            "Für diese Kategorie wurden keine Fragen gefunden."
+        console.error(
+            "Keine Fragen für Kategorie:",
+            ausgewaehlteKategorie
         );
 
-        startAnzeigen();
+
+        document.getElementById(
+            "frage"
+        ).textContent =
+            "Keine Fragen gefunden.";
+
 
         return;
 
     }
 
+
+    spielerDatenLaden();
 
     quizUIAktualisieren();
 
@@ -1805,43 +1226,120 @@ function rundeStarten() {
 
 
 /* =====================================================
-   NÄCHSTE FRAGE AUSWÄHLEN
+   SCHWIERIGKEIT
+   ===================================================== */
+
+function schwierigkeitFuerRunde() {
+
+    let nummer =
+        aktuelleFrage + 1;
+
+
+    if (
+        nummer <= 5
+    ) {
+
+        return "leicht";
+
+    }
+
+
+    if (
+        nummer <= 10
+    ) {
+
+        return "mittel";
+
+    }
+
+
+    return "schwer";
+
+}
+
+
+function schwierigkeitText() {
+
+    let schwierigkeit =
+        schwierigkeitFuerRunde();
+
+
+    if (
+        schwierigkeit ===
+        "leicht"
+    ) {
+
+        return "🟢 Leicht";
+
+    }
+
+
+    if (
+        schwierigkeit ===
+        "mittel"
+    ) {
+
+        return "🟡 Mittel";
+
+    }
+
+
+    return "🔴 Schwer";
+
+}
+
+
+/* =====================================================
+   NÄCHSTE FRAGE AUS POOL
    ===================================================== */
 
 function naechsteFrageAusPool() {
 
-    let schwierig =
+    let schwierigkeit =
         schwierigkeitFuerRunde();
 
 
+    /*
+       Zuerst passende Schwierigkeit.
+    */
+
     let pool =
         fragen.filter(
-            function(
-                frage
-            ) {
+            function(frage) {
 
                 return (
                     frage.schwierigkeit ===
-                    schwierig
+                    schwierigkeit
                 );
 
             }
         );
 
+
+    /*
+       Bereits verwendete entfernen.
+    */
 
     pool =
         pool.filter(
-            function(
-                frage
-            ) {
+            function(frage) {
 
-                return !verwendeteFragen.includes(
-                    frage.frage
+                return (
+                    !verwendeteFragen.includes(
+                        frage.frage
+                    )
                 );
 
             }
         );
 
+
+    /*
+       Falls keine Frage der
+       gewünschten Schwierigkeit
+       mehr vorhanden ist,
+       andere Schwierigkeit verwenden.
+    */
 
     if (
         pool.length ===
@@ -1850,12 +1348,12 @@ function naechsteFrageAusPool() {
 
         pool =
             fragen.filter(
-                function(
-                    frage
-                ) {
+                function(frage) {
 
-                    return !verwendeteFragen.includes(
-                        frage.frage
+                    return (
+                        !verwendeteFragen.includes(
+                            frage.frage
+                        )
                     );
 
                 }
@@ -1863,6 +1361,11 @@ function naechsteFrageAusPool() {
 
     }
 
+
+    /*
+       Falls wirklich alle Fragen
+       benutzt wurden.
+    */
 
     if (
         pool.length ===
@@ -1872,13 +1375,24 @@ function naechsteFrageAusPool() {
         verwendeteFragen =
             [];
 
+
         pool =
             fragen;
 
     }
 
 
-    let index =
+    if (
+        pool.length ===
+        0
+    ) {
+
+        return null;
+
+    }
+
+
+    let zufallsIndex =
         Math.floor(
             Math.random() *
             pool.length
@@ -1887,7 +1401,7 @@ function naechsteFrageAusPool() {
 
     let frage =
         pool[
-            index
+            zufallsIndex
         ];
 
 
@@ -1907,7 +1421,9 @@ function naechsteFrageAusPool() {
 
 function frageAnzeigen() {
 
-    if (!rundeAktiv) {
+    if (
+        !rundeAktiv
+    ) {
 
         return;
 
@@ -1917,22 +1433,8 @@ function frageAnzeigen() {
     antwortGegeben =
         false;
 
-    bonusSchutz =
-        false;
-
 
     timerStoppen();
-
-
-    aktuelleZeit =
-        spielmodus ===
-        "zeitdruck"
-            ? 10
-            : 20;
-
-
-    maximaleZeit =
-        aktuelleZeit;
 
 
     let frage =
@@ -1941,15 +1443,15 @@ function frageAnzeigen() {
 
     if (!frage) {
 
-        gameOver();
+        document.getElementById(
+            "frage"
+        ).textContent =
+            "Keine Frage verfügbar.";
+
 
         return;
 
     }
-
-
-    aktuelleFrageDaten =
-        frage;
 
 
     window.aktuelleQuizFrage =
@@ -1957,18 +1459,11 @@ function frageAnzeigen() {
 
 
     document.getElementById(
-        "frage"
-    ).textContent =
-        frage.frage;
-
-
-    document.getElementById(
         "rundeInfo"
     ).textContent =
         "Runde " +
         (
-            aktuelleFrage +
-            1
+            aktuelleFrage + 1
         );
 
 
@@ -1979,44 +1474,32 @@ function frageAnzeigen() {
 
 
     document.getElementById(
-        "ergebnis"
+        "frage"
     ).textContent =
-        "";
+        frage.frage;
 
 
-    document.getElementById(
-        "ergebnis"
-    ).style.color =
-        "";
-
-
-    document.getElementById(
-        "naechsteFrage"
-    ).disabled =
-        true;
-
-
-    let antwortContainer =
+    let antwortenContainer =
         document.getElementById(
             "antworten"
         );
 
 
-    antwortContainer.innerHTML =
+    antwortenContainer.innerHTML =
         "";
 
 
     let antworten =
         frage.antworten.map(
             function(
-                text,
+                antwort,
                 index
             ) {
 
                 return {
 
                     text:
-                        text,
+                        antwort,
 
                     richtig:
                         index ===
@@ -2027,6 +1510,10 @@ function frageAnzeigen() {
             }
         );
 
+
+    /*
+       Antwortreihenfolge mischen.
+    */
 
     antworten.sort(
         function() {
@@ -2041,9 +1528,7 @@ function frageAnzeigen() {
 
 
     antworten.forEach(
-        function(
-            antwort
-        ) {
+        function(antwort) {
 
             let button =
                 document.createElement(
@@ -2065,14 +1550,14 @@ function frageAnzeigen() {
                 function() {
 
                     antwortPruefen(
-                        button,
-                        antwort.richtig
+                        antwort.richtig,
+                        button
                     );
 
                 };
 
 
-            antwortContainer.appendChild(
+            antwortenContainer.appendChild(
                 button
             );
 
@@ -2080,19 +1565,35 @@ function frageAnzeigen() {
     );
 
 
+    document.getElementById(
+        "ergebnis"
+    ).textContent =
+        "";
+
+
+    document.getElementById(
+        "ergebnis"
+    ).style.color =
+        "";
+
+
+    let nextButton =
+        document.getElementById(
+            "naechsteFrage"
+        );
+
+
+    if (nextButton) {
+
+        nextButton.disabled =
+            true;
+
+    }
+
+
     jokerButtonsAktualisieren();
 
-    quizUIAktualisieren();
-
     timerStarten();
-
-
-    window.scrollTo(
-        {
-            top: 0,
-            behavior: "instant"
-        }
-    );
 
 }
 
@@ -2101,9 +1602,92 @@ function frageAnzeigen() {
    TIMER
    ===================================================== */
 
+function maximaleZeitFuerRunde() {
+
+    if (
+        spielmodus ===
+        "zeitdruck"
+    ) {
+
+        if (
+            aktuelleFrage < 5
+        ) {
+
+            return 15;
+
+        }
+
+
+        if (
+            aktuelleFrage < 10
+        ) {
+
+            return 12;
+
+        }
+
+
+        return 10;
+
+    }
+
+
+    if (
+        spielmodus ===
+        "hardcore"
+    ) {
+
+        return 15;
+
+    }
+
+
+    if (
+        aktuelleFrage < 5
+    ) {
+
+        return 20;
+
+    }
+
+
+    if (
+        aktuelleFrage < 10
+    ) {
+
+        return 18;
+
+    }
+
+
+    if (
+        aktuelleFrage < 20
+    ) {
+
+        return 15;
+
+    }
+
+
+    return 12;
+
+}
+
+
 function timerStarten() {
 
     timerStoppen();
+
+
+    maximaleZeit =
+        maximaleZeitFuerRunde();
+
+
+    aktuelleZeit =
+        maximaleZeit;
+
+
+    timerUIAktualisieren();
 
 
     timer =
@@ -2111,20 +1695,17 @@ function timerStarten() {
             function() {
 
                 if (
-                    !rundeAktiv
+                    !rundeAktiv ||
+                    antwortGegeben
                 ) {
-
-                    timerStoppen();
 
                     return;
 
                 }
 
 
-                aktuelleZeit--;
-
-
-                timerUIAktualisieren();
+                aktuelleZeit -=
+                    0.1;
 
 
                 if (
@@ -2132,14 +1713,28 @@ function timerStarten() {
                     0
                 ) {
 
+                    aktuelleZeit =
+                        0;
+
+
+                    timerUIAktualisieren();
+
+
                     timerStoppen();
+
 
                     zeitAbgelaufen();
 
+
+                    return;
+
                 }
 
+
+                timerUIAktualisieren();
+
             },
-            1000
+            100
         );
 
 }
@@ -2153,6 +1748,7 @@ function timerStoppen() {
             timer
         );
 
+
         timer =
             null;
 
@@ -2163,47 +1759,58 @@ function timerStoppen() {
 
 function timerUIAktualisieren() {
 
-    let text =
-        document.getElementById(
-            "timerText"
-        );
-
-
     let balken =
         document.getElementById(
             "timerBalken"
         );
 
 
-    if (text) {
+    let text =
+        document.getElementById(
+            "timerText"
+        );
 
-        text.textContent =
-            aktuelleZeit;
+
+    if (!balken || !text) {
+
+        return;
 
     }
 
 
-    if (balken) {
+    let prozent =
+        (
+            aktuelleZeit /
+            maximaleZeit
+        ) *
+        100;
 
-        let prozent =
+
+    balken.style.width =
+        Math.max(
+            0,
+            Math.min(
+                100,
+                prozent
+            )
+        ) +
+        "%";
+
+
+    text.textContent =
+        Math.ceil(
             Math.max(
                 0,
-                (
-                    aktuelleZeit /
-                    maximaleZeit
-                ) *
-                100
-            );
-
-
-        balken.style.width =
-            prozent +
-            "%";
-
-    }
+                aktuelleZeit
+            )
+        );
 
 }
 
+
+/* =====================================================
+   ZEIT ABGELAUFEN
+   ===================================================== */
 
 function zeitAbgelaufen() {
 
@@ -2223,41 +1830,9 @@ function zeitAbgelaufen() {
 
     falschBeantwortet++;
 
+
     combo =
         0;
-
-
-    let buttons =
-        document.querySelectorAll(
-            "#antworten button"
-        );
-
-
-    buttons.forEach(
-        function(
-            button
-        ) {
-
-            button.disabled =
-                true;
-
-
-            if (
-                button.dataset.richtig ===
-                "true"
-            ) {
-
-                button.classList.add(
-                    "richtig"
-                );
-
-            }
-
-        }
-    );
-
-
-    leben--;
 
 
     document.getElementById(
@@ -2269,16 +1844,13 @@ function zeitAbgelaufen() {
     document.getElementById(
         "ergebnis"
     ).style.color =
-        "#ff7777";
+        "#ff6666";
 
 
-    document.getElementById(
-        "naechsteFrage"
-    ).disabled =
-        false;
+    lebenVerlieren();
 
 
-    quizUIAktualisieren();
+    antwortenSperren();
 
 
     if (
@@ -2287,15 +1859,20 @@ function zeitAbgelaufen() {
     ) {
 
         setTimeout(
-            function() {
-
-                gameOver();
-
-            },
-            650
+            gameOver,
+            900
         );
 
+
+        return;
+
     }
+
+
+    document.getElementById(
+        "naechsteFrage"
+    ).disabled =
+        false;
 
 }
 
@@ -2305,8 +1882,8 @@ function zeitAbgelaufen() {
    ===================================================== */
 
 function antwortPruefen(
-    button,
-    richtig
+    istRichtig,
+    button
 ) {
 
     if (
@@ -2326,61 +1903,33 @@ function antwortPruefen(
     timerStoppen();
 
 
-    let buttons =
-        document.querySelectorAll(
-            "#antworten button"
-        );
-
-
-    buttons.forEach(
-        function(
-            element
-        ) {
-
-            element.disabled =
-                true;
-
-
-            if (
-                element.dataset.richtig ===
-                "true"
-            ) {
-
-                element.classList.add(
-                    "richtig"
-                );
-
-            }
-
-        }
-    );
-
-
-    if (richtig) {
-
-        button.classList.add(
-            "richtig"
-        );
-
+    if (
+        istRichtig
+    ) {
 
         richtigBeantwortet++;
+
 
         combo++;
 
 
-        besteCombo =
-            Math.max(
-                besteCombo,
-                combo
-            );
+        if (
+            combo >
+            besteCombo
+        ) {
+
+            besteCombo =
+                combo;
+
+        }
 
 
-        let verdient =
+        let gewonnen =
             punkteFuerAntwort();
 
 
         punkte +=
-            verdient;
+            gewonnen;
 
 
         let coins =
@@ -2392,31 +1941,68 @@ function antwortPruefen(
         );
 
 
+        button.classList.add(
+            "richtig"
+        );
+
+
         document.getElementById(
             "ergebnis"
         ).textContent =
             "✓ Richtig! +" +
-            verdient +
-            " Punkte · +" +
-            coins +
-            " Coins";
+            gewonnen +
+            " Punkte";
 
 
         document.getElementById(
             "ergebnis"
         ).style.color =
-            "#65e49a";
+            "#69e36d";
 
     }
 
     else {
+
+        falschBeantwortet++;
+
+
+        combo =
+            0;
+
 
         button.classList.add(
             "falsch"
         );
 
 
-        falschBeantwortet++;
+        /*
+           Richtige Antwort markieren.
+        */
+
+        let buttons =
+            document.querySelectorAll(
+                "#antworten button"
+            );
+
+
+        buttons.forEach(
+            function(
+                antwortButton
+            ) {
+
+                if (
+                    antwortButton.dataset.richtig ===
+                    "true"
+                ) {
+
+                    antwortButton.classList.add(
+                        "richtig"
+                    );
+
+                }
+
+            }
+        );
 
 
         if (
@@ -2430,7 +2016,7 @@ function antwortPruefen(
             document.getElementById(
                 "ergebnis"
             ).textContent =
-                "🛡️ Falsch – dein Schutz rettet dich!";
+                "🛡️ Schutz! Kein Leben verloren.";
 
 
             document.getElementById(
@@ -2442,12 +2028,6 @@ function antwortPruefen(
 
         else {
 
-            leben--;
-
-            combo =
-                0;
-
-
             document.getElementById(
                 "ergebnis"
             ).textContent =
@@ -2457,17 +2037,17 @@ function antwortPruefen(
             document.getElementById(
                 "ergebnis"
             ).style.color =
-                "#ff7777";
+                "#ff6666";
+
+
+            lebenVerlieren();
 
         }
 
     }
 
 
-    document.getElementById(
-        "naechsteFrage"
-    ).disabled =
-        false;
+    antwortenSperren();
 
 
     quizUIAktualisieren();
@@ -2479,15 +2059,20 @@ function antwortPruefen(
     ) {
 
         setTimeout(
-            function() {
-
-                gameOver();
-
-            },
-            700
+            gameOver,
+            900
         );
 
+
+        return;
+
     }
+
+
+    document.getElementById(
+        "naechsteFrage"
+    ).disabled =
+        false;
 
 }
 
@@ -2502,31 +2087,64 @@ function punkteFuerAntwort() {
         100;
 
 
-    let schwierig =
+    let schwierigkeit =
         schwierigkeitFuerRunde();
 
 
     if (
-        schwierig ===
+        schwierigkeit ===
         "mittel"
     ) {
 
-        basis *=
-            1.5;
+        basis =
+            150;
 
     }
 
 
     if (
-        schwierig ===
+        schwierigkeit ===
         "schwer"
     ) {
 
-        basis *=
-            2;
+        basis =
+            200;
 
     }
 
+
+    /*
+       Zeitbonus.
+    */
+
+    let zeitBonus =
+        Math.round(
+            (
+                aktuelleZeit /
+                Math.max(
+                    1,
+                    maximaleZeit
+                )
+            ) *
+            100
+        );
+
+
+    /*
+       Combo-Bonus.
+    */
+
+    let comboBonus =
+        Math.min(
+            combo *
+            10,
+            100
+        );
+
+
+    /*
+       Zeitdruck-Bonus.
+    */
 
     if (
         spielmodus ===
@@ -2539,6 +2157,10 @@ function punkteFuerAntwort() {
     }
 
 
+    /*
+       Hardcore-Bonus.
+    */
+
     if (
         spielmodus ===
         "hardcore"
@@ -2550,27 +2172,10 @@ function punkteFuerAntwort() {
     }
 
 
-    let comboBonus =
-        Math.min(
-            combo * 10,
-            100
-        );
-
-
-    let zeitBonus =
-        Math.round(
-            (
-                aktuelleZeit /
-                maximaleZeit
-            ) *
-            100
-        );
-
-
     return Math.round(
         basis +
-        comboBonus +
-        zeitBonus
+        zeitBonus +
+        comboBonus
     );
 
 }
@@ -2587,8 +2192,7 @@ function coinsFuerAntwort() {
 
 
     if (
-        combo >=
-        5
+        combo >= 5
     ) {
 
         coins +=
@@ -2598,8 +2202,7 @@ function coinsFuerAntwort() {
 
 
     if (
-        combo >=
-        10
+        combo >= 10
     ) {
 
         coins +=
@@ -2609,8 +2212,7 @@ function coinsFuerAntwort() {
 
 
     if (
-        combo >=
-        20
+        combo >= 20
     ) {
 
         coins +=
@@ -2654,19 +2256,118 @@ function coinsGutschreiben(
 
     }
 
+
+    startseiteAktualisieren();
+
 }
 
 
 /* =====================================================
-   JOKER
+   LEBEN
+   ===================================================== */
+
+function lebenText() {
+
+    if (
+        spielmodus ===
+        "hardcore"
+    ) {
+
+        return (
+            leben > 0
+                ? "❤️"
+                : "💔"
+        );
+
+    }
+
+
+    let text =
+        "";
+
+
+    for (
+        let i = 0;
+        i < 3;
+        i++
+    ) {
+
+        if (
+            i < leben
+        ) {
+
+            text +=
+                "❤️ ";
+
+        }
+
+        else {
+
+            text +=
+                "🖤 ";
+
+        }
+
+    }
+
+
+    return text.trim();
+
+}
+
+
+function lebenVerlieren() {
+
+    if (
+        leben > 0
+    ) {
+
+        leben--;
+
+    }
+
+
+    quizUIAktualisieren();
+
+}
+
+
+/* =====================================================
+   ANTWORTEN SPERREN
+   ===================================================== */
+
+function antwortenSperren() {
+
+    let buttons =
+        document.querySelectorAll(
+            "#antworten button"
+        );
+
+
+    buttons.forEach(
+        function(button) {
+
+            button.disabled =
+                true;
+
+        }
+    );
+
+
+    jokerButtonsAktualisieren();
+
+}
+
+
+/* =====================================================
+   JOKER 50/50
    ===================================================== */
 
 function joker50Nutzen() {
 
     if (
-        !rundeAktiv ||
-        antwortGegeben ||
-        !joker50
+        !joker50 ||
+        antwortGegeben
     ) {
 
         return;
@@ -2687,6 +2388,7 @@ function joker50Nutzen() {
             "Du brauchst 25 Coins für diesen Joker."
         );
 
+
         return;
 
     }
@@ -2702,14 +2404,11 @@ function joker50Nutzen() {
 
     let falsche =
         buttons.filter(
-            function(
-                button
-            ) {
+            function(button) {
 
                 return (
                     button.dataset.richtig !==
-                    "true" &&
-                    !button.disabled
+                    "true"
                 );
 
             }
@@ -2734,12 +2433,11 @@ function joker50Nutzen() {
             2
         )
         .forEach(
-            function(
-                button
-            ) {
+            function(button) {
 
                 button.disabled =
                     true;
+
 
                 button.style.opacity =
                     "0.2";
@@ -2768,12 +2466,15 @@ function joker50Nutzen() {
 }
 
 
+/* =====================================================
+   JOKER SCHUTZ
+   ===================================================== */
+
 function jokerZweiteChanceNutzen() {
 
     if (
-        !rundeAktiv ||
-        antwortGegeben ||
-        !jokerZweiteChance
+        !jokerZweiteChance ||
+        antwortGegeben
     ) {
 
         return;
@@ -2793,6 +2494,7 @@ function jokerZweiteChanceNutzen() {
         alert(
             "Du brauchst 40 Coins für diesen Joker."
         );
+
 
         return;
 
@@ -2835,12 +2537,15 @@ function jokerZweiteChanceNutzen() {
 }
 
 
+/* =====================================================
+   JOKER ZEIT
+   ===================================================== */
+
 function jokerZeitNutzen() {
 
     if (
-        !rundeAktiv ||
-        antwortGegeben ||
-        !jokerZeit
+        !jokerZeit ||
+        antwortGegeben
     ) {
 
         return;
@@ -2860,6 +2565,7 @@ function jokerZeitNutzen() {
         alert(
             "Du brauchst 30 Coins für diesen Joker."
         );
+
 
         return;
 
@@ -2884,26 +2590,14 @@ function jokerZeitNutzen() {
         maximaleZeit
     ) {
 
-        maximaleZeit =
-            aktuelleZeit;
+        aktuelleZeit =
+            maximaleZeit;
 
     }
 
 
     jokerZeit =
         false;
-
-
-    document.getElementById(
-        "ergebnis"
-    ).textContent =
-        "⏱️ +10 Sekunden!";
-
-
-    document.getElementById(
-        "ergebnis"
-    ).style.color =
-        "#ffd21f";
 
 
     timerUIAktualisieren();
@@ -2915,12 +2609,15 @@ function jokerZeitNutzen() {
 }
 
 
+/* =====================================================
+   JOKER HINWEIS
+   ===================================================== */
+
 function jokerHinweisNutzen() {
 
     if (
-        !rundeAktiv ||
-        antwortGegeben ||
-        !jokerHinweis
+        !jokerHinweis ||
+        antwortGegeben
     ) {
 
         return;
@@ -2940,6 +2637,7 @@ function jokerHinweisNutzen() {
         alert(
             "Du brauchst 50 Coins für diesen Joker."
         );
+
 
         return;
 
@@ -2974,7 +2672,8 @@ function jokerHinweisNutzen() {
 
 
     if (
-        !falsche.length
+        falsche.length ===
+        0
     ) {
 
         return;
@@ -3007,9 +2706,9 @@ function jokerHinweisNutzen() {
     document.getElementById(
         "ergebnis"
     ).textContent =
-        "💡 Hinweis: „" +
+        "💡 Hinweis: Eine mögliche falsche Antwort ist „" +
         zufall +
-        "“ ist eine falsche Antwort.";
+        "“.";
 
 
     document.getElementById(
@@ -3026,7 +2725,7 @@ function jokerHinweisNutzen() {
 
 
 /* =====================================================
-   JOKER BUTTONS
+   JOKER BUTTONS AKTUALISIEREN
    ===================================================== */
 
 function jokerButtonsAktualisieren() {
@@ -3064,8 +2763,7 @@ function jokerButtonsAktualisieren() {
         button50.disabled =
             !joker50 ||
             antwortGegeben ||
-            spieler.coins <
-            25;
+            spieler.coins < 25;
 
     }
 
@@ -3075,8 +2773,7 @@ function jokerButtonsAktualisieren() {
         buttonSchutz.disabled =
             !jokerZweiteChance ||
             antwortGegeben ||
-            spieler.coins <
-            40;
+            spieler.coins < 40;
 
     }
 
@@ -3086,8 +2783,7 @@ function jokerButtonsAktualisieren() {
         buttonZeit.disabled =
             !jokerZeit ||
             antwortGegeben ||
-            spieler.coins <
-            30;
+            spieler.coins < 30;
 
     }
 
@@ -3097,10 +2793,67 @@ function jokerButtonsAktualisieren() {
         buttonHinweis.disabled =
             !jokerHinweis ||
             antwortGegeben ||
-            spieler.coins <
-            50;
+            spieler.coins < 50;
 
     }
+
+}
+
+
+/* =====================================================
+   QUIZ UI
+   ===================================================== */
+
+function quizUIAktualisieren() {
+
+    let spieler =
+        spielerDatenLaden();
+
+
+    let lebenElement =
+        document.getElementById(
+            "leben"
+        );
+
+
+    if (lebenElement) {
+
+        lebenElement.textContent =
+            lebenText();
+
+    }
+
+
+    let comboElement =
+        document.getElementById(
+            "combo"
+        );
+
+
+    if (comboElement) {
+
+        comboElement.textContent =
+            "x" +
+            combo;
+
+    }
+
+
+    let coinsElement =
+        document.getElementById(
+            "coins"
+        );
+
+
+    if (coinsElement) {
+
+        coinsElement.textContent =
+            spieler.coins;
+
+    }
+
+
+    jokerButtonsAktualisieren();
 
 }
 
@@ -3137,6 +2890,7 @@ function naechsteFrage() {
 
         gameOver();
 
+
         return;
 
     }
@@ -3148,12 +2902,14 @@ function naechsteFrage() {
 
 
 /* =====================================================
-   MANUELL BEENDEN
+   RUNDE MANUELL BEENDEN
    ===================================================== */
 
 function quizManuellBeenden() {
 
-    if (!rundeAktiv) {
+    if (
+        !rundeAktiv
+    ) {
 
         return;
 
@@ -3186,7 +2942,9 @@ function quizManuellBeenden() {
 
 function gameOver() {
 
-    if (!rundeAktiv) {
+    if (
+        !rundeAktiv
+    ) {
 
         return;
 
@@ -3263,73 +3021,111 @@ function gameOver() {
     besterComboSpeichern();
 
 
-    hardcoreTracken();
+    let neuesLevel =
+        spieler.level;
 
 
     let levelUp =
-        spieler.level >
+        neuesLevel >
         altesLevel;
 
 
-    document.getElementById(
-        "gameoverPunkte"
-    ).textContent =
-        punkte;
+    let gameoverPunkte =
+        document.getElementById(
+            "gameoverPunkte"
+        );
 
 
-    document.getElementById(
-        "gameoverFragen"
-    ).textContent =
-        aktuelleFrage +
-        1;
+    if (gameoverPunkte) {
 
-
-    document.getElementById(
-        "gameoverRichtig"
-    ).textContent =
-        richtigBeantwortet;
-
-
-    document.getElementById(
-        "gameoverCombo"
-    ).textContent =
-        "x" +
-        besteCombo;
-
-
-    let belohnungText =
-        "<div class='gameover-belohnung'>" +
-
-        "⭐ +" +
-        verdientXP +
-        " XP<br>" +
-
-        "🪙 +" +
-        verdientCoins +
-        " Coins";
-
-
-    if (levelUp) {
-
-        belohnungText +=
-
-            "<br><br>" +
-
-            "⬆️ LEVEL " +
-            spieler.level +
-            "!";
+        gameoverPunkte.textContent =
+            punkte;
 
     }
 
 
-    belohnungText +=
-        "</div>";
+    let gameoverFragen =
+        document.getElementById(
+            "gameoverFragen"
+        );
 
 
-    document.getElementById(
-        "gameoverBelohnungen"
-    ).innerHTML =
-        belohnungText;
+    if (gameoverFragen) {
+
+        gameoverFragen.textContent =
+            aktuelleFrage +
+            1;
+
+    }
+
+
+    let gameoverRichtig =
+        document.getElementById(
+            "gameoverRichtig"
+        );
+
+
+    if (gameoverRichtig) {
+
+        gameoverRichtig.textContent =
+            richtigBeantwortet;
+
+    }
+
+
+    let gameoverCombo =
+        document.getElementById(
+            "gameoverCombo"
+        );
+
+
+    if (gameoverCombo) {
+
+        gameoverCombo.textContent =
+            "x" +
+            besteCombo;
+
+    }
+
+
+    let belohnungen =
+        document.getElementById(
+            "gameoverBelohnungen"
+        );
+
+
+    if (belohnungen) {
+
+        let text =
+            "<div class='gameover-belohnung'>" +
+            "⭐ +" +
+            verdientXP +
+            " XP<br>" +
+            "🪙 +" +
+            verdientCoins +
+            " Coins";
+
+
+        if (
+            levelUp
+        ) {
+
+            text +=
+                "<br><br>⬆️ LEVEL " +
+                neuesLevel +
+                "!";
+
+        }
+
+
+        text +=
+            "</div>";
+
+
+        belohnungen.innerHTML =
+            text;
+
+    }
 
 
     screensAusblenden();
@@ -3340,14 +3136,11 @@ function gameOver() {
     ).style.display =
         "block";
 
-
-    startseiteAktualisieren();
-
 }
 
 
 /* =====================================================
-   XP RUNDE
+   XP FÜR RUNDE
    ===================================================== */
 
 function xpFuerRunde() {
@@ -3357,6 +3150,10 @@ function xpFuerRunde() {
         5;
 
 
+    /*
+       Combo-Bonus maximal 50 XP.
+    */
+
     xp +=
         Math.min(
             besteCombo *
@@ -3364,6 +3161,10 @@ function xpFuerRunde() {
             50
         );
 
+
+    /*
+       Kleiner Score-Bonus.
+    */
 
     xp +=
         Math.floor(
@@ -3494,7 +3295,7 @@ function streakAktualisieren(
 
 
 /* =====================================================
-   STATISTIK
+   STATISTIK AKTUALISIEREN
    ===================================================== */
 
 function statistikAktualisieren(
@@ -3602,159 +3403,181 @@ const ACHIEVEMENTS = [
 
     {
         id: "erste_runde",
+
         icon: "🎮",
+
         name: "Erste Runde",
+
         text: "Spiele deine erste Runde.",
-        pruefen: function(
-            statistik
-        ) {
 
-            return (
-                statistik.quizze >=
-                1
-            );
+        pruefen:
+            function(statistik) {
 
-        }
+                return (
+                    statistik.quizze >=
+                    1
+                );
+
+            }
+
     },
+
 
     {
         id: "zehn_fragen",
+
         icon: "🧠",
+
         name: "Warmgelaufen",
+
         text: "Beantworte 10 Fragen.",
-        pruefen: function(
-            statistik
-        ) {
 
-            return (
-                statistik.fragen >=
-                10
-            );
+        pruefen:
+            function(statistik) {
 
-        }
+                return (
+                    statistik.fragen >=
+                    10
+                );
+
+            }
+
     },
+
 
     {
         id: "hundert_fragen",
+
         icon: "💯",
+
         name: "Quizmaschine",
+
         text: "Beantworte 100 Fragen.",
-        pruefen: function(
-            statistik
-        ) {
 
-            return (
-                statistik.fragen >=
-                100
-            );
+        pruefen:
+            function(statistik) {
 
-        }
+                return (
+                    statistik.fragen >=
+                    100
+                );
+
+            }
+
     },
+
 
     {
         id: "combo5",
+
         icon: "🔥",
+
         name: "Heiß gelaufen",
+
         text: "Erreiche eine 5er Combo.",
-        pruefen: function(
-            statistik
-        ) {
 
-            return (
-                statistik.besteCombo >=
-                5
-            );
+        pruefen:
+            function(statistik) {
 
-        }
+                return (
+                    statistik.besteCombo >=
+                    5
+                );
+
+            }
+
     },
+
 
     {
         id: "combo10",
+
         icon: "⚡",
+
         name: "Unaufhaltsam",
+
         text: "Erreiche eine 10er Combo.",
-        pruefen: function(
-            statistik
-        ) {
 
-            return (
-                statistik.besteCombo >=
-                10
-            );
+        pruefen:
+            function(statistik) {
 
-        }
+                return (
+                    statistik.besteCombo >=
+                    10
+                );
+
+            }
+
     },
+
 
     {
         id: "combo20",
+
         icon: "👑",
+
         name: "Quiz Hero",
+
         text: "Erreiche eine 20er Combo.",
-        pruefen: function(
-            statistik
-        ) {
 
-            return (
-                statistik.besteCombo >=
-                20
-            );
+        pruefen:
+            function(statistik) {
 
-        }
+                return (
+                    statistik.besteCombo >=
+                    20
+                );
+
+            }
+
     },
+
 
     {
         id: "level10",
+
         icon: "🏆",
+
         name: "Veteran",
+
         text: "Erreiche Level 10.",
-        pruefen: function() {
 
-            return (
-                levelBerechnen(
-                    spielerDatenLaden().xp
-                ) >=
-                10
-            );
+        pruefen:
+            function() {
 
-        }
+                return (
+                    levelBerechnen(
+                        spielerDatenLaden().xp
+                    ) >=
+                    10
+                );
+
+            }
+
     },
+
 
     {
         id: "hardcore",
+
         icon: "💀",
+
         name: "Hardcore",
+
         text: "Spiele eine Hardcore-Runde.",
-        pruefen: function() {
 
-            return (
-                localStorage.getItem(
-                    "quizero_hardcore_gespielt"
-                ) ===
-                "true"
-            );
+        pruefen:
+            function() {
 
-        }
-    },
+                return (
+                    localStorage.getItem(
+                        "quizero_hardcore_gespielt"
+                    ) ===
+                    "true"
+                );
 
-    {
-        id: "shop",
-        icon: "🛒",
-        name: "Shopper",
-        text: "Kaufe deinen ersten Joker.",
-        pruefen: function() {
+            }
 
-            let inventar =
-                jokerInventarLaden();
-
-
-            return (
-                inventar.joker50 > 0 ||
-                inventar.jokerZweiteChance > 0 ||
-                inventar.jokerZeit > 0 ||
-                inventar.jokerHinweis > 0
-            );
-
-        }
     }
 
 ];
@@ -3766,8 +3589,7 @@ function achievementsAktualisieren() {
         statistikLaden();
 
 
-    let freigeschaltet =
-        [];
+    let freigeschaltet;
 
 
     try {
@@ -3791,9 +3613,7 @@ function achievementsAktualisieren() {
 
 
     ACHIEVEMENTS.forEach(
-        function(
-            achievement
-        ) {
+        function(achievement) {
 
             if (
                 achievement.pruefen(
@@ -3830,9 +3650,6 @@ function achievementsAktualisieren() {
 
 function profilAnzeigen() {
 
-    timerStoppen();
-
-
     screensAusblenden();
 
 
@@ -3849,9 +3666,6 @@ function profilAnzeigen() {
 
 function profilAktualisieren() {
 
-    spielerUIAktualisieren();
-
-
     let spieler =
         spielerDatenLaden();
 
@@ -3860,56 +3674,51 @@ function profilAktualisieren() {
         statistikLaden();
 
 
-    let level =
-        levelBerechnen(
-            spieler.xp
-        );
-
-
     let xp =
         xpBisNaechstesLevel(
             spieler.xp
         );
 
 
-    let nameElement =
+    let profilName =
         document.getElementById(
             "profilName"
         );
 
 
-    if (nameElement) {
+    if (profilName) {
 
-        nameElement.textContent =
-            spielerNameLaden();
+        profilName.textContent =
+            spielerNameLaden() ||
+            "Spieler";
 
     }
 
 
-    let levelElement =
+    let profilLevel =
         document.getElementById(
             "profilLevel"
         );
 
 
-    if (levelElement) {
+    if (profilLevel) {
 
-        levelElement.textContent =
+        profilLevel.textContent =
             "Level " +
-            level;
+            xp.level;
 
     }
 
 
-    let xpElement =
+    let profilXP =
         document.getElementById(
             "profilXP"
         );
 
 
-    if (xpElement) {
+    if (profilXP) {
 
-        xpElement.textContent =
+        profilXP.textContent =
             xp.aktuell +
             " / " +
             xp.benoetigt +
@@ -3918,15 +3727,15 @@ function profilAktualisieren() {
     }
 
 
-    let xpBalken =
+    let profilXPBalken =
         document.getElementById(
             "profilXPBalken"
         );
 
 
-    if (xpBalken) {
+    if (profilXPBalken) {
 
-        xpBalken.style.width =
+        profilXPBalken.style.width =
             (
                 xp.aktuell /
                 xp.benoetigt *
@@ -3937,23 +3746,22 @@ function profilAktualisieren() {
     }
 
 
-    let nextElement =
+    let profilNaechstesLevel =
         document.getElementById(
             "profilNaechstesLevel"
         );
 
 
-    if (nextElement) {
+    if (profilNaechstesLevel) {
 
-        nextElement.textContent =
+        profilNaechstesLevel.textContent =
             (
                 xp.benoetigt -
                 xp.aktuell
             ) +
             " XP bis Level " +
             (
-                level +
-                1
+                xp.level + 1
             );
 
     }
@@ -3968,66 +3776,49 @@ function profilAktualisieren() {
 
 
     let html =
-        "<div class='profil-stat-grid'>";
 
+        "<div class='profil-stat-grid'>" +
 
-    html +=
         profilKarte(
             statistik.quizze,
             "Gespielte Runden"
-        );
+        ) +
 
-
-    html +=
         profilKarte(
             statistik.fragen,
             "Fragen beantwortet"
-        );
+        ) +
 
-
-    html +=
         profilKarte(
             statistik.richtig,
             "Richtige Antworten"
-        );
+        ) +
 
-
-    html +=
         profilKarte(
             statistik.falsch,
             "Falsche Antworten"
-        );
+        ) +
 
-
-    html +=
         profilKarte(
             statistik.bestePunkte,
             "Bester Score"
-        );
+        ) +
 
-
-    html +=
         profilKarte(
             besterCombo,
             "Beste Combo"
-        );
+        ) +
 
-
-    html +=
         profilKarte(
             spieler.coins,
             "Coins"
-        );
+        ) +
 
-
-    html +=
         profilKarte(
             spieler.streak,
             "Tage Streak"
-        );
+        ) +
 
-
-    html +=
         "</div>";
 
 
@@ -4051,9 +3842,7 @@ function profilAktualisieren() {
 
 
     ACHIEVEMENTS.forEach(
-        function(
-            achievement
-        ) {
+        function(achievement) {
 
             let erreicht =
                 freigeschaltet.includes(
@@ -4071,15 +3860,15 @@ function profilAktualisieren() {
                 ) +
                 "'>" +
 
-                    "<strong>" +
-                        achievement.icon +
-                        " " +
-                        achievement.name +
-                    "</strong>" +
+                "<strong>" +
+                achievement.icon +
+                " " +
+                achievement.name +
+                "</strong>" +
 
-                    "<span>" +
-                        achievement.text +
-                    "</span>" +
+                "<span>" +
+                achievement.text +
+                "</span>" +
 
                 "</div>";
 
@@ -4091,10 +3880,18 @@ function profilAktualisieren() {
         "</div>";
 
 
-    document.getElementById(
-        "profilInhalt"
-    ).innerHTML =
-        html;
+    let profilInhalt =
+        document.getElementById(
+            "profilInhalt"
+        );
+
+
+    if (profilInhalt) {
+
+        profilInhalt.innerHTML =
+            html;
+
+    }
 
 }
 
@@ -4108,17 +3905,24 @@ function profilKarte(
 
         "<div class='profil-stat-card'>" +
 
-            "<strong>" +
-                wert +
-            "</strong>" +
+        "<strong>" +
+        wert +
+        "</strong>" +
 
-            "<span>" +
-                text +
-            "</span>" +
+        "<span>" +
+        text +
+        "</span>" +
 
         "</div>"
 
     );
+
+}
+
+
+function profilSchliessen() {
+
+    startAnzeigen();
 
 }
 
@@ -4128,9 +3932,6 @@ function profilKarte(
    ===================================================== */
 
 async function bestenlisteAnzeigen() {
-
-    timerStoppen();
-
 
     screensAusblenden();
 
@@ -4206,26 +4007,25 @@ async function bestenlisteLaden() {
             container.innerHTML =
                 "<p>Noch keine Ergebnisse vorhanden.</p>";
 
+
             return;
 
         }
 
 
         let html =
-            "<div class='bestenliste-tabelle'>";
 
-
-        html +=
+            "<div class='bestenliste-tabelle'>" +
 
             "<div class='bestenliste-zeile bestenliste-kopf'>" +
 
-                "<div>#</div>" +
+            "<div>#</div>" +
 
-                "<div>Spieler</div>" +
+            "<div>Spieler</div>" +
 
-                "<div>Score</div>" +
+            "<div>Score</div>" +
 
-                "<div>Details</div>" +
+            "<div>Details</div>" +
 
             "</div>";
 
@@ -4238,9 +4038,7 @@ async function bestenlisteLaden() {
 
                 let kategorie =
                     KATEGORIEN.find(
-                        function(
-                            kat
-                        ) {
+                        function(kat) {
 
                             return (
                                 kat.wert ===
@@ -4255,57 +4053,47 @@ async function bestenlisteLaden() {
 
                     "<div class='bestenliste-zeile'>" +
 
-                        "<div class='bestenliste-platz'>" +
-                            (
-                                index +
-                                1
-                            ) +
-                        "</div>" +
+                    "<div class='bestenliste-platz'>" +
+                    (
+                        index + 1
+                    ) +
+                    "</div>" +
 
-                        "<div class='bestenliste-kategorie'>" +
+                    "<div class='bestenliste-kategorie'>" +
+                    escapeHTML(
+                        eintrag.spielername ||
+                        "Spieler"
+                    ) +
+                    "</div>" +
 
-                            "<span class='leaderboard-avatar'>" +
-                                escapeHTML(
-                                    eintrag.avatar ||
-                                    "🦊"
-                                ) +
-                            "</span>" +
+                    "<div class='bestenliste-score'>" +
+                    (
+                        eintrag.punkte ||
+                        0
+                    ) +
+                    "</div>" +
 
-                            escapeHTML(
-                                eintrag.spielername ||
-                                "Spieler"
-                            ) +
+                    "<div>" +
 
-                        "</div>" +
+                    (
+                        kategorie
+                            ? kategorie.name
+                            : escapeHTML(
+                                eintrag.kategorie ||
+                                ""
+                            )
+                    ) +
 
-                        "<div class='bestenliste-score'>" +
-                            (
-                                eintrag.punkte ||
-                                0
-                            ) +
-                        "</div>" +
+                    "<br>" +
 
-                        "<div>" +
+                    (
+                        eintrag.prozent ||
+                        0
+                    ) +
 
-                            (
-                                kategorie
-                                    ? kategorie.name
-                                    : (
-                                        eintrag.kategorie ||
-                                        ""
-                                    )
-                            ) +
+                    "%" +
 
-                            "<br>" +
-
-                            (
-                                eintrag.prozent ||
-                                0
-                            ) +
-
-                            "%" +
-
-                        "</div>" +
+                    "</div>" +
 
                     "</div>";
 
@@ -4325,6 +4113,7 @@ async function bestenlisteLaden() {
     catch (fehler) {
 
         console.error(
+            "Bestenliste:",
             fehler
         );
 
@@ -4337,8 +4126,15 @@ async function bestenlisteLaden() {
 }
 
 
+function bestenlisteSchliessen() {
+
+    startAnzeigen();
+
+}
+
+
 /* =====================================================
-   SCORE ONLINE
+   ONLINE SCORE SPEICHERN
    ===================================================== */
 
 async function scoreOnlineSpeichern() {
@@ -4355,58 +4151,63 @@ async function scoreOnlineSpeichern() {
     }
 
 
-    let beantworteteFragen =
-        Math.max(
-            1,
-            aktuelleFrage +
-            1
-        );
-
-
     let prozent =
         (
             richtigBeantwortet /
-            beantworteteFragen
+            Math.max(
+                1,
+                aktuelleFrage + 1
+            )
         ) *
         100;
 
 
     try {
 
-        await supabaseClient
-            .from(
-                "bestenliste"
-            )
-            .insert(
-                [
-                    {
+        let ergebnis =
+            await supabaseClient
+                .from(
+                    "bestenliste"
+                )
+                .insert(
+                    [
+                        {
 
-                        spielername:
-                            name,
+                            spielername:
+                                name,
 
-                        avatar:
-                            avatarLaden(),
+                            kategorie:
+                                ausgewaehlteKategorie,
 
-                        kategorie:
-                            ausgewaehlteKategorie,
+                            schwierigkeit:
+                                schwierigkeitFuerRunde(),
 
-                        schwierigkeit:
-                            schwierigkeitFuerRunde(),
+                            anzahl_fragen:
+                                aktuelleFrage + 1,
 
-                        anzahl_fragen:
-                            beantworteteFragen,
+                            punkte:
+                                punkte,
 
-                        punkte:
-                            punkte,
+                            prozent:
+                                Math.round(
+                                    prozent
+                                )
 
-                        prozent:
-                            Math.round(
-                                prozent
-                            )
+                        }
+                    ]
+                );
 
-                    }
-                ]
+
+        if (
+            ergebnis.error
+        ) {
+
+            console.error(
+                "Score konnte nicht gespeichert werden:",
+                ergebnis.error
             );
+
+        }
 
     }
 
@@ -4423,7 +4224,7 @@ async function scoreOnlineSpeichern() {
 
 
 /* =====================================================
-   HARDCORE
+   HARDCORE TRACKING
    ===================================================== */
 
 function hardcoreTracken() {
@@ -4444,98 +4245,24 @@ function hardcoreTracken() {
 
 
 /* =====================================================
-   QUIZ UI
+   NOCHMAL SPIELEN
    ===================================================== */
 
-function lebenText() {
+function nochmalSpielen() {
 
-    let text =
-        "";
-
-
-    for (
-        let i = 0;
-        i < maximaleLeben;
-        i++
-    ) {
-
-        text +=
-            i < leben
-                ? "❤️ "
-                : "🖤 ";
-
-    }
+    hardcoreTracken();
 
 
-    return text.trim();
-
-}
+    screensAusblenden();
 
 
-function quizUIAktualisieren() {
-
-    let spieler =
-        spielerDatenLaden();
-
-
-    let lebenElement =
-        document.getElementById(
-            "leben"
-        );
+    document.getElementById(
+        "kategorien"
+    ).style.display =
+        "block";
 
 
-    let comboElement =
-        document.getElementById(
-            "combo"
-        );
-
-
-    let coinsElement =
-        document.getElementById(
-            "coins"
-        );
-
-
-    let punkteElement =
-        document.getElementById(
-            "quizPunkte"
-        );
-
-
-    if (lebenElement) {
-
-        lebenElement.textContent =
-            lebenText();
-
-    }
-
-
-    if (comboElement) {
-
-        comboElement.textContent =
-            "x" +
-            combo;
-
-    }
-
-
-    if (coinsElement) {
-
-        coinsElement.textContent =
-            spieler.coins;
-
-    }
-
-
-    if (punkteElement) {
-
-        punkteElement.textContent =
-            punkte;
-
-    }
-
-
-    jokerButtonsAktualisieren();
+    kategorienAnzeigen();
 
 }
 
@@ -4576,19 +4303,166 @@ function escapeHTML(
 
 
 /* =====================================================
-   INITIALISIERUNG
+   SPIELER STATUS
    ===================================================== */
+
+function spielerStatusAktualisieren() {
+
+    let spieler =
+        spielerDatenLaden();
+
+
+    let level =
+        levelBerechnen(
+            spieler.xp
+        );
+
+
+    spieler.level =
+        level;
+
+
+    spielerDatenSpeichern(
+        spieler
+    );
+
+
+    /*
+       Startseite
+    */
+
+    let startLevel =
+        document.getElementById(
+            "startLevel"
+        );
+
+
+    if (startLevel) {
+
+        startLevel.textContent =
+            level;
+
+    }
+
+
+    let startStreak =
+        document.getElementById(
+            "startStreak"
+        );
+
+
+    if (startStreak) {
+
+        startStreak.textContent =
+            spieler.streak;
+
+    }
+
+
+    let startCoins =
+        document.getElementById(
+            "startCoins"
+        );
+
+
+    if (startCoins) {
+
+        startCoins.textContent =
+            spieler.coins;
+
+    }
+
+
+    let xp =
+        xpBisNaechstesLevel(
+            spieler.xp
+        );
+
+
+    let startXP =
+        document.getElementById(
+            "startXP"
+        );
+
+
+    if (startXP) {
+
+        startXP.textContent =
+            xp.aktuell +
+            " / " +
+            xp.benoetigt +
+            " XP";
+
+    }
+
+
+    let startXPBalken =
+        document.getElementById(
+            "startXPBalken"
+        );
+
+
+    if (startXPBalken) {
+
+        startXPBalken.style.width =
+            (
+                xp.aktuell /
+                xp.benoetigt *
+                100
+            ) +
+            "%";
+
+    }
+
+
+    let startNaechstesLevel =
+        document.getElementById(
+            "startNaechstesLevel"
+        );
+
+
+    if (startNaechstesLevel) {
+
+        startNaechstesLevel.textContent =
+            (
+                xp.benoetigt -
+                xp.aktuell
+            ) +
+            " XP bis Level " +
+            (
+                level + 1
+            );
+
+    }
+
+
+    spielerBegruessungAktualisieren();
+
+}
+
+
+/* =====================================================
+   START
+   ===================================================== */
+
+function spielerStarten() {
+
+    spielerNameEinrichten();
+
+    spielerStatusAktualisieren();
+
+    startseiteAktualisieren();
+
+}
+
 
 document.addEventListener(
     "DOMContentLoaded",
     function() {
 
-        spielerNameEinrichten();
-
-        startseiteAktualisieren();
+        spielerStarten();
 
         kategorienAnzeigen();
 
     }
 );
-
